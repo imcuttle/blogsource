@@ -13,7 +13,7 @@ timezone:
 search:
 #  path: search.xml
 #  field: post
-  remote: http://localhost:7890
+  remote: http://202.119.104.195:7899
   online: true
 
 
