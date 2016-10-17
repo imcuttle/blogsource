@@ -54,7 +54,7 @@
       "github": "https://github.com/moyuyc"
     },
     {
-      "envelop-o": "mailto:492899414@qq.com"
+      "envelope-o": "mailto:492899414@qq.com"
     }
   ],
 
@@ -76,6 +76,12 @@
 
   "music": {
     "id": "69355290",
-    "auto": false
+    "auto": false,
+    "style": {
+      "left": "80px",
+      "top": "15px",
+      "right": "",
+      "bottom": ""
+    }
   }
 }
