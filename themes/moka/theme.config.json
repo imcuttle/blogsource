@@ -1,0 +1,76 @@
+{
+  "avatar": "/head.jpg",
+  "title": " Moyu Dev Blog ",
+  "description": " Web, Node C/C++ Dev ",
+
+  "mainInfoColor": "",
+  "canvasColor": "",
+
+  "leftPercentage": 50,
+
+  "pageSize": 6,
+  "summaryNum": 50,
+
+  "iconTarget": "_blank",
+  "projectTarget": "_blank",
+
+  "home": {
+    "title": "About Me",
+    "contentHtml": "<p>I’m a Javascript enthusiast. I'm a member of Baidu BEFE team and try my best to improve myself. I’m also a nodejs, c/c++ dev, Sometimes.</p><p><img class='emoji' src='http://emojipedia-us.s3.amazonaws.com/cache/08/84/088419f4d97c19762c29008c4a89bbf4.png'/></p>"
+  },
+  "projects": [
+    {
+      "title": "Moka & Theme",
+      "image": "https://segmentfault.com/img/bVEjtX",
+      "link": "https://github.com/moyuyc/moka"
+    },
+    {
+      "title": "Music Robot",
+      "image": "/upload/1471705339720.png",
+      "link": "https://github.com/moyuyc/request-song-robot"
+    },
+    {
+      "title": "Markdown Editor",
+      "image": "/upload/1471093544488.png",
+      "link": "https://github.com/moyuyc/markdown-editor"
+    },
+    {
+      "title": "Node Explorer",
+      "image": "/images/md.png",
+      "link": "http://file.moyuyc.xyz/"
+    },
+    {
+      "title": "Node BookShop",
+      "image": "/images/p7.png",
+      "link": "https://github.com/moyuyc/book-shopping"
+    }
+  ],
+
+  "icon": [
+    {
+      "weibo": "http://weibo.com/2848472365"
+    },
+    {
+      "github": "https://github.com/moyuyc"
+    },
+    {
+      "envelop-o": "mailto:492899414@qq.com"
+    }
+  ],
+
+  "coverImage": {
+    "images": {
+      "tags": "http://taylantatli.me/Halve/images/unsplash-gallery-image-3.jpg",
+      "home": "http://taylantatli.me/Halve/images/unsplash-image-10.jpg",
+      "article": "http://taylantatli.me/Halve/images/unsplash-gallery-image-3.jpg",
+      "serach": "http://taylantatli.me/Halve/images/unsplash-image-10.jpg",
+      "notExist": "http://taylantatli.me/Halve/images/unsplash-gallery-image-3.jpg",
+      "posts": [
+        "http://taylantatli.me/Halve/images/unsplash-image-10.jpg",
+        "http://taylantatli.me/Halve/images/home.png",
+        "http://taylantatli.me/Halve/images/unsplash-gallery-image-3.jpg"
+      ]
+    },
+    "articleCover": true
+  }
+}

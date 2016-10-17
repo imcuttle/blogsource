@@ -1,7 +1,0 @@
-.deploy_git
-node_modules
-public
-scaffolds
-db.json
-package.json
-README.md
