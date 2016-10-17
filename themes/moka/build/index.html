@@ -8,6 +8,46 @@
 </head>
 <body>
 <div id="app"></div>
+<iframe id="musicBox" style="display: none; position: absolute; left: 50px; top: 20px;"
+        frameborder="no" border="0" marginwidth="0" marginheight="0"
+        width=100% height=86 ></iframe>
 <script src="app.main.js?v=0.0.1"></script>
+<script>
+    // 源码丢失, 新功能 音乐配置 dev
+    (function (doc, win, musicBox) {
+        (doc.onload = function () {
+            function work(cache) {
+                var db = cache.DB,
+                    tc = cache.themeConfig,
+                    mc = cache.mokaConfig;
+
+                var music = tc.music;
+                if(music) {
+                    var id = music.id,
+                        auto = !!music.auto?1:0;
+
+                    musicBox.src = "http://music.163.com/outchain/player?type=2&"
+                        +"id="+id+"&auto="+auto//+"&height=66"
+
+                    musicBox.style.display = '';
+                }
+
+            }
+
+            var t;
+            if(!window.__moka_c) {
+                t = setInterval(function () {
+                    if(!!window.__moka_c) {
+                        clearInterval(t);
+                        work(window.__moka_c);
+                    }
+                }, 200);
+            } else {
+                work(window.__moka_c)
+            }
+
+        })
+    })(document, window, document.getElementById('musicBox'))
+</script>
 </body>
 </html>

@@ -72,5 +72,10 @@
       ]
     },
     "articleCover": true
+  },
+
+  "music": {
+    "id": "69355290",
+    "auto": false
   }
 }
