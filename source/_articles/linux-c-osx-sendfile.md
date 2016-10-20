@@ -23,14 +23,14 @@ write(socket, buffer, n);
 //...
 ```
 
-**然而，其实在linux内核中已经实现了一种更为高效的方法，`sendfile`**
+**然而，其实在linux内核中已经实现了一种更为高效的方法，`sendfile`**  
 不需要频繁的调用`read/write`,也不需要开辟buffer，减少了内核函数的调用，提高性能。
 
 ## 函数说明
 
 - 定义
 
-    int sendfile(int fd, int s, off_t offset, off_t *len, struct sf_hdtr *hdtr, int flags);
+        int sendfile(int fd, int s, off_t offset, off_t *len, struct sf_hdtr *hdtr, int flags);
 
 - 解释
 
@@ -44,7 +44,9 @@ write(socket, buffer, n);
 |flags|设置为0即可|
 
 关于flags, man page原文如下:
+
 > The flags parameter is reserved for future expansion and must be set to 0. Any other value will cause sendfile() to return EINVAL.
+
 意思是，flags是为了后面备用的，现在还没实现，现在传入0即可。
 
 下面着重解释`len`与`hdtr`参数
