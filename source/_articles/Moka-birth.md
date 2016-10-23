@@ -33,7 +33,7 @@ tags: [moka, spa]
     $ moka s  # 开启本地服务，动态更新_articles
     $ moka n abc # 新建一个article
     
-    $ moka d  # 根据 moka.config.json deploy 发布 
+    $ moka d  # 根据 moka.config.json deploy 发布, 需要设置sshkey 
     ``` 
 
 3. 线上效果
@@ -59,6 +59,9 @@ tags: [moka, spa]
          └── moka/        # 主题文件夹，其中包含theme.config.json, 根据主题要求自行配置
 
     ```
+
+    关于`moka deploy & moka bak`需要设置`github key`，这里给出[Windows平台的设置教程](http://jingyan.baidu.com/article/a65957f4e91ccf24e77f9b11.html)，其他平台大同小异  
+    设置ssh key完成后，修改`moka.config.json` deploy与bak url字段即可，改成对应repo的url.
     
 
 ## Document
