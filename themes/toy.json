@@ -1,0 +1,41 @@
+{
+  "title": "Moyu Dev Blog",
+
+  "leftPic": {
+    "smText": "Welcome to",
+    "lgText": "Here",
+    "bgUrl": "https://unsplash.it/2000/1200?image=1074"
+  },
+
+  "tagPageSize": 12,
+  "pageSize": 6,
+  "summaryNumber": 100,
+
+  "iconTarget": "_blank",
+  "icons": [
+    {
+      "key": "envelope-o",
+      "url": "mailto:492899414@qq.com"
+    }, {
+      "key": "github",
+      "url": "https://github.com/moyuyc"
+    }, {
+      "key": "weibo",
+      "url": "http://weibo.com/2848472365"
+    }
+  ],
+  "profile": {
+    "contentHtml": "<h3>About Me</h3><p>I’m a Javascript enthusiast. I'm a member of Baidu BEFE team and try my best to improve myself. I’m also a nodejs, c/c++ dev, Sometimes.</p><p><img class='emoji' src='http://emojipedia-us.s3.amazonaws.com/cache/08/84/088419f4d97c19762c29008c4a89bbf4.png'/></p>",
+    "image": "/head.jpg"
+  },
+  "fillCovers": [
+    "https://unsplash.it/2000/1200?image=447",
+    "https://unsplash.it/2000/1200?image=674",
+    "https://unsplash.it/2000/1200?image=447",
+    "https://unsplash.it/2000/1200?image=40",
+    "https://unsplash.it/2000/1200?image=1074",
+    "https://unsplash.it/2000/1200?image=1003",
+    "https://unsplash.it/2000/1200?image=16"
+  ],
+  "lazyLoadCover": false
+}
