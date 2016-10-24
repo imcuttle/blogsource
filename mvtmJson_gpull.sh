@@ -4,5 +4,5 @@ if [ ! -n "$1" ];then
 else
     mv themes/"$1"/theme.config.json themes/"$1".json
     (cd themes/"$1" && git pull)
-    mv themes/"$1".json themes/"$1"/theme.config.json
+    cp themes/"$1".json themes/"$1"/theme.config.json
 fi
