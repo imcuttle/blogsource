@@ -2,7 +2,7 @@
 title: 再也不是“单纯”学生
 date: 2016-10-24 15:59:36
 categories:
-tags: [总结, offer, 计划]
+tags: [总结, 随笔]
 cover: http://imglf.nosdn.127.net/img/VGZOcGsxRHZhM2x0cWVBaDhhUmFRTUFTaDFrYWZlMDJDd040MlNydlBUM3FBY3hQU050TmVnPT0.jpg?imageView&thumbnail=800x0&quality=96&stripmeta=0&type=jpg
 ---
 
