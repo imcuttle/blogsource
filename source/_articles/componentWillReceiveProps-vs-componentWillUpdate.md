@@ -30,7 +30,7 @@ componentWillUpdate(nextProps) {
 
 > componentWillUpdate() is invoked immediately before rendering when new props or state are being received. Use this as an opportunity to perform preparation before an update occurs. This method is not called for the initial render.
 
-Note that you cannot call this.setState() here. If you need to update state in response to a prop change, use componentWillReceiveProps() instead.
+> Note that you cannot call this.setState() here. If you need to update state in response to a prop change, use componentWillReceiveProps() instead.
 
 这段话说的很清楚了！`componentWillUpdate`会在`render`之前时刻调用，在第一次`render`的时候不会调用。  
 **你不能在该方法中调用`this.setState()`，请用`componentWillReceiveProps()`代替**
