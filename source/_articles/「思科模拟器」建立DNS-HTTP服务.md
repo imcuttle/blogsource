@@ -3,6 +3,7 @@ title: 「思科模拟器」建立DNS+HTTP服务
 date: 2016-06-06 19:23:10
 categories: [计算机网络]
 tags: [思科,dns,http]
+cover: /images/dns1.png
 ---
 # 引言
 之前，我介绍了使用思科构建VLAN服务，下面我将介绍利用思科建立DNS/HTTP服务。
