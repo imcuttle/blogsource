@@ -3,7 +3,7 @@ title: Moka Desktop编程记录
 date: 2016-10-29 11:36:51
 categories:
 tags: [electron, moka]
-cover: 
+cover: https://avatars3.githubusercontent.com/u/13409222?v=3&s=400
 ---
 
 上一篇文件简单介绍了下`Moka Desktop`, 那么对于我这位`Web前端开发工程师`是怎么能够开发一个`Pc App`的呢？  
