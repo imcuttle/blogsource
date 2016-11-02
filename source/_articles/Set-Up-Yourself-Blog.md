@@ -34,7 +34,7 @@ input `node -v` and `git --version`
 if their version display successily, congratulation!
 
 OK! It's time that the leading role say hello to everyone.  
-The leading role is named **Moka**
+The leading role is named **Moka**, supporting **gym markdown** syntax, generating your **SPA** (single page application) Blog.
 
 Steps:  
 1. if you are in China, install cnpm (download Moka fast) by npm (node package manager, Be installed together with node)
