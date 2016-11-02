@@ -3,6 +3,7 @@ title: npm命令行小结
 date: 2016-10-13 10:39:06
 categories:
 tags: [npm]
+cover:  
 ---
 
 # yarn
