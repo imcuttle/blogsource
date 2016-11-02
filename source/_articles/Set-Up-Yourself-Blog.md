@@ -61,7 +61,7 @@ Steps:
         # or
         moka g
 8. list static directory
-![ClipboardImage](/upload/1478078329113.png)
+![ClipboardImage](/upload/1478080340315.png)
 yeah, the files in `themes/moka/build/` are copied to `static/`, and generate a new directory named `moka_api`, `./moka.config.json` and `./themes/moka/theme.config.json` copied here. and generate a new file named `db.json`.
 
 9. run static local server for watch `static/index.html`
@@ -80,3 +80,8 @@ and for deploying easily, you also need [Generating a new SSH key and adding it 
 replace `deploy.url` to yourself, and if you want bakup your moka work directory, replace `bak.url`
 12. Deploy!
         moka d -g -b # -b option menus bakup, -g: generate
+    Done! Open your blog (address: yourusername.github.io) and enjoy it.
+13. New Article
+        moka new title
+        # or
+        moka n title
