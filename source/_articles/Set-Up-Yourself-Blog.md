@@ -103,9 +103,11 @@ It's awesome that **Editor** which has synchronic preview and easy way to insert
 Some top blue buttons can be understood by `Command Line` above. Then you can watch right logs recording child process's output.  
 `Server` and `Static Server` will open a new window automatically after the server run successfully.  
 
-Editor can read the image from clipboard, so paste (ctrl/cmd+V) can insert the image fast.
+Editor can read the image from clipboard or drag datatransfer, so paste (ctrl/cmd+V) can insert the image fast.
 
 ![](/upload/moka-paste-img.gif)
+
+![ClipboardImage](/upload/1478257591263.gif)
 
 a lot of editor's theme you can choose.
 ![](/upload/moka-editor-theme.gif)
