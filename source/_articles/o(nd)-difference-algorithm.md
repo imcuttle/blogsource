@@ -6,6 +6,10 @@ tags: [algorithm]
 cover: http://imglf1.nosdn.127.net/img/K1VGeEFFWE1kVEtIRklrMjlVS3VCMkFMNWRiNkhZTlBPTG03dXNIVVc1aFUzYTBJenQ3THJRPT0.jpg?imageView&thumbnail=800x0&quality=96&stripmeta=0&type=jpg
 ---
 
+由于以前的markdown编辑器涉及到diff算法，接触到了diff-match-patch.js  
+相关的论文与代码均在 https://code.google.com/p/google-diff-match-patch/
+
+
 作者： 亚利桑那大学计算机科学系，EUGENE W.MYERS
 
 众所周知，寻找最长公共子串问题(LCS)与最短编辑脚本问题(SES)是对偶问题。在这篇论文中，他们将被认为在编辑图中寻找最短/最长路径是等价问题。在这个视角看该问题，O(ND)时间空间复杂度的算法就出现了，N表示A串、B串的长度之和，D表示A、B的最小编辑脚本。该算法在A、B串差异不大的时候效率很好(D很小)。该算法在一般随机的情况下，有O(N+D²)的预计时间效率和O(N)的空间复杂度，如果使用前缀树的话，时间复杂度可以优化至O(NlgN+D²).
