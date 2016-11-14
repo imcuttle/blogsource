@@ -52,7 +52,7 @@ var moka = require('moka-cli/bin') // bin/index.js中放的便是命令行入口
 }
 ```
 传入以上`options`后才能在`fork`返回的`ChildProcess`对象中使用`stdout/stderr`  
-关于具体的进程通信与管道与信号机制，请看[Linux C 一站式教程](http://akaedu.github.io/book/)中的相关章节。
+关于具体的进程通信与管道与信号机制，请看[Linux C 一站式教程](http://akaedu.github.io/book/)中的相关章节。 
 
 3. 打包过程  
     可以使用[`electron-packager`](https://github.com/electron-userland/electron-packager)或者[`electron-builder`](https://www.npmjs.com/package/electron-builder)进行打包
