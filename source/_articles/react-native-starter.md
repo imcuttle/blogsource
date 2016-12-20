@@ -3,7 +3,7 @@ title: React Native 意识流
 date: 2016-12-20 10:41:57
 categories:
 tags: [react, react Native]
-cover: http://img.blog.csdn.net/20160326162834667
+cover: http://www.appcoda.com.tw/wp-content/uploads/2015/04/react-native-1024x631.png
 ---
 
 **注：本文暂无逻辑**
