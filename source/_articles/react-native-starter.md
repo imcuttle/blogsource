@@ -2,7 +2,7 @@
 title: React Native 意识流
 date: 2016-12-20 10:41:57
 categories:
-tags: [react, react Native]
+tags: [react, react native]
 cover: http://www.appcoda.com.tw/wp-content/uploads/2015/04/react-native-1024x631.png
 ---
 
