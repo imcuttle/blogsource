@@ -76,7 +76,7 @@ function sendMail(host,user,pwd,to,msg) {
 
 function sync(proms) {
     if(proms.length==0) {
-        retrun Promise.resolve();
+        return Promise.resolve();
     }
     return proms.shift()
     .then(function(x) {
@@ -120,8 +120,7 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
                     `To: ${r.name}<${r.mail}>\r\n`+
                     "Content-Type: text/html\r\n\r\n"+
                     `${render(compiled, Object.assign(data, {hrefTitle: add, _link: 'https://moyuyc.github.io'}))}`
-                ).then((err, i)=>{
-                    var r = receivers[i];
+                ).then((err)=>{
                     console.log('To', r.name, r.mail);
                     if(err) {
                         console.error(err);
@@ -135,7 +134,7 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
                         }
                     }
                 })
-            ))
+            )).catch(console.error)
         }
     })
 }
