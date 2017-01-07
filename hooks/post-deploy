@@ -74,6 +74,16 @@ function sendMail(host,user,pwd,to,msg) {
     
 }
 
+function sync(proms) {
+    if(proms.length==0) {
+        retrun Promise.resolve();
+    }
+    return proms.shift()
+    .then(function(x) {
+        return sync(proms);
+    })
+}
+
 if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
     var db = require(dbPath);
     var adds = require(addPath);
@@ -99,7 +109,7 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
         var data = dbMain[add];
         if(new Date(data.head.realDate) > oldLastDate) {
             console.log('Sending Mail', data.head.title);
-            Promise.all(receivers.map(r =>
+            sync(receivers.map(r =>
                 sendMail(
                     'smtp.qq.com',
                     '492899414@qq.com',
@@ -110,9 +120,7 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
                     `To: ${r.name}<${r.mail}>\r\n`+
                     "Content-Type: text/html\r\n\r\n"+
                     `${render(compiled, Object.assign(data, {hrefTitle: add, _link: 'https://moyuyc.github.io'}))}`
-                )
-            )).then(vls=>{
-                vls.forEach((err, i)=>{
+                ).then((err, i)=>{
                     var r = receivers[i];
                     console.log('To', r.name, r.mail);
                     if(err) {
@@ -127,7 +135,7 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
                         }
                     }
                 })
-            })
+            ))
         }
     })
 }
