@@ -79,7 +79,7 @@ function sendMail(host,user,pwd,to,msg) {
 }
 
 function sync(callables) {
-console.log(callables.length);
+console.log(callables.length, callables[0].toString());
     if(callables.length==0) {
         return Promise.resolve();
     }
@@ -117,6 +117,7 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
             console.log('Sending Mail', data.head.title);
             sync(receivers.map(r => {
                 return function () {
+                    console.log('Sending', r.name, r.mail);
                     return sendMail(
                         'smtp.qq.com',
                         '492899414@qq.com',
@@ -128,7 +129,7 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
                         "Content-Type: text/html\r\n\r\n" +
                         `${render(compiled, Object.assign(data, {hrefTitle: add, _link: 'https://moyuyc.github.io'}))}`
                     ).then((err) => {
-                        console.log('To', r.name, r.mail);
+                        console.log('Sended', r.name, r.mail);
                         if (err) {
                             console.error(err);
                         } else {
