@@ -79,12 +79,12 @@ function sendMail(host,user,pwd,to,msg) {
 }
 
 function sync(callables) {
-console.log(callables.length, callables[0].toString());
     if(callables.length==0) {
         return Promise.resolve();
     }
+    console.log(callables.length, callables[0]);
     return
-    callables.shift()()
+        callables.shift()()
         .then(function(x) {
             return sync(callables);
         })
