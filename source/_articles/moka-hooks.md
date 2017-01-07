@@ -50,16 +50,17 @@ moka-blog/
 2. `generate`: `static/`文件夹更新
 3. `post-generate`: 将这时所有文章目录读取，与文件`tmp_pre_generate`对比，得到新添加的文章，并保存在临时文件`tmp_post_generate`中
 4. `deploy`: 部署`static/`文件夹内容至远端服务器
-5. `post-deploy`: 判断是否存在`tmp_post_generate`，读取`tmp_post_generate`，并利用[`smtp`](https://github.com/moyuyc/ftp-smtp/)协议发送邮件（利用递归，同步发送邮件操作）
+5. `post-deploy`: 判断是否存在`tmp_post_generate`，读取`tmp_post_generate`，并利用[`smtp`](https://github.com/moyuyc/ftp-smtp/)协议发送邮件（利用递归，同步发送邮件操作）, 并且将最新的文章时间与title保存至`tmp_post_deploy`，下次读取`tmp_post_deploy`，确保时间晚于上次最新的文章。
 ```javascript
-function sync(proms) {
-    if(proms.length==0) {
+function sync(callables) {
+    if(callables.length==0) {
         return Promise.resolve();
     }
-    return proms.shift()
-    .then(function(x) {
-        return sync(proms);
-    })
+    return
+        callables.shift()()
+        .then(function(x) {
+            return sync(callables);
+        })
 }
 ```
 

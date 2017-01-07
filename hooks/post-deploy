@@ -1,4 +1,5 @@
 #!/usr/local/bin/node
+
 var path = require('path');
 var fs = require('fs');
 
@@ -12,13 +13,10 @@ var tmpPostDeployPath = path.resolve('./hooks/tmp_post_deploy.json');
 
 var receivers = [{
     name: "王同学",
-    mail: "1459035851@qq.com"
+    mail: "492899414@qq.com"
 }, {
-   name: "刘同学",
-   mail: "1355070604@qq.com"
-}, {
-   name: "沈同学",
-   mail: "2193469349@qq.com"
+   name: "王同学2",
+   mail: "492899414@qq.com"
 } ]
 
 var net = require('net');
@@ -35,7 +33,7 @@ function sendMail(host,user,pwd,to,msg) {
             // console.log(arguments);
             return wt.apply(this,arguments);
         }
-    
+
         var op = ['AUTH LOGIN\r\n'];
         socket.on('close', (had_error) => {
             !had_error && resolve();
@@ -43,7 +41,7 @@ function sendMail(host,user,pwd,to,msg) {
         socket.on('error', (err) => {
             resolve(err);
         })
-        
+
         socket.pipe(process.stdout);
         socket.on('data',function (data) {
             data = data.toString();
@@ -74,17 +72,18 @@ function sendMail(host,user,pwd,to,msg) {
             }
         })
     })
-    
+
 }
 
-function sync(proms) {
-    if(proms.length==0) {
+function sync(callables) {
+    if(callables.length==0) {
         return Promise.resolve();
     }
-    return proms.shift()
-    .then(function(x) {
-        return sync(proms);
-    })
+    return
+        callables.shift()()
+        .then(function(x) {
+            return sync(callables);
+        })
 }
 
 if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
@@ -112,31 +111,33 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
         var data = dbMain[add];
         if(new Date(data.head.realDate) > oldLastDate) {
             console.log('Sending Mail', data.head.title);
-            sync(receivers.map(r =>
-                sendMail(
-                    'smtp.qq.com',
-                    '492899414@qq.com',
-                    'jrpzcdbebynzcabf',
-                    'moyuyc95@gmail.com',
-                    "From: Moyu<moyuyc95@gmail.com>\r\n"+
-                    `Subject: [墨鱼新的文章出炉啦!] ${data.head.title} \r\n`+
-                    `To: ${r.name}<${r.mail}>\r\n`+
-                    "Content-Type: text/html\r\n\r\n"+
-                    `${render(compiled, Object.assign(data, {hrefTitle: add, _link: 'https://moyuyc.github.io'}))}`
-                ).then((err)=>{
-                    console.log('To', r.name, r.mail);
-                    if(err) {
-                        console.error(err);
-                    } else {
-                        if(!writed) {
-                            fs.unlinkSync(addPath);
-                            fs.writeFileSync('./hooks/tmp_post_deploy.json', JSON.stringify(
-                                { lastDate: dbMain[adds[0]].head.realDate, hrefTitle: adds[0] }
-                            ));
-                            writed = true;
+            sync(receivers.map(r => {
+                return function() {
+                    return sendMail(
+                        'smtp.qq.com',
+                        '492899414@qq.com',
+                        'jrpzcdbebynzcabf',
+                        'moyuyc95@gmail.com',
+                        "From: Moyu<moyuyc95@gmail.com>\r\n"+
+                        `Subject: [墨鱼新的文章出炉啦!] ${data.head.title} \r\n`+
+                        `To: ${r.name}<${r.mail}>\r\n`+
+                        "Content-Type: text/html\r\n\r\n"+
+                        `${render(compiled, Object.assign(data, {hrefTitle: add, _link: 'https://moyuyc.github.io'}))}`
+                    ).then((err)=>{
+                        console.log('To', r.name, r.mail);
+                        if(err) {
+                            console.error(err);
+                        } else {
+                            if(!writed) {
+                                fs.unlinkSync(addPath);
+                                fs.writeFileSync('./hooks/tmp_post_deploy.json', JSON.stringify(
+                                    { lastDate: dbMain[adds[0]].head.realDate, hrefTitle: adds[0] }
+                                ));
+                                writed = true;
+                            }
                         }
-                    }
-                })
+                    })
+                }
             )).catch(console.error)
         }
     })
