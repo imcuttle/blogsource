@@ -24,6 +24,9 @@ var tmpPostDeployPath = path.resolve('./hooks/tmp_post_deploy.json');
 var receivers = [{
     name: "王同学",
     mail: "492899414@qq.com"
+}, {
+    name: "王同学x",
+    mail: "moyuyc95@gmail.com"
 }]
 
 var net = require('net');
@@ -131,7 +134,7 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
                         "From: Moyu<moyuyc95@gmail.com>\r\n" +
                         `Subject: [墨鱼新的文章出炉啦!] ${data.head.title} \r\n` +
                         `To: ${r.name}<${r.mail}>\r\n` +
-                        "Content-Type: text/html;charset=uft-8\r\n\r\n" +
+                        "Content-Type: text/html\r\n\r\n" +
                         `${render(compiled, Object.assign(data, {hrefTitle: add, _link: 'https://moyuyc.github.io'}))}`
                     ).then((err) => {
                         console.log('Sended', r.name, r.mail);
