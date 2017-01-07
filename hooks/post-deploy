@@ -11,7 +11,7 @@ var dbPath = path.resolve('.', 'static', apiRoot, 'db.json');
 var addPath = path.resolve('./hooks/tmp_post_generate.json');
 var tmpPostDeployPath = path.resolve('./hooks/tmp_post_deploy.json');
 
-/*var receivers = [{
+var receivers = [{
     name: "王同学",
     mail: "1459035851@qq.com"
 }, {
@@ -20,11 +20,11 @@ var tmpPostDeployPath = path.resolve('./hooks/tmp_post_deploy.json');
 }, {
    name: "沈同学",
    mail: "2193469349@qq.com"
-} ] */
-var receivers = [{
+} ] 
+/*var receivers = [{
     name: "王同学",
     mail: "492899414@qq.com"
-}]
+}]*/
 
 var net = require('net');
 function sendMail(host,user,pwd,to,msg) {
