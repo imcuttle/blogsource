@@ -21,6 +21,10 @@ var receivers = [{
    name: "沈同学",
    mail: "2193469349@qq.com"
 } ]
+/*var receivers = [{
+    name: "王同学",
+    mail: "492899414@qq.com"
+}]*/
 
 var net = require('net');
 function sendMail(host,user,pwd,to,msg) {
@@ -124,7 +128,7 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
                         '492899414@qq.com',
                         'jrpzcdbebynzcabf',
                         r.mail,
-                        "From: Moyu<492899414@qq.com>\r\n" +
+                        "From: Moyu<moyuyc95@gmail.com>\r\n" +
                         `Subject: [墨鱼新的文章出炉啦!] ${data.head.title} \r\n` +
                         `To: ${r.name}<${r.mail}>\r\n` +
                         "Content-Type: text/html\r\n\r\n" +
