@@ -8,15 +8,27 @@
     .date, .tags {
         display: block;
         text-align: right;
+        margin-right: 28px;
+    }
+    .cover {
+        background-image: url("http://imglf2.nosdn.127.net/img/RGxnTTAxaDhPR052b1FSL1RNRElMN1FSejk4VEgxS2dlNXlNS3R3aXpTcmltSlZ4OFhhVGN3PT0.jpg?imageView&thumbnail=800x0&quality=96&stripmeta=0&type=jpg%7Cwatermark&type=2&text=wqkg4oCcTmFtaeS8mumBh-ingeS7gOS5iOKAnSAvIG5hbWljaG93LmxvZnRlci5jb20=&font=bXN5aA==&gravity=southwest&dissolve=30&fontsize=240&dx=8&dy=10&stripmeta=0");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        /* background-color: rgba(0,0,0,.2); */
+        height: 150px;
+        margin-bottom: 25px;
     }
 </style>
 
 <div class="container">
+    <div class="cover" style="${obj.head.cover?`background-image: url(${obj.head.cover})`:''}"></div>
     <div>
         <h1 class="title"><a href="${obj._link+"/#article/"+obj.hrefTitle}" target="_blank">${obj.head.title}</a></h1>
         <time class="date">${obj.head.realDate}</time>
         <span class="tags">${ (obj.head.tags || []).map(x=>`<a href="${obj._link+"/#tags/"+x}" target="_blank">${x}</a>`) }</span>
     </div>
+    <br/>
     <div class="markdown-body">
         ${obj.content.replace(/(<img.+?src=")([\s\S]+?)"/g, (m, a, b)=>{
             if(!/^(http:)|(https:)|(\/\/)/.test(b)) {
@@ -31,6 +43,6 @@
         }) }
         <hr/>
         <br>
-        —— 来自酷炫的<a href="https://github.com/moyuyc/moka">Moka</a>
+        <span class="date">—— 来自酷炫的<a href="https://github.com/moyuyc/moka">Moka</a></span>
     </div>
 </div>
