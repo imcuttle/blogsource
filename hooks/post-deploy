@@ -141,7 +141,7 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
                         }
                     })
                 }
-            })).catch(console.error)
+            }))
         }
     })
 }
