@@ -10,7 +10,7 @@ cover:
 
 借用了部分Git Hook(钩子)的约定，如：采用脚本文件的形式(用户可以选择自己的脚本语言，`python/nodejs/ruby/bash...`)，`pre-action/post-action`的命名方式
 
-`moka`≧1.2.3 支持hook，`moka init`后产生的文件夹目录如下
+`moka` ≧1.2.3 支持hook，`moka init`后产生的文件夹目录如下
 ```sh
 moka-blog/
 ├── moka.config.json # moka配置，包括全局配置，如deploy，bak信息，主题选择
