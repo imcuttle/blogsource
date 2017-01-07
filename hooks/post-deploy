@@ -11,7 +11,10 @@ var dbPath = path.resolve('.', 'static', apiRoot, 'db.json');
 var addPath = path.resolve('./hooks/tmp_post_generate.json');
 var tmpPostDeployPath = path.resolve('./hooks/tmp_post_deploy.json');
 
-var receivers = [{name: "moyu", mail: "492899414@qq.com"}];/*[{
+var receivers = [{name: "moyu", mail: "492899414@qq.com"},
+{name: "moyu", mail: "492899414@qq.com"},
+{name: "moyu", mail: "492899414@qq.com"}
+];/*[{
     name: "王同学",
     mail: "1459035851@qq.com"
 }, {
@@ -47,32 +50,33 @@ function sendMail(host,user,pwd,to,msg) {
         socket.pipe(process.stdout);
         socket.on('data',function (data) {
             data = data.toString();
-            console.log('data', data);
-            const code = data.match(/^\d{3}/)[0]
-            switch (code){
-                case '250':{
-                    var v = op.shift();
-                    if(v==='AUTH LOGIN\r\n'){
-                        op.push(user64+'\r\n');
-                        op.push(pwd+'\r\n');
-                    }else if(v==='RCPT TO:'+to+'\r\n'){
-                        op.push('DATA\r\n');
-                        op.push(msg+'\r\n.\r\n');
+            data.split('\r\n').forEach(data=>{
+                const code = data.match(/^\d{3}/)[0]
+                switch (code){
+                    case '250':{
+                        var v = op.shift();
+                        if(v==='AUTH LOGIN\r\n'){
+                            op.push(user64+'\r\n');
+                            op.push(pwd+'\r\n');
+                        }else if(v==='RCPT TO:'+to+'\r\n'){
+                            op.push('DATA\r\n');
+                            op.push(msg+'\r\n.\r\n');
+                        }
+                        socket.write(v);
+                        break;
                     }
-                    socket.write(v);
-                    break;
+                    case '334':{
+                        var v = op.shift();
+                        socket.write(v);
+                        if(op.length===0) op.push('MAIL FROM:'+user+'\r\n');
+                        break;
+                    }
+                    case '235': socket.write(op.shift()); op.push('RCPT TO:'+to+'\r\n'); break;
+                    case '221': socket.end(); break;
+                    case '354': socket.write(op.shift()); op.push('QUIT'+'\r\n'); break;
+                    // default : console.log(data);
                 }
-                case '334':{
-                    var v = op.shift();
-                    socket.write(v);
-                    if(op.length===0) op.push('MAIL FROM:'+user+'\r\n');
-                    break;
-                }
-                case '235': socket.write(op.shift()); op.push('RCPT TO:'+to+'\r\n'); break;
-                case '221': socket.end(); break;
-                case '354': socket.write(op.shift()); op.push('QUIT'+'\r\n'); break;
-                // default : console.log(data);
-            }
+            });
         })
     })
 
