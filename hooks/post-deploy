@@ -33,13 +33,14 @@ function sendMail(host,user,pwd,to,msg, cb) {
     }
 
     var op = ['AUTH LOGIN\r\n'];
-    socket.on('close', () => {
-        cb();
+    socket.on('close', (had_error) => {
+        !had_error && cb();
     })
     socket.on('error', (err) => {
         cb(err);
     })
-    // socket.pipe(process.stdout);
+    
+    socket.pipe(process.stdout);
     socket.on('data',function (data) {
         data = data.toString();
         const code = data.match(/^\d{3}/)[0]
