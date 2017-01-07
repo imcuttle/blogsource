@@ -1,5 +1,6 @@
 #!/usr/local/bin/node
 
+#!/usr/bin/env node
 var path = require('path');
 var fs = require('fs');
 
@@ -13,10 +14,13 @@ var tmpPostDeployPath = path.resolve('./hooks/tmp_post_deploy.json');
 
 var receivers = [{
     name: "王同学",
-    mail: "492899414@qq.com"
+    mail: "1459035851@qq.com"
 }, {
-   name: "王同学2",
-   mail: "492899414@qq.com"
+   name: "刘同学",
+   mail: "1355070604@qq.com"
+}, {
+   name: "沈同学",
+   mail: "2193469349@qq.com"
 } ]
 
 var net = require('net');
@@ -80,7 +84,7 @@ function sync(callables) {
         return Promise.resolve();
     }
     return
-        callables.shift()()
+    callables.shift()()
         .then(function(x) {
             return sync(callables);
         })
@@ -112,41 +116,41 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
         if(new Date(data.head.realDate) > oldLastDate) {
             console.log('Sending Mail', data.head.title);
             sync(receivers.map(r => {
-                return function() {
+                return function () {
                     return sendMail(
                         'smtp.qq.com',
                         '492899414@qq.com',
                         'jrpzcdbebynzcabf',
                         'moyuyc95@gmail.com',
-                        "From: Moyu<moyuyc95@gmail.com>\r\n"+
-                        `Subject: [墨鱼新的文章出炉啦!] ${data.head.title} \r\n`+
-                        `To: ${r.name}<${r.mail}>\r\n`+
-                        "Content-Type: text/html\r\n\r\n"+
+                        "From: Moyu<moyuyc95@gmail.com>\r\n" +
+                        `Subject: [墨鱼新的文章出炉啦!] ${data.head.title} \r\n` +
+                        `To: ${r.name}<${r.mail}>\r\n` +
+                        "Content-Type: text/html\r\n\r\n" +
                         `${render(compiled, Object.assign(data, {hrefTitle: add, _link: 'https://moyuyc.github.io'}))}`
-                    ).then((err)=>{
+                    ).then((err) => {
                         console.log('To', r.name, r.mail);
-                        if(err) {
+                        if (err) {
                             console.error(err);
                         } else {
-                            if(!writed) {
+                            if (!writed) {
                                 fs.unlinkSync(addPath);
                                 fs.writeFileSync('./hooks/tmp_post_deploy.json', JSON.stringify(
-                                    { lastDate: dbMain[adds[0]].head.realDate, hrefTitle: adds[0] }
+                                    {lastDate: dbMain[adds[0]].head.realDate, hrefTitle: adds[0]}
                                 ));
                                 writed = true;
                             }
                         }
                     })
                 }
-            )).catch(console.error)
+            })).catch(console.error)
         }
     })
 }
 
 function compile (str) {
     var tpl = str;
-        //.replace(/<%=([\s\S]+?)%>/g, (m, c) => "` + obj." + c + "+ `")
-        //.replace(/<%([\s\S]+?)%>/g, (m ,c) => "`;\n" + c + "\ntpl += `")
+    //.replace(/<%=([\s\S]+?)%>/g, (m, c) => "` + obj." + c + "+ `")
+    //.replace(/<%([\s\S]+?)%>/g, (m ,c) => "`;\n" + c + "\ntpl += `")
 
     // tpl = tpl.replace(/\'\n/g, '\'').replace(/\n\'/gm, '\'')
 
@@ -159,4 +163,6 @@ function render (compiled, data) {
     //console.log(compiled(data));
     return compiled(data);
 }
+
+
 
