@@ -33,7 +33,7 @@ function sendMail(host,user,pwd,to,msg) {
         });
         var wt = net.Socket.prototype.write;
         socket.write = function () {
-            // console.log(arguments);
+            console.log(arguments);
             return wt.apply(this,arguments);
         }
 
@@ -121,7 +121,7 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
                         '492899414@qq.com',
                         'jrpzcdbebynzcabf',
                         r.mail,
-                        "From: Moyu<moyuyc95@gmail.com>\r\n" +
+                        "From: Moyu<492899414@qq.com>\r\n" +
                         `Subject: [墨鱼新的文章出炉啦!] ${data.head.title} \r\n` +
                         `To: ${r.name}<${r.mail}>\r\n` +
                         "Content-Type: text/html\r\n\r\n" +
