@@ -56,8 +56,7 @@ function sync(callables) {
     if(callables.length==0) {
         return Promise.resolve();
     }
-    return
-        callables.shift()()
+    return callables.shift()()
         .then(function(x) {
             return sync(callables);
         })
