@@ -79,6 +79,7 @@ function sendMail(host,user,pwd,to,msg) {
 }
 
 function sync(callables) {
+console.log(callables.length);
     if(callables.length==0) {
         return Promise.resolve();
     }
