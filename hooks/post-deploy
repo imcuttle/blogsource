@@ -12,10 +12,13 @@ var tmpPostDeployPath = path.resolve('./hooks/tmp_post_deploy.json');
 
 var receivers = [{
     name: "王同学",
-    mail: "492899414@qq.com"
+    mail: "1459035851@qq.com"
 }, {
-   name: "王同学2",
-   mail: "492899414@qq.com"
+   name: "刘同学",
+   mail: "1355070604@qq.com"
+}, {
+   name: "沈同学",
+   mail: "2193469349@qq.com"
 } ]
 
 var net = require('net');
