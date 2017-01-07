@@ -120,7 +120,7 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
                         'smtp.qq.com',
                         '492899414@qq.com',
                         'jrpzcdbebynzcabf',
-                        '492899414@qq.com',
+                        r.mail,
                         "From: Moyu<moyuyc95@gmail.com>\r\n" +
                         `Subject: [墨鱼新的文章出炉啦!] ${data.head.title} \r\n` +
                         `To: ${r.name}<${r.mail}>\r\n` +
