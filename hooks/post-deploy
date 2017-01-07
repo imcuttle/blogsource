@@ -51,7 +51,10 @@ function sendMail(host,user,pwd,to,msg) {
         socket.on('data',function (data) {
             data = data.toString();
             data.split('\r\n').forEach(data=>{
-                const code = data.match(/^\d{3}/)[0]
+                console.log(data);
+                var m = data.match(/^\d{3}/)
+                if(!m) return;
+                var code = m[0]
                 switch (code){
                     case '250':{
                         var v = op.shift();
