@@ -11,10 +11,19 @@ var dbPath = path.resolve('.', 'static', apiRoot, 'db.json');
 var addPath = path.resolve('./hooks/tmp_post_generate.json');
 var tmpPostDeployPath = path.resolve('./hooks/tmp_post_deploy.json');
 /*
-t'xue 
+
 
 */
-var receivers = [{
+var receivers = [ {
+    name: "王同学",
+    mail: "1459035851@qq.com"
+}, {
+   name: "刘同学",
+   mail: "1355070604@qq.com"
+}, {
+   name: "沈同学",
+   mail: "2193469349@qq.com"
+}, {
     name: "陈同学",
     mail: "751440280@qq.com"
 }, {
@@ -23,10 +32,7 @@ var receivers = [{
 }, {
     name: "魏同学",
     mail: "1044186880@qq.com"
-}, {}, {
-    name: "陈",
-    mail: "751440280@qq.com"
-
+}, {
     name: "贾同学",
     mail: "d_murphy95@163.com"
 }, {
