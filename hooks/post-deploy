@@ -108,7 +108,7 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
     var dbMain = db.main;
     adds = adds.filter(x=>!!dbMain[x]);
     if(adds.length==0) {
-        fs.unlink(addPath);
+        fs.unlinkSync(addPath);
         return;
     }
 
