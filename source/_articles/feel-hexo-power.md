@@ -26,10 +26,12 @@ categories: [Studying]
 `hexo server`  
 ***注意：这里不需要运行*** `hexo g` ***指令，所以我们访问的页面是根据nodejs动态生成的。***
 <!--more-->
+
 ### 选择你喜欢的Hexo Theme  
 [Hexo主题选择](https://hexo.io/themes/)  
 鄙人选择的是这位仁兄的 [https://github.com/yscoder](https://github.com)  
 上面有相关的配置的说明。
+
 ## 创建你的github.io项目 
 
 ### 新建repository
