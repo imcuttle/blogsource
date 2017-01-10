@@ -8,7 +8,7 @@ cover:
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=202373&auto=1&height=66"></iframe>
 
- 就在昨天，有位可爱的学妹说想订阅我的Blog，于是我放弃一天复习tcp的时间，捣鼓出文章更新，发送邮件通知的解决方案。
+ 112就在昨天，有位可爱的学妹说想订阅我的Blog，于是我放弃一天复习tcp的时间，捣鼓出文章更新，发送邮件通知的解决方案。
 
 借用了部分Git Hook(钩子)的约定，如：采用脚本文件的形式(用户可以选择自己的脚本语言，`python/nodejs/ruby/bash...`)，`pre-action/post-action`的命名方式
 
