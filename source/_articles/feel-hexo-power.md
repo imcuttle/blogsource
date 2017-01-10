@@ -1,5 +1,5 @@
 ﻿---
-title: '感受Hexo的强大与高效（搭建Blog至GitHub Page教程）'
+title: 感受Hexo的强大与高效（搭建Blog至GitHub Page教程）
 date: 2016-04-22 00:38:56
 tags: [Hexo]
 categories: [Studying]

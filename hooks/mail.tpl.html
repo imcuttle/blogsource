@@ -33,12 +33,12 @@
     <div class="markdown-body">
         ${obj.content.replace(/(<img.+?src=")([\s\S]+?)"/g, (m, a, b)=>{
             if(!/^(http:)|(https:)|(\/\/)/.test(b)) {
-                return a+obj._link+b+"\"";
+                return a+obj._link+(b.startsWith('/')?b:'/'+b)+"\"";
             }
             return a+b+"\"";
         }).replace(/(<a.+?href=")([\s\S]+?)"/g, (m, a, b)=>{
             if(!/^(http:)|(https:)|(\/\/)/.test(b)) {
-                return a+obj._link+b+"\"";
+                return a+obj._link+(b.startsWith('/')?b:'/'+b)+"\"";
             }
             return a+b+"\"";
         }) }
