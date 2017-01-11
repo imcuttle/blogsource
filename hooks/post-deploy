@@ -3,18 +3,14 @@
 var path = require('path');
 var fs = require('fs');
 
-
+var test = true;
 console.log('post-deploy hook');
 
 var apiRoot = require(path.resolve('./moka.config.json')).apiRoot || 'moka_api';
 var dbPath = path.resolve('.', 'static', apiRoot, 'db.json');
 var addPath = path.resolve('./hooks/tmp_post_generate.json');
 var tmpPostDeployPath = path.resolve('./hooks/tmp_post_deploy.json');
-/*
 
-
-*/
-/*
 var receivers = [ {
     name: "王同学",
     mail: "1459035851@qq.com"
@@ -45,16 +41,19 @@ var receivers = [ {
 }, {
     name: "安同学",
     mail: "JoyceABY@163.com"
-}]*/
-
-
-var receivers = [{
-    name: "王同学",
-    mail: "492899414@qq.com"
-}, {
-    name: "王同学x",
-    mail: "moyuyc95@gmail.com"
 }]
+
+if(test) {
+    receivers = [{
+        name: "王同学",
+        mail: "492899414@qq.com"
+    }, {
+        name: "王同学x",
+        mail: "moyuyc95@gmail.com"
+    }]
+}
+
+console.log('receivers', receivers);
 
 var net = require('net');
 /*
