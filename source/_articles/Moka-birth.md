@@ -16,7 +16,6 @@ tags: [moka, spa]
 ![](https://segmentfault.com/img/bVEjtX)
 
 为了第一眼能看到效果, 我先把如何安装使用说一下。
-
 1. 一切从`npm`开始
 
         $ npm i -g moka-cli
