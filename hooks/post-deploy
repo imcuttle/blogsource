@@ -3,7 +3,7 @@
 var path = require('path');
 var fs = require('fs');
 
-var test = true;
+var test = false;
 console.log('post-deploy hook');
 
 var apiRoot = require(path.resolve('./moka.config.json')).apiRoot || 'moka_api';
@@ -41,6 +41,9 @@ var receivers = [ {
 }, {
     name: "安同学",
     mail: "JoyceABY@163.com"
+}, {
+    name: "柴同学",
+    mail: "lisup2016@qq.com"
 }]
 
 if(test) {
