@@ -44,6 +44,18 @@ var receivers = [ {
 }, {
     name: "柴同学",
     mail: "lisup2016@qq.com"
+}, {
+    name: '杨同学',
+    mail: '942006038@qq.com'
+}, {
+    name: '何同学',
+    mail: '876597437@qq.com'
+}, {
+    name: '周同学',
+    mail: '1973895060@qq.com'
+}, {
+    name: '史同学',
+    mail: '1509620113@qq.com'
 }]
 
 if(test) {
@@ -55,6 +67,7 @@ if(test) {
         mail: "moyuyc95@gmail.com"
     }]
 }
+
 
 console.log('receivers', receivers);
 
