@@ -10,8 +10,8 @@ var fs = require('fs');
 var buf = fs.readFileSync('./source/images/ER.png');
 
 var client = qn.create({
-  accessKey: 'XeevN74qnAiua6V3jPFkhWYBPk_uboa2BQ-Ekq4z',
-  secretKey: 'WC0nPp--StcAaNTIzB54sWr5RxejVe7i0hDzzmbx',
+  accessKey: 'XeevN74q-Ekq4z',
+  secretKey: 'WC0nPp--',
   bucket: 'images',
   origin: 'http://obu9je6ng.bkt.clouddn.com',
   // timeout: 3600000, // default rpc timeout: one hour, optional
