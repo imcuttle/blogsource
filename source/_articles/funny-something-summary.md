@@ -3,7 +3,7 @@ title: 一些好玩或喜欢的东西
 date: 2017-01-15 13:39:19
 categories:
 tags:
-cover: http://imglf.nosdn.127.net/img/NDVrNjNicG41SVRBQnFHUlFBVG9lZjYzbEE2TE0rdGxnQmhNMHI5ZDROUFp4eXlHL2MxM0ZnPT0.jpg?imageView&thumbnail=500x0&quality=96&stripmeta=0&type=jpg
+cover: http://imglf1.nosdn.127.net/img/NzZZVDQ1Mkcyc09QRUl1K3NIN0F0TC8ySWhpM1dDMjQrY2FIblNrakErUFNORHFVS0VmVnR3PT0.jpg?imageView&thumbnail=800x0&quality=96&stripmeta=0&type=jpg
 skip: false
 ---
 
