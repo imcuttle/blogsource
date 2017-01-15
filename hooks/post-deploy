@@ -200,7 +200,7 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
                         `${mail_encode("Subject", `[墨鱼新的文章出炉啦!] ${data.head.title}`)}\r\n` +
                         `${mail_encode("To", r.name)} <${r.mail}>\r\n` +
                         `Content-Type: text/html; charset="utf-8"\r\n\r\n` +
-                        `${render(compiled, Object.assign(data, {hrefTitle: add, _link: 'https://moyuyc.github.io'}))}`
+                        `${render(compiled, Object.assign(data, {hrefTitle: add, _link: 'https://moyuyc.oschina.io'}))}`
                     ).then((err) => {
                         console.log('Sended', r.name, r.mail);
                         if (err) {
