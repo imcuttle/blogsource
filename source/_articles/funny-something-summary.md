@@ -1,10 +1,10 @@
 ---
 title: funny-something
-date: 2017-01-11 12:40:28
+date: 2017-01-15 13:39:19
 categories:
 tags:
 cover:
-skip: true
+skip: false
 ---
 
 长时间记录一些好玩或喜欢的东西
@@ -21,4 +21,6 @@ skip: true
 ![ClipboardImage](http://obu9je6ng.bkt.clouddn.com/FiyQ9hLRXRhJsKYBs_vOW8pZw82m?imageslim)
 
 <embed height="415" width="544" quality="high" allowfullscreen="true" type="application/x-shockwave-flash" src="//static.hdslb.com/miniloader.swf" flashvars="aid=7924127&page=1" pluginspage="//www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash"></embed>
+
+![](http://ww4.sinaimg.cn/mw690/006D2KSdjw1fb8wvlp7rrg30dw06ph88.gif)
 

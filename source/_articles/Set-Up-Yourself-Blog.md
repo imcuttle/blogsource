@@ -105,9 +105,9 @@ Some top blue buttons can be understood by `Command Line` above. Then you can wa
 
 Editor can read the image from clipboard or drag datatransfer, so paste (ctrl/cmd+V) can insert the image fast.
 
-![](/upload/moka-paste-img.gif)
+![ClipboardImage](http://obu9je6ng.bkt.clouddn.com/FrUiUIrThm3D7cbMexVqk_k5tImI?imageslim)
 
-![ClipboardImage](/upload/1478257591263.gif)
+![ClipboardImage](http://obu9je6ng.bkt.clouddn.com/Fkt6F04f_TxFtNvlrd6Cfixz_Zsq?imageslim)
 
 a lot of editor's theme you can choose.
 ![](/upload/moka-editor-theme.gif)
