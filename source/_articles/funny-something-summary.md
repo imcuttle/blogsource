@@ -1,5 +1,5 @@
 ---
-title: funny-something
+title: 一些好玩或喜欢的东西
 date: 2017-01-15 13:39:19
 categories:
 tags:
