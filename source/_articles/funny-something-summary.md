@@ -3,7 +3,7 @@ title: 一些好玩或喜欢的东西
 date: 2017-01-15 13:39:19
 categories:
 tags:
-cover: http://imglf1.nosdn.127.net/img/NzZZVDQ1Mkcyc09QRUl1K3NIN0F0TC8ySWhpM1dDMjQrY2FIblNrakErUFNORHFVS0VmVnR3PT0.jpg?imageView&thumbnail=800x0&quality=96&stripmeta=0&type=jpg
+cover: https://cdn.pixabay.com/photo/2017/01/06/20/43/soap-bubble-1958841_960_720.jpg
 skip: false
 ---
 
