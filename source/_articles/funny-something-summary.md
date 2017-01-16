@@ -24,3 +24,5 @@ skip: false
 
 ![](http://ww4.sinaimg.cn/mw690/006D2KSdjw1fb8wvlp7rrg30dw06ph88.gif)
 
+因为我想你这三个字说不出口，所以每天噼里啪啦跟你讲一堆没有用的废话，我这么神经病，都怪你。 
+
