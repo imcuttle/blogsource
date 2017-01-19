@@ -37,5 +37,7 @@
     "http://imglf0.nosdn.127.net/img/b0RrSTJURkdmaEpxMjZFT2kyZENVV2doenpnUDJFVWFMdzVReDgrSW42Wk9CbmhsQjVWQkNBPT0.jpg?imageView&thumbnail=800x0&quality=96&stripmeta=0&type=jpg",
     "http://imglf2.nosdn.127.net/img/V1ViNVZzRUhYM3pXNUhxTHZTRUZ3c2xaZFd3WjZaWlB3ZnJtbk14WndYRkJmWXFIWjRSZkp3PT0.jpg?imageView&thumbnail=800x0&quality=96&stripmeta=0&type=jpg"
   ],
-  "lazyLoadCover": false
+  "lazyLoadCover": false,
+  "host": "https://moyuyc.github.io",
+  "duoshuo": "moyublog"
 }

@@ -15,3 +15,5 @@ cover:
 - [ ] 同时学习做饭，运动运动(可调剂) -> 3
 - [ ] Toy主题 DuoShuo评论加入 -> 2
 - [ ] Flex 学习 -> 3
+
+![ClipboardImage](https://ooo.0o0.ooo/2017/01/18/587eea50913fd.jpg)
