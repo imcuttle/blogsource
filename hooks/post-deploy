@@ -3,7 +3,7 @@
 var path = require('path');
 var fs = require('fs');
 
-var test = false;
+var test = process.env.NODE_ENV=='dev';
 console.log('post-deploy hook');
 
 var apiRoot = require(path.resolve('./moka.config.json')).apiRoot || 'moka_api';

@@ -10,10 +10,13 @@ cover:
 
 ### 一月中至二月中
 
-- [ ] 毕业课程设计 10d -> 1
+- [x] 毕业课程设计 10d -> 1
 - [ ] webpack官网学习+`react hot module replacement`实践 7d -> 2.5
 - [ ] 同时学习做饭，运动运动(可调剂) -> 3
-- [ ] Toy主题 DuoShuo评论加入 -> 2
+- [ ] Toy主题 DuoShuo评论加入(正在尝试)
 - [ ] Flex 学习 -> 3
 
-![ClipboardImage](https://ooo.0o0.ooo/2017/01/18/587eea50913fd.jpg)
+### 待
+
+- [ ] Bash Script
+- [ ] Mobx

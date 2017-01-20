@@ -31,17 +31,20 @@
     </div>
     <br/>
     <div class="markdown-body">
-        ${obj.content.replace(/(<img.+?src=")([\s\S]+?)"/g, (m, a, b)=>{
-            if(!/^(http:)|(https:)|(\/\/)/.test(b)) {
-                return a+obj._link+(b.startsWith('/')?b:'/'+b)+"\"";
-            }
-            return a+b+"\"";
-        }).replace(/(<a.+?href=")([\s\S]+?)"/g, (m, a, b)=>{
-            if(!/^(http:)|(https:)|(\/\/)/.test(b)) {
-                return a+obj._link+(b.startsWith('/')?b:'/'+b)+"\"";
-            }
-            return a+b+"\"";
-        }) }
+        ${obj.content
+            .replace(/<!--[\s]*?more[\s]*?-->[\s\S]*$/, `<br><center><a target="_blank" href="${obj._link+"/#article/"+obj.hrefTitle}">查看更多</a></center>`)
+            .replace(/(<img.+?src=")([\s\S]+?)"/g, (m, a, b)=>{
+                if(!/^(http:)|(https:)|(\/\/)/.test(b)) {
+                    return a+obj._link+(b.startsWith('/')?b:'/'+b)+"\"";
+                }
+                return a+b+"\"";
+            }).replace(/(<a.+?href=")([\s\S]+?)"/g, (m, a, b)=>{
+                if(!/^(http:)|(https:)|(\/\/)/.test(b)) {
+                    return a+obj._link+(b.startsWith('/')?b:'/'+b)+"\"";
+                }
+                return a+b+"\"";
+            })
+        }
         <hr/>
         <br>
         <span class="date">—— 来自酷炫的<a href="https://github.com/moyuyc/moka">Moka</a></span>
