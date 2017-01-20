@@ -18,5 +18,6 @@ cover:
 
 ### 待
 
+- [ ] [Node cluster](https://segmentfault.com/a/1190000004621734)
 - [ ] Bash Script
 - [ ] Mobx
