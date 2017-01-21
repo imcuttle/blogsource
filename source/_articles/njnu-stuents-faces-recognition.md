@@ -195,5 +195,152 @@ skip: false
 - 2017年1月21日
 	1. google+baidu 收录，添加 robots.txt 与 sitemap.txt，如今在google下搜索 `南京师范大学 刷脸` 即可
 
+## 系统剖析
+
+源码地址：[Graduation-Project](https://github.com/moyuyc/graduation-project)
+
+### 文件结构
+
+顶层文件结构如下
+```
+Graduation-Project/
+├── desktop/
+├── gp-image-download/
+├── gp-njnu-photos-app/
+└── gp-njnu-photos-backend/
+```
+
+`desktop/` 中放的是将站点打包成 PC Desktop 的 Logo，`logo.icns` 用在 osx 系统中，`logo.png` 则用于 linux 与 windows 系统中，打包成的 PC Desktop 默认也是放在该文件夹下。
+```
+desktop/
+└── logos/
+    ├── logo.icns
+    ├── logo.ico
+    └── logo.png 
+```
+
+`gp-image-download/` 文件夹里面放的是将教务系统的学生图片下载至该文件夹中，其中的 `data/` 文件夹放的是各年入学的学生的学号（部分学号不正确），数据是 `get-all-id.js` 脚本得到，具体工作细节在后面会说到。保证获取到各年的学生学号集后，通过 `download.sh` Bash 脚本即可进行下载；下载的图片放在 `images/` 中。
+```
+gp-image-download/
+├── data/
+│   └── ...
+├── download.sh
+├── get-all-id.js
+├── images/
+│   └── ...
+└── lib/
+    └── get-all-id.js
+```
+
+`gp-njnu-photos-app/` 放的是前端代码，`app/` 是开发用的源码，`build/` 是用 Webpack 打包的压缩后的发布资源，包括 `css/js/html/image...`
+```
+gp-njnu-photos-app/
+├── app/
+│   └── ...
+├── build/
+│   └── ...
+├── index.js
+├── package.json
+├── webpack-assets.json
+└── webpack.config.js
+```
+
+`gp-njnu-photos-backend/` 放的是后端的全部代码。  
+- `test/` nodejs 调用 opencv 接口的例子  
+- `data/` 放些人脸 xml 模板数据，服务器运行时生成的缓存数据，预处理后的学生照片，上一次保存的训练数据。  
+- `database/` 访问 mysql 的 JS 接口
+- `lib/` 一些通用的 JS 方法，比如爬虫接口，图片上传接口...  
+- `opencv/` 搭建 nodejs 与 C++ 桥梁的源码与产生的链接库
+- `pretreat` 一些预处理接口，如人脸检测，图片灰化处理，样本数据的训练...
+- `routes` express 的路由控制文件
+- `ssl` HTTPs 证书与密钥
+- `server.js` HTTP 服务入口
+- `index.js` 在调用 `server.js` 之前，获取前端数据，使得后端能够处理静态资源（image/css/...），为前后端公用一套代码提供解决方案。（一般在线上环境使用）
+- `provider.js` 创建子进程 `server.js`，同时监听后端开发目录代码的改动，一旦改动便杀死上一个子进程，并且再次创建子进程 `server.js`，可以实现后端代码的***热更新***。（一般在开发环境使用）
+
+```
+gp-njnu-photos-backend/
+├── test/
+│   └── ...
+├── data/
+│   └── ...
+├── database/
+│   └── ...
+├── lib/
+│   └── ...
+├── opencv/
+│   └── ...
+├── pretreat/
+│   └── ...
+├── routes/
+│   └── ...
+├── ssl/
+│   └── ...
+├── index.js
+├── package.json
+├── provider.js
+└── server.js
+```
+
+### 过程
+
+#### 学生照片下载
+
+#### 人脸识别理论学习
+
+#### opencv 环境安装
+
+#### node addons
+
+#### 图片预处理（人脸检测...）
+
+#### 识别算法测试与确定
+
+#### 学生信息接口（爬虫）
+
+#### 前端+后端
+
+#### mysql
+
+#### 同构渲染
+
+#### 部署
+
+#### nginx + https
+
+#### SEO
+
+#### PC Desktop
+
+
+### 代码解析
+
+#### 获取ID集合
+
+#### 下载图片脚本
+
+#### 图片预处理脚本
+
+#### 样本训练脚本
+
+#### 开发环境（热部署）脚本
+
+#### MySQL 服务器、非服务器环境区别处理
+
+#### 同构渲染核心
+
+#### 一键部署脚本
+
+#### Desktop打包脚本
+
+### 系统模块
+
+图片
+
+### 系统截图
+
+...
+
+### 总结
 
 
