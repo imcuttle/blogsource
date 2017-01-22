@@ -593,7 +593,9 @@ const store = configureStore(
 
 ### SEO
 
-为了增强站点的曝光率，就需要做 SEO 了，添加 `robots.txt`，站点地图，同时在前端页面加入不可见的 `a` 标签
+为了增强站点的曝光率，就需要做 SEO 了，添加 `robots.txt`，站点地图，同时在前端页面加入不可见的 `a` 标签，利于网页爬虫爬取其他链接
+
+![](https://ooo.0o0.ooo/2017/01/22/5884a45f49cae.jpg)
 
 ### PC Desktop
 
