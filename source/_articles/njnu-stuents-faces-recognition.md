@@ -366,7 +366,7 @@ NAN_METHOD(Matrix::ToThreeChannels) {
 
 比较 opencv 中三种人脸识别算法，Eigen、Fisher、LBPH。数据在`backend/cpptest/` 中
 
-<table border="1">
+<table border="0">
 　<caption><em>opencv 人脸识别算法比较</em></caption>
 　<tr>
 　<th rowspan="2" style="text-align: center;">算法\时间(ms)</th>
