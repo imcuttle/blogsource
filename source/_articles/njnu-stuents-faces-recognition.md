@@ -18,7 +18,7 @@ skip: false
 
 # 技术栈（Technology Stack）
 
-![ClipboardImage](https://ooo.0o0.ooo/2017/01/21/58826eb274d3a.jpg)
+![](https://ooo.0o0.ooo/2017/01/21/58826eb274d3a.jpg)
 
 下面进行一些较为粗略的介绍，蜻蜓点水说说涉及的技术
 
@@ -47,7 +47,7 @@ skip: false
 7. NPM（全称Node Package Manager，即node包管理器），是Node预设的，通过国内 taobao 镜像可以加快下载速度。
 8. [Express](http://expressjs.com/zh-cn/)（Node.js Web 应用程序框架），很方便的定义 restful api.
 9. Spider，网络爬虫，通过转发客户端的 HTTP 或 HTTPs 请求，得到远程服务器的响应数据，然后再一次转发至客户端中，也就是代理的意思
-![ClipboardImage](https://ooo.0o0.ooo/2017/01/21/5882d1cb76d12.jpg)
+![](https://ooo.0o0.ooo/2017/01/21/5882d1cb76d12.jpg)
 关于[南师大的一些 API](http://njnu.chaiziyi.com.cn/) ，已经有前人用 Python 写过了，爬取教务系统数据，然后我只需要爬取对应的网站即可。
 10. nginx，使用 C++ 实现的 Web 服务器，通过简单的配置就可以反向代理至正确的端口和应用层协议。
 11. 由于浏览器安全性的考虑，对于外网地址使用摄像头需要在安全的HTTPs协议下，因此需要付费或免费地得到认可的证书，通过 nginx 配置，反向代理至 Node 进程即可。
@@ -144,6 +144,7 @@ skip: false
 2. 发现人脸识别效果不佳，分析原因， 第一，样本每个人只有一张 ，第二，几年下来，人的变化比较大。
 3. 新增样本输入模块，学生自主输入删除样本。（需要重新训练，存储）
 4. 采用opencv Eigenfaces 人脸识别算法
+
 ### 2017年1月11日
 `image-download`去除对`wget`依赖，改用`curl`指令下载
 
@@ -296,6 +297,8 @@ gp-njnu-photos-backend/
 最后便是学生照片下载的代码书写了。
 采用的是 Bash Script 书写，具有较强的易用性，不需要复杂的平台、环境依赖。第一版是使用 `wget` 指令进行下载，但是该指令在 `windows/osx` 需要额外安装，所以最后改成了 `curl`。
 
+![](https://ooo.0o0.ooo/2017/01/22/5884923dd9155.jpg)
+![](https://ooo.0o0.ooo/2017/01/22/5884926960c79.jpg)
 
 ### 人脸识别理论学习
 
@@ -356,6 +359,9 @@ NAN_METHOD(Matrix::ToThreeChannels) {
 
 经过多次尝试后，对于学生证件照，最终比较得出，采用 LBP 级联分类器，窗口放大 1.95 倍左右效果较好。（测试数据在 `backend/data/summary.json`）
 
+![](https://ooo.0o0.ooo/2017/01/22/5884929797559.jpg)
+![](https://ooo.0o0.ooo/2017/01/22/588492ae5471e.jpg)
+
 ### 识别算法测试与确定
 
 比较 opencv 中三种人脸识别算法，Eigen、Fisher、LBPH。数据在`backend/cpptest/` 中
@@ -390,11 +396,11 @@ NAN_METHOD(Matrix::ToThreeChannels) {
 对于页面路由的控制，使用的是 HTML5 的 [History API](https://developer.mozilla.org/en-US/docs/Web/API/History) ，交给 JavaScript 来控制，所以只要不进行页面的强制刷新（Ctrl/cmd + R），所有路径的跳转都是不会从服务器获取 HTML CSS 进行渲染，这就是单页 Web 应用的核心，这样一来，用户体验就更佳，服务器负载也更小，但对于浏览器要求更高了。
 
 结合 React Web Component 和 [CSS Module](https://github.com/css-modules/css-modules) 思想，将前端页面细分为若干个组件，在上层 Page 中进行数据的传输，组件的组合，在 Page 上层还有一层 App，把一些全局通用的组件放这。
-![ClipboardImage](https://ooo.0o0.ooo/2017/01/22/58845e6781176.jpg)
+![](https://ooo.0o0.ooo/2017/01/22/58845e6781176.jpg)
 
 而且所有的数据控制都在 `reducer` 中，层次清晰，代码复用性高，
 
-![ClipboardImage](https://ooo.0o0.ooo/2017/01/22/58845a7e4a302.jpg)
+![](https://ooo.0o0.ooo/2017/01/22/58845a7e4a302.jpg)
 ```
 app/
 ├── common/
@@ -1001,16 +1007,16 @@ npm run retrain && npm run start
 ![学生签到-2](https://ooo.0o0.ooo/2017/01/22/58848618b06ff.jpg)
 
 - 人脸录入
-![ClipboardImage](https://ooo.0o0.ooo/2017/01/22/5884867e8c4f1.jpg)
+![](https://ooo.0o0.ooo/2017/01/22/5884867e8c4f1.jpg)
 
 - 关于
-![ClipboardImage](https://ooo.0o0.ooo/2017/01/22/588486cf622d8.jpg)
+![](https://ooo.0o0.ooo/2017/01/22/588486cf622d8.jpg)
 
 - 管理员登录
-![ClipboardImage](https://ooo.0o0.ooo/2017/01/22/588486ef8446d.jpg)
+![](https://ooo.0o0.ooo/2017/01/22/588486ef8446d.jpg)
 
 - 管理员界面
-![ClipboardImage](https://ooo.0o0.ooo/2017/01/22/5884873f1e625.jpg)
+![](https://ooo.0o0.ooo/2017/01/22/5884873f1e625.jpg)
 
 
 # 总结
