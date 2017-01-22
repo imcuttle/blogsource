@@ -285,12 +285,25 @@ gp-njnu-photos-backend/
 ## 过程
 
 ### 学生照片下载
+下载证件照就需要图片的 URL，在[利用Python爬取学校网站上的证件照](http://blog.chaiziyi.com.cn/2016/06/03/%E5%88%A9%E7%94%A8Python%E7%88%AC%E5%8F%96%E5%AD%A6%E6%A0%A1%E7%BD%91%E7%AB%99%E4%B8%8A%E7%9A%84%E8%AF%81%E4%BB%B6%E7%85%A7%EF%BC%88%E5%9B%9B%EF%BC%89/)一文中，说到了教务处的学生证 URL 规则是 `http://${hostname}/jwgl/photos/rx${year}/${studentno}.jpg` ，`hostname`就是教务系统的主机地址，`year`就是入年份，`studentno`是学生学号，比如某学生学号是`19140429`，其中学号的3-4位表示入学年份，表示学生是 2014 年入学，那么他的学生证 URL 就是 `http://223.2.10.123/jwgl/photos/rx2014/19140429`；  
 
+知道了学生照的 URL 规则后，那么怎么得到各个学年入学的学生学号集合呢？
+如果用穷举法，学号一共有 8 位，每位有 0-9 10 种可能，那么得到每一年的学生照片就需要 LOOP 10^8 次，这种级别的时间复杂度是不可接受的。于是通过查阅，搜索找到了
+[获取南师大学号](http://blog.chaiziyi.com.cn/2016/06/13/%E5%88%A9%E7%94%A8Python%E8%BF%87%E6%BB%A4%E6%9C%89%E7%94%A8%E6%A0%A1%E5%9B%AD%E7%BD%91%E8%B4%A6%E5%8F%B7/)，里面提到了获取学号的接口`http://urp.njnu.edu.cn/authorizeUsers.portal?limit=100&term=191301`，`term` 表示搜索关键字，可以是 `1913/191301/...` 将会返回学号中含有其字符串的数据，limit则是数据数最大限制，通过这个接口便可以得到学号集合
+
+最后便是学生照片下载的代码书写了。
+采用的是 Bash Script 书写，具有较强的易用性，不需要复杂的平台、环境依赖。第一版是使用 `wget` 指令进行下载，但是该指令在 `windows/osx` 需要额外安装，所以最后改成了 `curl`。
 
 
 ### 人脸识别理论学习
 
+人脸识别实际包括构建人脸识别系统的一系列相关技术，包括人脸图像采集、人脸定位、人脸识别预处理、身份确认以及身份查找等。上一步已经完成了人脸的采集；  人脸定位也就是人脸的检测，在一张图片中，找出人脸的位置。通过一些特征提取的方法，如[HOG特征，LBP特征，Haar特征](http://www.voidcn.com/blog/jscese/article/p-6250381.html)，[训练](http://www.opencv.org.cn/opencvdoc/2.3.2/html/doc/user_guide/ug_traincascade.html)得到级联分类器，分类器对图像的任意位置和任意尺寸的部分(通常是正方形或长方形)进行分类，判定是或不是人脸。opencv源码中提供了一些[常用的分类器](https://github.com/opencv/opencv/tree/master/data)（XML）。人脸识别预处理也就是对图像进行灰化，人脸检测，得到统一大小的人脸图片；然后便是识别了，对样本训练[生成特征脸](https://zh.wikipedia.org/wiki/%E7%89%B9%E5%BE%81%E8%84%B8#.E7.94.9F.E6.88.90.E7.89.B9.E5.BE.81.E8.84.B8)后，对于输入的人脸进行预处理后，得到其[特征脸权重向量](http://blog.csdn.net/smartempire/article/details/21406005)，计算向量距离，找到最小距离的样本人脸。
+
+可以看到特征脸的生成是需要整个样本数据的，所以如果用户修改了样本数据，需要对全部样本重新训练，得到一组全新的特征脸。
+
 ### opencv 环境安装
+
+
 
 ### node addons
 
@@ -346,5 +359,5 @@ gp-njnu-photos-backend/
 
 # 总结
 
-哈哈哈哈sss
+哈哈哈哈sssx
 
