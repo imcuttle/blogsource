@@ -246,6 +246,7 @@ gp-njnu-photos-app/
 ```
 
 `gp-njnu-photos-backend/` 放的是后端的全部代码。  
+- `cpptest/` c++ opencv 的一些测试  
 - `test/` nodejs 调用 opencv 接口的例子  
 - `data/` 放些人脸 xml 模板数据，服务器运行时生成的缓存数据，预处理后的学生照片，上一次保存的训练数据。  
 - `database/` 访问 mysql 的 JS 接口
@@ -260,6 +261,8 @@ gp-njnu-photos-app/
 
 ```
 gp-njnu-photos-backend/
+├── cpptest/
+│   └── ...
 ├── test/
 │   └── ...
 ├── data/
@@ -303,61 +306,716 @@ gp-njnu-photos-backend/
 
 ### opencv 环境安装
 
+由于开发平台是 OSX ，而 OSX 有 Homebrew 神器
+```bash
+# 安装 Homebrew
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+# 设置 Homebrew镜像代理，国内下载加速
+cd "$(brew --repo)"
+git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git
+cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
+git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git
+brew update
+echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles' >> ~/.bash_profile
+source ~/.bash_profile
+
+# 安装 opencv
+brew tap homebrew/science
+brew install opencv
+```
 
 ### node addons
 
+node addons 是在 node 环境调用 C 系列接口的方法，已经有人用该方法写过 [`node-opencv`](https://github.com/peterbraden/node-opencv)，并在此基础上我还加上了 `CircleLBP` `RectLBP` `ToThreeChannels` `PCA` 算法，`ToThreeChannels` 是将 单通道（灰）或者 RGBA 通道变成 RGB 通道。
+```cpp
+NAN_METHOD(Matrix::ToThreeChannels) {
+  Nan::HandleScope scope;
+  Matrix *self = Nan::ObjectWrap::Unwrap<Matrix>(info.This());
+  cv::Mat image;
+
+  if (self->mat.channels() == 3) {
+    image = self->mat;
+  } else if (self->mat.channels() == 1) {
+    cv::Mat myimg = self->mat;
+    cv::cvtColor(myimg, image, CV_GRAY2RGB);
+  } else if(self->mat.channels() == 4){
+    cv::Mat myimg = self->mat;
+    cv::cvtColor(myimg, image, CV_BGRA2RGB);
+  } else {
+    Nan::ThrowError("those channels are not supported");
+  }
+
+  self->mat = image;
+  info.GetReturnValue().Set(Nan::Null());
+}
+```
+
 ### 图片预处理（人脸检测...）
+
+通道统一 => 灰化 => 级联分类器检测人脸 => 人脸尺寸统一 => 保存
+
+经过多次尝试后，对于学生证件照，最终比较得出，采用 LBP 级联分类器，窗口放大 1.95 倍左右效果较好。（测试数据在 `backend/data/summary.json`）
 
 ### 识别算法测试与确定
 
+比较 opencv 中三种人脸识别算法，Eigen、Fisher、LBPH。数据在`backend/cpptest/` 中
+
+<table border="1">
+　<caption><em>opencv 人脸识别算法比较</em></caption>
+　<tr>
+　<th rowspan="2" style="text-align: center;">算法\时间(ms)</th>
+　<th colspan="2">实验1</th>
+　<th colspan="2">实验2</th>
+　<th colspan="2">实验3</th>
+　<th colspan="2">实验4</th>
+　<th colspan="2">实验5</th>
+　<tr>
+　<td>训练<td>预测<td>训练<td>预测<td>训练<td>预测<td>训练<td>预测<td>训练<td>预测</td>
+　<tr><th>Eigen<td>0.030648<td>0.010711<td>0.025524<td>0.011132<td>0.029332<td>0.007791<td>0.036231<td>0.020043<td>0.026972<td>0.005711</td>
+　<tr><th>Fisher<td>0.040043<td>0.0089<td>0.039244<td>0.007145<td>0.033777<td>0.008276<td>0.043099<td>0.013723<td>0.039407<td>0.015095</td>
+　<tr><th>LBPH<td>0.035812<td>0.071586<td>0.034822<td>0.075267<td>0.03204<td>0.067166<td>0.039263<td>0.075726<td>0.053047<td>0.074361</td>
+</table>
+
+综合比较可以得出，效率 Eigen > Fisher > LBPH  
+所以采用Eigen（特征脸）算法
+
 ### 学生信息接口（爬虫）
 
-### 前端+后端
+该系统还需要获取到学生的个人信息，比如通过学号和密码验证是否正确等等。在同一届的同学中，已经有一位同学研究教务系统比较透彻了，而且做了一个[查南师](http://njnu.chaiziyi.com.cn/)网站，所以我只需要爬取该网站的接口即可。
 
-### mysql
+### 前端
+
+该系统使用的是前后端分离的架构，页面的渲染交给客户端 `JavaScript` 来实现，后端只需要提供纯数据接口即可，让后端的工作更加纯粹。  
+
+对于页面路由的控制，使用的是 HTML5 的 [History API](https://developer.mozilla.org/en-US/docs/Web/API/History) ，交给 JavaScript 来控制，所以只要不进行页面的强制刷新（Ctrl/cmd + R），所有路径的跳转都是不会从服务器获取 HTML CSS 进行渲染，这就是单页 Web 应用的核心，这样一来，用户体验就更佳，服务器负载也更小，但对于浏览器要求更高了。
+
+结合 React Web Component 和 [CSS Module](https://github.com/css-modules/css-modules) 思想，将前端页面细分为若干个组件，在上层 Page 中进行数据的传输，组件的组合，在 Page 上层还有一层 App，把一些全局通用的组件放这。
+![ClipboardImage](https://ooo.0o0.ooo/2017/01/22/58845e6781176.jpg)
+
+而且所有的数据控制都在 `reducer` 中，层次清晰，代码复用性高，
+
+![ClipboardImage](https://ooo.0o0.ooo/2017/01/22/58845a7e4a302.jpg)
+```
+app/
+├── common/
+│   ├── css/
+│   │   └── ...
+│   ├── storage.js
+│   └── utils.js
+├── components/
+│   ├── Button/
+│   │   ├── index.js
+│   │   └── style.less
+│   ├── FaceRec/
+│   │   ├── index.js
+│   │   └── style.less
+│   ├── Header/
+│   │   ├── index.js
+│   │   └── style.less
+│   ├── .../
+│   └── Toast/
+│       ├── index.js
+│       └── style.less
+├── pages/
+│   ├── AboutPage.js
+│   ├── AdminLoginPage.js
+│   ├── AdminPage.js
+│   ├── AudioImportPage.js
+│   ├── FaceImportPage.js
+│   └── StuSignPage.js
+├── reducers/
+│   ├── about.js
+│   ├── actions.js
+│   ├── active.js
+│   ├── admin.js
+│   ├── appReducers.js
+│   ├── audioImport.js
+│   ├── base.js
+│   ├── faceImport.js
+│   └── upFace.js
+├── workers/
+│   └── face.worker.js
+├── App.js
+├── index.tpl.html
+├── main.js
+└── router.js
+```
+
+其中 `workers/face.worker.js` 文件是利用 Web Worker 起的另一个进程代码，主要做的是输入图片数据，输出人脸的位置大小，就是 JavaScript 版的人脸检测，之所以起另一个线程，是因为对于视频的人脸检测，对于实时性要求也比较高，检测也比较耗时，为了效率考虑使用了 Web Worker。 
+
+### 后端
+
+由于视图的渲染都交给浏览器了，所以后端主要就是对于数据的逻辑处理了，比如样本录入，学生信息查询（爬虫），人脸识别（调用 opencv ），同时使用 mysql 数据库，存储样本录入的信息，表结构如下：
+```
+Table gp.`face_import`
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| stuid    | varchar(20)  | NO   |     | NULL    |       |
+| time     | datetime     | NO   |     | NULL    |       |
+| hash     | varchar(20)  | NO   | PRI | NULL    |       |
+| face_url | varchar(100) | NO   |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+```
+`hash` 是每次上传样本的唯一 key 值，同时为了方便系统的部署迁移，没有将上传的样本数据存储在服务器中，而是存在 [sm.ms](https://sm.ms) 免费图床中，得到一个 `face_url` 字段，每次启动服务器之前都得进行样本的训练或者训练数据的读取；而且每次上传样本或者删除样本后，服务器都需要重新训练保存样本，重新生成一套特征脸。   
+
+并且在开启服务器的环境和纯粹的数据处理的环境对于数据库的处理是不一样的，在服务器环境，需要开启数据库连接池，每次都从中去取出连接进行数据操作；而纯粹的读取数据库，得到`face_url`进行人脸的预处理或训练，则只需要每次单独的 开启连接 => 读取数据 => 关闭连接 即可，否则程序会一直运行下去，因为数据库连接池没关闭。
+
+同时，所有的前端数据接口都是 `/api/*` 规则，同时对于管理员的用户名和密码会进行 md5 不可逆编码然后再传输，防止被他人捕捉到。
 
 ### 同构渲染
 
+上文说到所有的页面渲染都是交给 JavaScript 控制，服务器返回的 HTML结构如下所示：
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>南师大学生签到系统</title>
+    <link rel="stylesheet" type="text/css" href="/pace.min.css">
+    <script type="text/javascript" src="/pace.min.js"></script>
+<link href="/style.min.css?v=b5afb06f45be775a70081c1e320e6c40" rel="stylesheet"></head>
+<body>
+    <div id="app"><!--HTML--></div>
+<script type="text/javascript" src="/libs.min.js?v=8d589c56bcac1e2c17a7"></script>
+<script type="text/javascript" src="/app.main.min.js?v=448dfe9c907942d09623"></script></body>
+</html>
+
+```
+
+其中任何数据都是没有的，只有 “第二时间” 通过 `app.min.js` 执行 JavaScript 进行渲染，所以对于用户短暂的 “第一时间” 感觉是不好的，什么都没有，也就是没有 “首屏渲染”，优化首屏渲染，就需要通过服务器返回带内容的 HTML。  
+
+
+由于前端使用的是 `react`，将 HTML 抽象成为 `JSX`，将 DOM操作 转化成状态的变化，重新渲染的思想，所以使得**服务器端也能够解析`react`**，`redux` 又将状态的更新操作抽离出来，使得服务器端可以更方便的控制状态从而进行渲染（当然，只有 nodejs 作为后端渲染层才可以做到），同时由于前端使用 Babel 编译前端代码，所以可以用新型语法糖，为了服务器端也能够识别，所以也需要 babel-register
+
+```
+import React from 'react';
+import {renderToString} from 'react-dom/server'
+import reactRouter, {match, RouterContext} from 'react-router'
+import {Provider} from 'react-redux'
+import MyRouter, {configureStore} from 
+
+// This is fired every time the server side receives a request
+function handleRender(req, res, next) {
+    match({ routes: MyRouter, location: req.url }, function(error, redirectLocation, renderProps) {
+        if (error) {
+            res.status(500).send(error.stack);
+        } else if (redirectLocation) {
+            if(req.url.startsWith('/api') || fs.existsSync(path.join(fePath, url.parse(req.url).pathname)) ) {
+                next();
+            } else {
+                res.redirect(302, redirectLocation.pathname + redirectLocation.search);
+            }
+        } else if (renderProps) {
+            var store = configureStore();
+            // console.log(renderProps, store);
+            // we can invoke some async operation(eg. fetchAction or getDataFromDatabase)
+            // call store.dispatch(Action(data)) to update state.
+            store.dispatch(pushRoute(req.url))
+            if(req.url === '/about') {
+                store.dispatch(fetchRemoteMdText())
+                .then(data => {
+                    res.renderStore(store, renderProps);
+                })
+            } else {
+                res.renderStore(store, renderProps);
+            }
+
+        } else {
+            res.status(404).send('Not found')
+        }
+    })
+}
+
+express.response.renderStore = function (store, renderProps) {
+    const html = renderToString(
+        <Provider store={store}>
+            <RouterContext {...renderProps} />
+        </Provider>
+    );
+    this.header('content-type', 'text/html; charset=utf-8')
+    this.send(renderFullPage('南师大刷脸签到系统', html, store.getState()))
+}
+
+const htmlPath = path.join(fePath, 'index.html');
+var html = fs.readFileSync(htmlPath).toString();
+
+function renderFullPage(title, partHtml, initialState) {
+    // <!--HTML-->
+    var allHtml = html;
+    if(initialState) {
+        allHtml = allHtml.replace(/\/\*\s*?INITIAL_STATE\s*?\*\//, `window.__INITIAL_STATE__=${JSON.stringify(initialState)}`)
+    }
+    if(title) {
+        allHtml = allHtml.replace(/<title>[\s\S]*?<\/title>/, `<title>${title}</title>`);
+    }
+    return allHtml.replace(/<!--\s*?HTML\s*?-->/, partHtml);
+
+}
+```
+
+同时让浏览器得到初始状态，`window.__INITIAL_STATE__=${JSON.stringify(initialState)}`，把初始状态`window.__INITIAL_STATE__`
+传给客户端
+```
+const isBrowser = (() => !(typeof process === 'object' && typeof process.versions === 'object' && typeof process.versions.node !== 'undefined'))();
+
+var _initState = isBrowser && window.__INITIAL_STATE__ || initState
+const store = configureStore(
+    _initState
+)
+```
+
+以上，便可以实现同构渲染，既保证了 SPA 的用户体验，首屏渲染，而且解决了SEO（搜索引擎优化）的问题。
+
 ### 部署
+
+开发的差不多后，找朋友要了个 ubuntu 的服务器，首先麻烦的就是环境的迁移了，由于源码都部署在 GitHub 上，所以直接 `git clone` 就可以得到了（原始证照和预处理后的证照、训练的 yaml 数据都没提交至 GitHub，所以代码库还是挺小的）。
+
+然后 Ubuntu 上安装 opencv，Ubuntu 上可没有 Homebrew 神奇，所以只能下载源码包，自己进行编译连接，生成动态链接库
+
+安装好 node + npm + nvm，node 版本 ≥7.0，以及 mysql，导入 gp.sql
+
+
+
+再在服务器执行 `npm install`（安装项目依赖包，各个目录下都有自己独立的依赖包，前端目录则不必安装，因为只需要其产生的代码） => 下载脚本 => 预处理脚本 => 训练样本脚本 => 启动服务器
 
 ### nginx + https
 
+但是服务器启动后，外网还是不能直接访问，需要通过 nginx 反向代理，同时解析域名至服务器 IP，为了浏览器安全可以打开摄像头，还需要开启 HTTPs 协议，我使用的是腾讯云免费的一年证书，然后 nginx 配置后即可。
+
 ### SEO
+
+为了增强站点的曝光率，就需要做 SEO 了，添加 `robots.txt`，站点地图，同时在前端页面加入不可见的 `a` 标签
 
 ### PC Desktop
 
+为了方便师生使用，还使用 `nativefier` 将站点打包成 PC Desktop，其实就是将站点 URL 和 Chrome 内核组合成一个 Application
 
 ## 代码解析
 
+下面对某些代码进行剖析
+
 ### 获取ID集合
+
+```javascript
+// gp-image-download/lib/get-all-id.js
+// language: javascript
+// env: node
+// usage: (cd gp-image-download && node get-all-id.js)
+
+const URL = "http://urp.njnu.edu.cn/authorizeUsers.portal"
+const STU_FILE = "data/students.json"
+// 需要在浏览器先登录，得到已登录的 Cookie
+const COOKIE = "njnuurpnew=ac16c83bd341d8ba0c3f2f092378; JSESSIONID=0001gcUXI0GWjdQg_ptI6NGAFaf:-5B0INP"
+
+/* 请求 URL，写入 COOKIE，得到数据个数 recordCount */
+async function getLimit() {
+    try {
+        const x = await get({
+            ...url.parse(URL),
+            headers: { cookie: COOKIE }
+        })
+        // console.log('xx', x)
+        const json = JSON.parse(x)
+        return json.recordCount
+    } catch (ex) {
+        console.error(ex);
+    }
+}
+
+/* 请求 URL，写入 COOKIE，得到全部学生集合 */
+async function getStuIds(limit) {
+    try {
+        const x = await get({
+            ...url.parse(URL+"?limit="+limit),
+            headers: { cookie: COOKIE }
+        })
+
+        const json = JSON.parse(x)
+        return json.principals.filter(x=>{
+            let metier = x.metier.trim();
+            return metier=='本专科生'
+        })
+    } catch (ex) {
+        console.error(ex);
+    }
+}
+
+/* 由于全部学生数据量比较大，所以写入文件，下次读取文件即可 */
+async function writeStudents() {
+    const limit = await getLimit()
+    const stus = await getStuIds(limit)
+
+    console.log('writing "%s"', STU_FILE)
+    fs.writeFileSync(STU_FILE, JSON.stringify(stus, null, 4))
+
+    assignStuIds()
+}
+
+/* 读取全部学生数据，按照入学年份区分，得到以\r\n分割的学号集合文件 */
+function assignStuIds() {
+    const stus = JSON.parse(fs.readFileSync(STU_FILE))
+
+    let all = stus.reduce((p, n) => {
+        //19130126
+        if(/^[\d]{8}$/.test(n.id)) {
+            let num = n.id.substr(2, 2);
+            let year = "20"+num;
+            if(year>YEAR || isNaN(num)) return p
+            p[year] = p[year] || ''
+            p[year] += n.id+'\r\n'
+        }
+        return p
+    }, {})
+
+    Object.keys(all).forEach(k =>{
+        let v = all[k];
+        console.log('writing "%s"', "data/student-ids-"+k+".txt")
+        fs.writeFile("data/student-ids-"+k+".txt", v.replace(/\r\n$/, ''), ()=>{})
+    })
+}
+
+```
 
 ### 下载图片脚本
 
-### 图片预处理脚本
+```bash
+#!/bin/bash
+// gp-image-download/download.sh
+// language: bash script
+// env: bash
+// usage: (cd gp-image-download && ./download.sh 2013)
 
-### 样本训练脚本
+base="http://223.2.10.123/jwgl/photos/rx"
+year="2013"
+
+# 没有 images/ 文件夹则新建，健壮性
+if [ ! -d images ]; then
+    echo mkdir images
+    mkdir images
+fi
+cd images
+# 将year赋值为第一个参数，默认为 2013
+if [ ! -z "$1" ]; then
+    year=$1
+fi
+echo year=$year
+
+if [ ! -d $year ]; then
+    echo mkdir $year
+    mkdir $year
+fi
+cd $year
+
+# 读取上一步获取的学号集合，放入arr
+while IFS=$'\r\n' read var; do
+    arr+=($var)
+done < ../../data/student-ids-$year.txt
+
+# 将下载好的图片，按照 学年/班级/图片 放置
+assign_file() {
+    Name=${1##*/}
+    Classno=${Name:0:6}
+    if [ ! -d $Classno ]; then
+        mkdir $Classno
+    fi
+    mv $Name "$Classno"/
+}
+
+# 下载图片
+# params: $1 url; $2 filename
+down() {
+    URL=$1
+    Name=$2
+    data=`curl --fail --silent $URL` 
+    # "$data" 不能少  因为data中可能包含[]
+    if [ ! -z "$data" ]; then
+        curl --fail --silent $URL > $Name
+        echo "SUCCESS! $URL"
+    fi
+}
+
+# 遍历arr，下载
+for id in ${arr[@]}; do
+    if [ ! -z $id ]; then
+        Name=${id//$\s/}.jpg
+        down "$base""$year"/$Name $Name
+    fi
+done
+
+# 下载结束后，重新放置文件
+arr=(*)
+for x in ${arr[@]}; do
+    assign_file $x
+done
+```
+
+### npm 脚本
+
+```text
+// gp-njnu-photos-backend/package.json
+// usage: (cd gp-njnu-photos-backend && npm run $scriptName)
+
+# 图片预处理
+# detect face, then gray, save
+# eg.  $ npm run grayface 2013 191301
+#      $ npm run grayface 2013
+#      $ npm run grayface
+# npm run grayface year classno
+
+
+# 样本训练并写入文件。
+# after read grayface images, then train and save it
+# eg.  $ node pretreat/train_save.js -f --args 2013
+#      $ node pretreat/train_save.js -f --args 2013 191301
+# -f：重新训练，不论是否已存在训练数据
+# --args year classno 训练哪一年哪一班级的图片
+
+"grayface": "node pretreat/gray_face.js",
+"train:force": "node pretreat/train_save.js -f",
+"train:smart": "node pretreat/train_save.js",
+"dev:w": "cross-env NODE_STATUS=run, NODE_ENV=dev node .",
+"dev": "cross-env NODE_STATUS=run, NODE_ENV=dev node index.js",
+"start": "cross-env NODE_STATUS=run, NODE_ENV=prod node index.js",
+"retrain": "npm run grayface && npm run train:force",
+"retrain:dev": "npm run grayface 2013 191301 && node pretreat/train_save.js -f --args 2013 191301",
+```
 
 ### 开发环境（热部署）脚本
 
-### MySQL 服务器、非服务器环境区别处理
+```javascript
+// gp-njnu-photos-backend/provider.js
+// language: javascript
+// env: node
+// usage: (cd gp-njnu-photos-backend && npm run dev:w)
 
-### 同构渲染核心
+var cp = require('child_process')
+var p = require('path')
+var fs = require('fs')
 
-### 一键部署脚本
+const isDir = (filepath) => fs.statSync(filepath).isDirectory()
+
+/* 去除掉 非文件夹，node_modules文件夹，`.`开头的文件夹 */
+const children = fs.readdirSync(__dirname).filter(n=>n!='node_modules' && !n.startsWith('.') && isDir(p.join(__dirname, n)));
+
+[__dirname].concat(children).forEach(dir => fs.watch(dir, watchHandle))
+
+/* 监听到文件被修改则触发 */
+function watchHandle (type, filename) {
+    // 无视不是js文件和点开头命名的文件
+    if(filename.startsWith('.') || !filename.endsWith(".js")) {
+        return;
+    }
+
+    console.log(type, filename);
+    // 杀死内存中的服务器进程
+    serverProcess.kill('SIGINT');
+    serverProcess = runServer();
+}
+
+var serverProcess = runServer();
+/* fork index.js 进程 */
+function runServer() {
+    return cp.fork('./index.js', process.argv, {stdio: [0, 1, 2, 'ipc']})
+}
+```
+
+### 服务器自动更新代码
+
+- 服务器端
+
+```javascript
+// gp-njnu-photos-backend/routes/control.js
+
+/* 访问 /api/ctrl/pull 服务器执行 git pull，从 github 更新代码 */
+ctrl.all('/pull', (req, res) => {
+    res.writeHead(200, {
+        'Content-Type': 'text/event-stream',
+        'Cache-Control': 'no-cache',
+        'Connection': 'keep-alive'
+    });
+    var ls = require('child_process').spawn('git', ['pull', 'origin', 'master'])
+    ls.stdout.on('data', (data) => {
+        data = data.toString()
+        console.log(data)
+        res.write(`${data}`);
+    });
+
+    ls.stderr.on('data', (data) => {
+        data = data.toString()
+        console.log(data)
+        res.write(`${data}`);
+    });
+    ls.on('close', (code) => {
+        console.log(`child process exited with code ${code}`)
+        res.end(`child process exited with code ${code}`);
+    });
+
+})
+```
+
+- 本机（开发机）
+
+```bash
+// path.sh
+#!/bin/bash
+
+msg="from bash"
+if [ -n "$1" ]; then
+    msg=$1
+    # 重新 build 前端代码
+    (cd gp-njnu-photos-app && npm run build)
+fi
+
+git add .
+git commit -m "$msg"
+git push
+
+# 如果push成功（exitcode=0），则访问远端 /api/ctrl/pull，从而服务器也更新了代码
+if [ $? = 0 ]; then
+    curl https://face.moyuyc.xyz/api/ctrl/pull
+fi
+```
 
 ### Desktop打包脚本
 
+```text
+// package.json
+// usage: npm run script-name
+
+"app:mac64": "set ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ && nativefier -c -a x64 -p mac --insecure -n 古南师大刷脸签到 https://face.moyuyc.xyz/ -i desktop/logos/logo.icns --disable-dev-tools --disable-context-menu desktop",
+"app:mac32": "set ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ && nativefier -c -a ia32 -p mac --insecure -n 古南师大刷脸签到 \"https://face.moyuyc.xyz/\" -i desktop/logos/logo.icns --disable-dev-tools --disable-context-menu desktop",
+"app:mac": "npm run app:mac32 & npm run app:mac64",
+"app:win": "npm run app:win32 & npm run app:win64",
+"app:win32": "set ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ && nativefier -c -p win32 -a x64 --insecure -n 古南师大刷脸签到 \"https://face.moyuyc.xyz/\" -i desktop/logos/logo.png --disable-dev-tools --disable-context-menu desktop",
+"app:win64": "set ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ && nativefier -c -p win32 -a ia32 --insecure -n 古南师大刷脸签到 \"https://face.moyuyc.xyz/\" -i desktop/logos/logo.png --disable-dev-tools --disable-context-menu desktop",
+```
+
+### 一键搭建环境脚本
+
+```bash
+// start.sh
+// language: bash script
+// env: bash
+// usage: ./start.sh
+
+#!/bin/bash
+echoerr() { echo "$@" 1>&2; }
+command_exists () { type "$1" &> /dev/null; }
+command_exists_exit() {
+    if ! command_exists "$1" ; then
+        echoerr "${1} command not exists"
+        exit
+    fi
+}
+
+# 必须的指令检查 git npm node mysql
+command_exists_exit git
+command_exists_exit npm
+command_exists_exit node
+command_exists_exit mysql
+
+# 是否已经 clone 过，已经 clone 过，则更新代码，否则 clone
+if [ -d face-njnu ]; then
+    (cd face-njnu && git pull)
+else
+    git clone https://github.com/moyuyc/graduation-project.git face-njnu
+fi
+
+# 要求输入下载同学的入学年份
+read -p "which year do you want to download? (2013) [2013/n] " REPLY
+if [[ $REPLY =~ ^[\s]*$ ]]; then
+    YEAR=2013
+    echo "Downloading... Year=$YEAR"
+    (cd face-njnu/gp-image-download && ./download.sh $YEAR)
+elif [[ $REPLY =~ ^[nN]$ ]]; then
+    echo "Skipped Download Images"
+else
+    YEAR=$REPLY
+    echo "Downloading... Year=$YEAR"
+    (cd face-njnu/gp-image-download && ./download.sh $YEAR)
+fi
+
+echo "mysql data importing"
+# 是否需要导入 sql 数据到 mysql
+read -p "Are you sure import sql data? [y/n]" REPLY
+if [[ $REPLY =~ ^[yY]$ ]]; then
+    # 输入 mysql 用户名，默认 root
+    read -p "Username(root): " REPLY
+    if [[ $REPLY =~ ^[\s]*$ ]]; then
+        USER=root
+    else
+        USER=$REPLY
+    fi
+
+    mysql -u $USER -p gp < face-njnu/gp.sql
+fi
+
+# 是否需要安装 opencv
+read -p "Are you sure install opencv? [y/n]" REPLY
+if [[ $REPLY =~ ^[yY]$ ]]; then
+    if command_exists apt-get; then
+        sudo apt-get install build-essential
+        sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+    fi
+
+    if command_exists wget ; then
+        wget -O ~/opencv.zip https://github.com/opencv/opencv/archive/2.4.13.1.zip
+        unzip opencv.zip
+        mv ~/opencv-2.4.13.1 ~/opencv
+    else
+        # git clone https://github.com/Itseez/opencv_contrib.git ~/opencv_contrib
+        git clone https://github.com/opencv/opencv.git ~/opencv
+        (cd ~/opencv && git checkout 2.4)
+    fi
+    (cd ~/opencv && rm -rf release && mkdir release \
+        && cd release && \ # ~/opencv_contrib/modules:
+        cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. \
+        && make \
+        && sudo make install)
+fi
+
+if command_exists node-gyp ;
+    npm install node-gyp -g --registry=https://registry.npm.taobao.org
+fi
+
+# 安装项目依赖，并且启动
+cd face-njnu
+npm install --registry=https://registry.npm.taobao.org
+cd gp-njnu-photos-backend
+npm install --registry=https://registry.npm.taobao.org
+(cd opencv && npm run install )
+npm run retrain && npm run start
+
+```
 ## 系统模块
 
-图片
-
+![系统模块](https://ooo.0o0.ooo/2017/01/22/58848833b7414.jpg)
 
 # 系统截图
 
-...
+- 学生签到
+![学生签到-1](https://ooo.0o0.ooo/2017/01/22/588485d5c5134.jpg)
+![学生签到-2](https://ooo.0o0.ooo/2017/01/22/58848618b06ff.jpg)
 
+- 人脸录入
+![ClipboardImage](https://ooo.0o0.ooo/2017/01/22/5884867e8c4f1.jpg)
+
+- 关于
+![ClipboardImage](https://ooo.0o0.ooo/2017/01/22/588486cf622d8.jpg)
+
+- 管理员登录
+![ClipboardImage](https://ooo.0o0.ooo/2017/01/22/588486ef8446d.jpg)
+
+- 管理员界面
+![ClipboardImage](https://ooo.0o0.ooo/2017/01/22/5884873f1e625.jpg)
 # 总结
 
-哈哈哈哈sssx
+学习并且使用了一套的 `webpack+react+redux+router`，以及同构渲染；同时巩固了一些 C 系列语言知识，尝试了 node 与 C/C++ “通信”的方式，入门学习了 opencv 以及人脸图像处理相关知识；尝试了站点的发布，与 HTTPs 的升级。对 前端/Nodejs/Web 体系认识更加深刻，对 unix 指令环境更加熟悉。
+
+
+
 
