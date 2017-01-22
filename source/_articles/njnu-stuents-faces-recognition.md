@@ -12,7 +12,7 @@ skip: false
 
 写该文是为了准备写毕业论文的材料，所以文字介绍较多，比较面向大众程序员。
 
-# 任务概要
+# 任务概要（Task Summary）
 
 > 本刷脸系统主要分为学生签到、人脸录入、管理员模块。管理员模块，可以对学生的人脸样本，学生相信操作；该系统核心模块：学生签到，将动态监控摄像头，一旦识别出人脸便向服务器发出请求进行预处理 => 人脸检测 => 人脸比对。该系统将采用 Web 架构实现，前端使用react+redux+router+webpack技术栈，结构清晰，复用率高；后端将采用 nodejs+express 搭建服务器，C++ 实现核心人脸识别比对算法，通过 js 调用 C++ 核心算法；后续可以使用 electron 将前端界面打包成跨平台app，方便师生使用。
 
@@ -24,11 +24,20 @@ skip: false
 
 ## 前端（Front-End）
 
-1. 单页Web应用（single page web application，SPA），就是只有一张Web页面的应用。单页应用程序 (SPA) 是加载单个HTML 页面并在用户与应用程序交互时动态更新该页面的Web应用程序。[1]  浏览器一开始会加载必需的HTML、CSS和JavaScript，所有的操作都在这张页面上完成，都由 JavaScript 来控制。因此，对单页应用来说模块化的开发和设计显得相当重要。
+1. 单页Web应用（single page web application，SPA），就是只有一张Web页面的应用。单页应用程序 (SPA) 是加载单个HTML 页面并在用户与应用程序交互时动态更新该页面的Web应用程序。 浏览器一开始会加载必需的HTML、CSS和JavaScript，所有的操作都在这张页面上完成，都由 JavaScript 来控制。因此，对单页应用来说模块化的开发和设计显得相当重要。
+![](https://ooo.0o0.ooo/2017/01/22/5884d672c4710.jpg)
+
 2. 使用主流 [Webpack](https://webpack.github.io/) 构建，进行前端模块自动化管理。
-3. 使用Facebook提出的 [React](https://facebook.github.io/react/) , 将HTML DOM进行上层抽象，提出Component概念，一套理念，实现了Server render, Web UI, mobile UI的统一。  Learn Once, Write Anywhere
+
+![](https://ooo.0o0.ooo/2017/01/22/5884d5ba0680b.jpg)
+
+
+3. 使用Facebook提出的 [React](https://facebook.github.io/react/) 进行作为 View， 将 HTML DOM 进行上层抽象，提出 Virtual DOM 概念，一套理念，实现了Server render, Web UI, mobile UI 的统一。  Learn Once, Write Anywhere
+![ClipboardImage](https://ooo.0o0.ooo/2017/01/23/5884d71e7ed1d.jpg)
+
 4. [Redux](https://github.com/reactjs/redux)，随着 JavaScript 单页应用开发日趋复杂，JavaScript 需要管理比任何时候都要多的 state (状态)，state 在什么时候，由于什么原因，如何变化已然不受控制。 当系统变得错综复杂的时候，想重现问题或者添加新功能就会变得举步维艰, Redux则是为了解决该痛点而产生。
 5. [React Router](https://github.com/ReactTraining/react-router) 是一个基于 React 之上的强大路由库，它可以让你向应用中快速地添加视图和数据流，既保证了单页应用的畅快，同时保持页面与 URL 间的同步。
+![](https://ooo.0o0.ooo/2017/01/23/5884d88d62dd5.jpg)
 6. *[Babel](https://babeljs.io/) => 使用 JavaScript 实现的编译器，正如官网所说的那样 Use next generation JavaScript, today.
  ，可以利用 Babel 书写最新的 JavasScript 语法标准，如 ECMAScript 6 ，搭配 Webpack 使用更佳。
 7. *[ECMAScript6](http://es6-features.org/) => 2015 年提出的JavaScript标准，目标是使得JavaScript语言可以用来编写复杂的大型应用程序，成为企业级开发语言。ECMAScript和JavaScript的关系是，前者是后者的规格，后者是前者的一种实现。ES 6 具有一系列简明的语法糖，更佳的书写体验。但为了保证浏览器, Node 环境兼容性，往往配合 Babel 书写。
@@ -42,6 +51,8 @@ skip: false
 这种设计的缺点是，如果不使用cluster、StrongLoop Process Manager或pm2等模块，Node.js就难以处理多核或多线程等情况。
 3. pm2 => https://segmentfault.com/a/1190000004621734
 4. isomorphic render（同构渲染）=> 指的是前后端使用同一份代码。前端通过 Webpack 实现 CommonJs 的模块规范（Node亦是 CommonJs ）+ React 提出的 JSX ，使得 NodeJs 通过解析请求的 URL，适配 react-router 中的前端路由规则，得到 routing Props，还可以 dispatch(action) 同步或异步（一般是 isomorphic-fetch ），又或是直接读取数据，从而更新 store ，最后 nodeJs 通过 store 中的 state 渲染 JSX ，产生静态的 HTML，从而实现了前后端的同构渲染。
+![isomorphic](https://ooo.0o0.ooo/2017/01/23/5884dc559b020.jpg) 
+
 5. [nodeJs C++ Addons](https://nodejs.org/api/addons.html)，nodeJs 就是使用C++语言实现的，图像处理最强大的库 opencv 便是用 C++ 实现的，这就不得不需要 nodeJs 与 C++ 之前通信，通过 nodeJs 调用 opencv 的方法，[node-opencv](https://github.com/peterbraden/node-opencv) 便是利用 [nan](https://github.com/nodejs/nan) （解决平台间兼容性问题，将异步事件驱动封装）与 [v8](https://github.com/v8/v8) （javascript 对应的数据类型与 C++映射） ，通过 [node-gyp](https://github.com/nodejs/node-gyp) 工具，将 C++ 打包成 一个动态链接库 *.node，通过 require 即可调用。
 6. [node-mysql](https://github.com/mysqljs/mysql) ，由于 NodeJs 具有 non-blocking IO 与异步事件驱动的特性，所以很适合于 IO 密集型高并发业务，而访问数据库正是常用的 IO 操作。
 7. NPM（全称Node Package Manager，即node包管理器），是Node预设的，通过国内 taobao 镜像可以加快下载速度。
@@ -61,7 +72,7 @@ skip: false
 
 不仅仅局限与以上。以上工具、理论、技术可能只是项目简单地使用，或是学习过程中触碰过而已。
 
-# 学习记录
+# 学习记录（Learning Record）
 
 ## 2016年12月9日
 1. 初步确定课题：基于南师大本科生学生照片，进行人脸识别+特征提取+人脸相似度对比，判断输入人物图片是否存在于库中。若时间允许，精力有余，考虑加上声音比对，提高识别正确率。
@@ -195,11 +206,11 @@ skip: false
 ## 2017年1月21日
 1. google+baidu 收录，添加 robots.txt 与 sitemap.txt，如今在google下搜索 `南京师范大学 刷脸` 即可
 
-# 系统剖析
+# 系统剖析（System Analysis）
 
 源码地址：[Graduation-Project](https://github.com/moyuyc/graduation-project)
 
-## 文件结构
+## 文件结构（Directory Tree）
 
 顶层文件结构如下
 ```
@@ -285,7 +296,7 @@ gp-njnu-photos-backend/
 └── server.js
 ```
 
-## 过程
+## 过程（Learning Process）
 
 ### 学生照片下载
 下载证件照就需要图片的 URL，在[利用Python爬取学校网站上的证件照](http://blog.chaiziyi.com.cn/2016/06/03/%E5%88%A9%E7%94%A8Python%E7%88%AC%E5%8F%96%E5%AD%A6%E6%A0%A1%E7%BD%91%E7%AB%99%E4%B8%8A%E7%9A%84%E8%AF%81%E4%BB%B6%E7%85%A7%EF%BC%88%E5%9B%9B%EF%BC%89/)一文中，说到了教务处的学生证 URL 规则是 `http://${hostname}/jwgl/photos/rx${year}/${studentno}.jpg` ，`hostname`就是教务系统的主机地址，`year`就是入年份，`studentno`是学生学号，比如某学生学号是`19140429`，其中学号的3-4位表示入学年份，表示学生是 2014 年入学，那么他的学生证 URL 就是 `http://223.2.10.123/jwgl/photos/rx2014/19140429`；  
@@ -398,7 +409,7 @@ NAN_METHOD(Matrix::ToThreeChannels) {
 结合 React Web Component 和 [CSS Module](https://github.com/css-modules/css-modules) 思想，将前端页面细分为若干个组件，在上层 Page 中进行数据的传输，组件的组合，在 Page 上层还有一层 App，把一些全局通用的组件放这。
 ![](https://ooo.0o0.ooo/2017/01/22/58845e6781176.jpg)
 
-而且所有的数据控制都在 `reducer` 中，层次清晰，代码复用性高，
+而且所有的数据控制都在 `reducer` 中，层次清晰，代码复用性高。
 
 ![](https://ooo.0o0.ooo/2017/01/22/58845a7e4a302.jpg)
 ```
@@ -448,6 +459,8 @@ app/
 ```
 
 其中 `workers/face.worker.js` 文件是利用 Web Worker 起的另一个进程代码，主要做的是输入图片数据，输出人脸的位置大小，就是 JavaScript 版的人脸检测，之所以起另一个线程，是因为对于视频的人脸检测，对于实时性要求也比较高，检测也比较耗时，为了效率考虑使用了 Web Worker。 
+
+![ClipboardImage](https://ooo.0o0.ooo/2017/01/23/5884dfc84c74c.jpg)
 
 ### 后端
 
@@ -601,7 +614,7 @@ const store = configureStore(
 
 为了方便师生使用，还使用 `nativefier` 将站点打包成 PC Desktop，其实就是将站点 URL 和 Chrome 内核组合成一个 Application
 
-## 代码解析
+## 代码解析（Code Analysis）
 
 下面对某些代码进行剖析
 
@@ -998,11 +1011,11 @@ npm install --registry=https://registry.npm.taobao.org
 npm run retrain && npm run start
 
 ```
-## 系统模块
+## 系统模块（System Module）
 
 ![系统模块](https://ooo.0o0.ooo/2017/01/22/58848833b7414.jpg)
 
-# 系统截图
+# 系统截图（System Screenshot）
 
 - 学生签到
 ![学生签到-1](https://ooo.0o0.ooo/2017/01/22/588485d5c5134.jpg)
@@ -1021,7 +1034,7 @@ npm run retrain && npm run start
 ![](https://ooo.0o0.ooo/2017/01/22/5884873f1e625.jpg)
 
 
-# 总结
+# 总结（Sum Up）
 
 学习并且使用了一套的 `webpack+react+redux+router`，以及同构渲染；同时巩固了一些 C 系列语言知识，尝试了 node 与 C/C++ “通信”的方式，入门学习了 opencv 以及人脸图像处理相关知识；尝试了站点的发布，与 HTTPs 的升级。对 前端/Nodejs/Web 体系认识更加深刻，对 unix 指令环境更加熟悉。
 
