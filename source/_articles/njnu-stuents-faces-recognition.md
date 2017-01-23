@@ -63,12 +63,21 @@ skip: false
 10. nginx，使用 C++ 实现的 Web 服务器，通过简单的配置就可以反向代理至正确的端口和应用层协议。
 11. 由于浏览器安全性的考虑，对于外网地址使用摄像头需要在安全的HTTPs协议下，因此需要付费或免费地得到认可的证书，通过 nginx 配置，反向代理至 Node 进程即可。
 
-# 涉及知识
+## 其他（Other）
+1. git 是用于 Linux 内核开发的版本控制工具。与 CVS、Subversion 一类的集中式版本控制工具不同，它采用了分布式版本库的作法，不需要服务器端软件，就可以运作版本控制，使得源代码的发布和交流极其方便。 git 的速度很快，这对于诸如 Linux 内核这样的大项目来说自然很重要。git 最为出色的是它的合并追踪（merge tracing）能力。
+2. GitHub 是一个通过 Git 进行版本控制的软件源代码托管服务，是全球最大的代码存放网站和开源社区。
+3. 特征脸（Eigenface）是指用于机器视觉领域中的人脸识别问题的一组特征向量。这些特征向量是从高维矢量空间的人脸图像的协方差矩阵计算而来。一组特征脸 可以通过在一大组描述不同人脸的图像上进行主成分分析（PCA）获得。任意一张人脸图像都可以被认为是这些标准脸的组合。另外，由于人脸是通过一系列向量（每个特征脸一个比例值）而不是数字图像进行保存，可以节省很多存储空间。
+4. 主成分分析（Principal components analysis，PCA）是一种分析、简化数据集的技术。主成分分析经常用于减少数据集的维数，同时保持数据集中的对方差贡献最大的特征。这是通过保留低阶主成分，忽略高阶主成分做到的。这样低阶成分往往能够保留住数据的最重要方面。
+5. OpenCV的全称是Open Source Computer Vision Library，是一个跨平台的计算机视觉库。OpenCV用C++语言编写，它的主要接口也是C++语言。
+
+
+# 涉及知识（Knowledage Involved）
 
 1. javascript / react / redux / react-router / webpack / less / node / babel / es6 / tracking.js / isomorphic / promise
 2. http / https / express / mysql
 3. opencv / Eigenfaces FaceRecognizer / node addons 降维、特征提取、特征比对
 4. homebrew / curl / bash script / electron / cross-env / npm script / screen command / pm2 / nginx / git / seo
+5. 搜索引擎优化（search engine optimization，SEO），是一种通过了解搜索引擎的运作规则来调整网站，以及提高目的网站在有关搜索引擎内排名的方式。所谓“针对搜索引擎作最优化的处理”，是指为了要让网站更容易被搜索引擎接受。
 
 不仅仅局限与以上。以上工具、理论、技术可能只是项目简单地使用，或是学习过程中触碰过而已。
 
