@@ -10,6 +10,8 @@ skip: false
 [毕设 👉 南师大刷脸签到系统 👉  face.moyuyc.xyz](https://face.moyuyc.xyz)
 ![](https://ooo.0o0.ooo/2017/01/18/587eea50913fd.jpg)
 
+源码：[graduation-project](https://github.com/moyuyc/graduation-project)
+
 写该文是为了准备写毕业论文的材料，所以文字介绍较多，比较面向大众程序员。
 
 # 任务概要（Task Summary）
