@@ -40,4 +40,64 @@ fi
 上面例子可以看到`#`可以表示一个数组（字符串）的长度，如下例
 
     arr=(a b c) && str=string && echo ${#arr}-${#str} # 3-6
+    
+
+### 脚本的执行方法
+
+比如有`sh scriptname.sh` `bash scriptname.sh`，当然还有 `sh < scriptname.sh`  ( 这种方法不建议，因为不能在脚本中读 `stdin` )。最方便的方法还是，直接用`chmod`变成可执行（executable）文件。
+
+    chmod 555 scriptname # readable/executable for all
+    chmod +rx scriptname # readable/executable for all
+    chmod u+rx scriptname # readable/executable for user
+
+### 字符 `#`
+
+1. 普通字符`#`
+        echo "hello\n# comment\nworld" | \
+        sed -e '/#/d' | # 删除带有`#`字符的行 \  
+        tr -d '\n' | # 删除换行符 \   
+        sed -e 's/world/,Bash scripting/g'  # 字符替换
+
+2. 字符串匹配
+        str=abc123456123ABC
+        echo ${str#*123}  # 最短匹配
+        echo ${str##*123} # 贪心匹配
+3. 数字表达式
+        echo $((2#101011))  # 二进制的101011
+
+### 字符 `;`
+
+在同一行中执行多条指令
+
+    echo one; echo two
+    
+    if [ true ]; then  # ; 不能少, if/then 两条指令
+        echo "true statement"
+    fi
+    
+### 双分号 `;;`
+
+在 case 选项中
+
+    variable=abc
+    case "$variable" in
+        abc)  echo "\$variable = abc" ;;
+        xyz)  echo "\$variable = xyz" ;;
+    esac
+    
+### 逗号 `,`
+
+字符串的拼接
+
+    ls /usr{,/lib} # 列出 `/usr` 和 `/usr/lib` 下的文件
+    
+### 冒号 `:`
+
+nop 操作，空操作，退出状态为0
+
+    not-exist-command; echo $?
+    
+    not-exist-command; :; echo $?
+
+P11
 

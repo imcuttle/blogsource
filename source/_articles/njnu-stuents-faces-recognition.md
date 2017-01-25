@@ -391,7 +391,7 @@ NAN_METHOD(Matrix::ToThreeChannels) {
 <table border="0">
 　<caption><em>opencv 人脸识别算法比较</em></caption>
 　<tr>
-　<th rowspan="2" style="text-align: center;">算法\时间(ms)</th>
+　<th rowspan="2" style="text-align: center;">算法/时间(ms)</th>
 　<th colspan="2">实验1</th>
 　<th colspan="2">实验2</th>
 　<th colspan="2">实验3</th>
