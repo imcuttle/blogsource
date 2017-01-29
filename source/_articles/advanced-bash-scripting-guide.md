@@ -99,5 +99,81 @@ nop 操作，空操作，退出状态为0
     
     not-exist-command; :; echo $?
 
-P11
+### "``" 与 $()
+
+指令运行输出结果赋值给某变量
+    
+    files=(*); echo ${files[@]} # or ${files}
+    echo $(ls)
+    echo `ls`
+    
+### 通配符
+
+在 Unix 文件系统中，有 `*`、`?`、`[]`
+
+    echo /usr/*    # * 配对任意长，任意字符
+    echo /usr/li?  # ? 配对一个字符
+    echo /usr/li[a-z]
+
+
+### `? : ` 三目运算符
+
+    ((x = 2>0?123:456)); echo $x
+
+### `$$`
+
+    echo $$;   # process ID
+    
+### `{}` 扩充
+
+`{}` 内不允许任何空格，除非是转义后或是引号内
+
+1. 字符串组合
+        echo \"{These,words,are,quoted}\"   # " prefix and suffix
+        # "These" "words" "are" "quoted"
+        
+        cp file22.{txt,backup}
+        # Copies "file22.txt" to "file22.backup"
+        
+        echo {a..z} # a b c d e f g h i j k l m n o p q r s t u v w x y z
+        # Echoes characters between a and z.
+        echo {0..3} # 0 1 2 3
+        # Echoes characters between 0 and 3.
+        base64_charset=( {A..Z} {a..z} {0..9} + / = )
+        
+        echo {file1,file2}\ :{\ A," B",' C'}
+        # file1 : A file1 : B file1 : C file2 : A file2 : B file2 : C
+        echo {file1,file2} :{\ A," B",' C'}
+        # file1 file2 : A : B : C
+    
+2. 代码块
+    ```bash
+    #!/bin/sh
+    # readfile line by line
+    File=${me=`basename "$0"`}
+    {
+        read line1
+        read line2
+    } < $File
+    echo "First line in $File is:"
+    echo "$line1"
+    echo
+    echo "Second line in $File is:"
+    echo "$line2"
+    ```
+    ```bash
+    #!/bin/sh
+    # output save to out.html
+    {
+        echo "<html>"
+        echo "<head></head>"
+        echo "<body><h1>Output</h1></body>"
+        echo "</html>"
+    } > out.html
+    
+    open out.html
+    ```
+    
+    
+
 
