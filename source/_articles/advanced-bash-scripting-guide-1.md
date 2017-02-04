@@ -92,6 +92,7 @@ fi
 字符串的拼接
 
     ls /usr{,/lib} # 列出 `/usr` 和 `/usr/lib` 下的文件
+    mv file{,B}.txt # file.txt -> fileB.txt
     
 ### 冒号 `:`
 
