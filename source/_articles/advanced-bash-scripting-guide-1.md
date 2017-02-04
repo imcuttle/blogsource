@@ -1,13 +1,15 @@
 ---
-title: （译）进阶Bash Script指南
+title: （译）进阶Bash Script指南（一）
 date: 2017-01-24 20:42:54
 categories:
 tags: [bash, 翻译]
-cover:
-skip: true
+cover: http://imglf1.nosdn.127.net/img/TjJNOU5JYkNaSkQ2NTIzRk1BamM0ZkVMZG5PdndpaEY0dnV4TFRsN2xuRXRPaHpKeVU2ay93PT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg
+skip: false
 ---
 
 原文：[Advanced Bash-Scripting Guide](http://www.tldp.org/LDP/abs/abs-guide.pdf)
+
+部分[学习代码](https://github.com/moyuyc/advanced-bash-scripting-learning)
 
 只做部分翻译，一些个人遗漏的点。
 
@@ -98,6 +100,16 @@ nop 操作，空操作，退出状态为0
     not-exist-command; echo $?
     
     not-exist-command; :; echo $?
+    
+选择符
+    
+    a=123
+    b=456
+    echo ${a:-$b} # 123
+    
+    a=
+    b=456
+    echo ${a:-$b} # 456
 
 ### "``" 与 $()
 
@@ -174,6 +186,119 @@ nop 操作，空操作，退出状态为0
     open out.html
     ```
     
+### 后台进程 `&`
+
+`&` 不仅仅可以用于单条指令，对于一个完整的语句块也是可以的。
+
+    for i in 1 2 3 4 5 6 7 8 9 10
+    do
+      echo -n "$i "
+    done &
     
 
+### 对`&&`的误解
+
+`&&` 并不是无条件的顺序执行下一条指令，而是需要上一条指令 `exit code` 等于 0。
+
+    (exit 1) && echo 123  # print nothing.
+    (exit 1); echo 123    # print 123.
+    
+### 比较操作符
+
+    #!/usr/bin/env bash
+    
+    files=(*.sh)
+    file1=${files[1]}
+    file2=${files[2]}
+    
+    if [ $file1 -ot $file2 ]
+    then #      ^
+      echo "File $file1 is older than $file2."
+    fi
+    
+    a=123
+    b=123
+    
+    if [ "$a" -eq "$b" ]
+    then #    ^
+      echo "$a is equal to $b."
+    fi
+    
+    c=24
+    d=47
+    
+    if [ "$c" -eq 24 -a "$d" -eq 47 ] # [[ "$c" = 24 && "$d" = 47 ]]
+    then #    ^              ^
+      echo "$c equals 24 and $d equals 47."
+    fi
+
+### `-` 的扩展
+
+`-` 除了是对于指令的选项，如 `ls -al` ，还可以表示 `stdio`
+
+    tar cf - .  #stdout
+    # The 'c' option 'tar' archiving command creates a new archive,
+    # the 'f' (file) option, followed by '-' designates the target file
+    # as stdout, and do it in current directory tree ('.').
+    
+    tar xpvf -  #stdin
+    # Unarchive ('x'), preserve ownership and file permissions ('p'),
+    # and send verbose messages to stdout ('v'),
+    # reading data from stdin ('f' followed by '-').
+    
+    file -  #stdin
+    
+    diff file.js - # stdin
+    
+`cd -` 可以对 pwd 的切换，主要是保存了 OLDPWD
+
+    cd /
+    cd ~
+    echo $OLDPWD
+    echo $PWD
+
+### 其他符号
+
+    echo ~+   # echo $PWD
+    echo ~-   # echo $OLDPWD
+    
+### 有用的快捷键
+
+1. Ctl - Z  挂起前台进程
+2. Ctl - T  交换 2 个相邻字符
+3. Ctl - W  删除左边一个单词
+4. Ctl - X  选择高亮
+5. Ctl - Y  插入之前删除的文本（Ctl - W/U）
+6. Ctl - R  搜索历史指令
+
+
+### `IFS` 内部域分隔符
+
+    #!/bin/sh
+
+    output_args_one_per_line()
+    {
+        arg_list=$*
+        echo "\$*='$*'"
+        for arg in $arg_list
+        do
+            echo "[$arg]"
+        done
+    }
+    
+    x="a b c d e"
+    IFS=' '
+    output_args_one_per_line $x
+    
+    x="a b c"$'\t'"d e"
+    IFS=$'\t'
+    output_args_one_per_line $x
+    
+### `$*` 与 `$@`
+
+     IFS=";"
+     set x y z
+     echo $*    # x y z
+     echo "$*"  # x;y;z
+     echo "$@"  # x y z
 

