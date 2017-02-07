@@ -3,7 +3,7 @@ title: HTML -> Markdown
 date: 2017-02-07 10:42:55
 categories:
 tags: [javascript, markdown, isomorphic]
-cover:
+cover: http://imglf1.nosdn.127.net/img/N2RLRDhXOHRWSkVXbFJrUTZ6R1NRR3Q2TlRIY3BackFLaTJDSmlyenJrM0gvbEpZSnJrNFZRPT0.jpg?imageView&thumbnail=1080x0&quality=96&stripmeta=0&type=jpg
 ---
 
 ## 情景重现
