@@ -24,7 +24,3 @@ cover:
 - [ ] Mobx
 - [ ] React+Redux+[RxJs](https://fe.ele.me/let-us-learn-rxjs/)(事件转换为状态机，更优雅) => Canvas 画图
 
-
-
-
-  
