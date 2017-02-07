@@ -23,6 +23,12 @@ html2md https://www.npmjs.com/package/html-markdown -s "#readme" > html-markdown
 html2md path/to/html/file -s "#markdown"
 html2md path/to/html/file
 html2md --eval "<h1>Hello!</h1>"
+html2md - # get string from stdin
+
+{
+    echo "<h1>HEAD1</h1>";
+    echo "<h2>HEAD2</h2>";
+} | html2md -
 ```
 
 URL 只支持 HTTP/HTTPs 协议，`-s --selector` 选项表示 HTML 文档中的 DOM 选择器，如 jQuery 选择器。
