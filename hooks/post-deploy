@@ -186,11 +186,13 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
         var data = dbMain[add];
         if(!data) return;
         if(new Date(data.head.realDate) > oldLastDate) {
+            fs.createReadStream('./source/_articles/'+add+'.md')
+                .pipe(fs.createWriteStream(process.env.HOME+'/my-code/NodeCode/isomorphic-blog/source/_articles'+add+'.md'));
+            const html = render(compiled, Object.assign(data, {hrefTitle: add, _link: 'http://blog.moyuyc.xyz'}));
             console.log('Sending Mail', data.head.title);
             sync(receivers.map(r => {
                 return function () {
                     console.log('Sending', r.name, r.mail);
-                    
                     return sendMail(
                         'smtp.qq.com',
                         '492899414@qq.com',
@@ -200,7 +202,7 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
                         `${mail_encode("Subject", `[墨鱼新的文章出炉啦!] ${data.head.title}`)}\r\n` +
                         `${mail_encode("To", r.name)} <${r.mail}>\r\n` +
                         `Content-Type: text/html; charset="utf-8"\r\n\r\n` +
-                        `${render(compiled, Object.assign(data, {hrefTitle: add, _link: 'https://moyuyc.oschina.io'}))}`
+                        `${html}`
                     ).then((err) => {
                         console.log('Sended', r.name, r.mail);
                         if (err) {
