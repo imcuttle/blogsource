@@ -2,8 +2,9 @@
 
 var path = require('path');
 var fs = require('fs');
+var cp = require('child_process')
 
-var test = process.env.NODE_ENV=='dev';
+var test = true || process.env.NODE_ENV=='dev';
 console.log('post-deploy hook');
 
 var apiRoot = require(path.resolve('./moka.config.json')).apiRoot || 'moka_api';
@@ -156,6 +157,20 @@ function sync(callables) {
         })
 }
 
+function executeSyncWithCheck (path, cwd, args) {
+    args = args || process.argv;
+    if(fs.existsSync(path)) {
+        try {
+            var code = cp.execFileSync(path, args, {stdio: 'inherit', cwd: cwd}).status;
+        } catch (ex) {
+            console.error(ex.message);
+        }
+    }
+}
+
+var destPath = process.env.HOME+'/my-code/NodeCode/isomorphic-blog';
+
+
 if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
     var db = require(dbPath);
     var adds = require(addPath);
@@ -186,8 +201,15 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
         var data = dbMain[add];
         if(!data) return;
         if(new Date(data.head.realDate) > oldLastDate) {
+            var destFilename = 'source/_articles/'+add+'.md';
+            var dest = deskPath+'/'+destFilename;
             fs.createReadStream('./source/_articles/'+add+'.md')
-                .pipe(fs.createWriteStream(process.env.HOME+'/my-code/NodeCode/isomorphic-blog/source/_articles/'+add+'.md'));
+                .pipe(fs.createWriteStream(dest))
+                .on('close', () => {
+                    console.log('[DONE] COPYED', dest);
+                    executeSyncWithCheck(path.join(__dirname, 'post-deploy.sh'), destPath, [destFilename] );
+                })
+
             const html = render(compiled, Object.assign(data, {hrefTitle: add, _link: 'http://blog.moyuyc.xyz'}));
             console.log('Sending Mail', data.head.title);
             sync(receivers.map(r => {
