@@ -160,11 +160,11 @@ function sync(callables) {
         })
 }
 
-function executeSyncWithCheck (path, cwd, args) {
+function executeSyncWithCheck (path, args, cwd) {
     args = args || process.argv;
     if(fs.existsSync(path)) {
         try {
-            var code = cp.execFileSync(path, args, {stdio: 'inherit', cwd: cwd});
+            var code = cp.execFileSync(path, args, {stdio: 'inherit', cwd: cwd || process.cwd()});
         } catch (ex) {
             console.error(ex.message);
         }
@@ -205,11 +205,14 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
         if(new Date(data.head.realDate) > oldLastDate) {
             var destFilename = 'source/_articles/'+add+'.md';
             var dest = destPath+'/'+destFilename;
-            fs.createReadStream('./source/_articles/'+add+'.md')
+            var src = path.resolve('./source/_articles/'+add+'.md');
+
+            fs.createReadStream(src)
                 .pipe(fs.createWriteStream(dest))
                 .on('close', () => {
                     console.log('[DONE] COPYED', dest);
-                    executeSyncWithCheck(path.join(__dirname, 'post-deploy.sh'), destPath, [destFilename] );
+                    executeSyncWithCheck(path.join(__dirname, 'post-deploy.sh'), [dest], '.');
+                    fs.createReadStream(dest).pipe(fs.createWriteStream(src))
                 })
 
             const html = render(compiled, Object.assign(data, {hrefTitle: add, _link: 'http://blog.moyuyc.xyz'}));

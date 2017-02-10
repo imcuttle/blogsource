@@ -34,12 +34,13 @@
         ${obj.content
             .replace(/<!--[\s]*?more[\s]*?-->[\s\S]*$/, `<br><center><a target="_blank" href="${obj._link+"/article/"+obj.hrefTitle}">查看更多</a></center>`)
             .replace(/(<img.+?src=")([\s\S]+?)"/g, (m, a, b)=>{
-                if(!/^(http:)|(https:)|(\/\/)/.test(b)) {
+                if( !/^(http:)|(https:)|(\/\/)/.test(b) && !b.startsWith('#') ) {
                     return a+obj._link+(b.startsWith('/')?b:'/'+b)+"\"";
                 }
                 return a+b+"\"";
             }).replace(/(<a.+?href=")([\s\S]+?)"/g, (m, a, b)=>{
-                if(!/^(http:)|(https:)|(\/\/)/.test(b)) {
+                if( !/^(http:)|(https:)|(\/\/)/.test(b) && !b.startsWith('#') ) {
+                    
                     return a+obj._link+(b.startsWith('/')?b:'/'+b)+"\"";
                 }
                 return a+b+"\"";
