@@ -57,6 +57,9 @@ var receivers = [ {
 }, {
     name: '史同学',
     mail: '1509620113@qq.com'
+}，{
+    name: "YC",
+    mail: "moyuyc95@gmail.com"
 }]
 
 if(test) {
