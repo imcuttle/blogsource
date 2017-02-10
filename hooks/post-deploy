@@ -187,7 +187,7 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
         if(!data) return;
         if(new Date(data.head.realDate) > oldLastDate) {
             fs.createReadStream('./source/_articles/'+add+'.md')
-                .pipe(fs.createWriteStream(process.env.HOME+'/my-code/NodeCode/isomorphic-blog/source/_articles'+add+'.md'));
+                .pipe(fs.createWriteStream(process.env.HOME+'/my-code/NodeCode/isomorphic-blog/source/_articles/'+add+'.md'));
             const html = render(compiled, Object.assign(data, {hrefTitle: add, _link: 'http://blog.moyuyc.xyz'}));
             console.log('Sending Mail', data.head.title);
             sync(receivers.map(r => {
