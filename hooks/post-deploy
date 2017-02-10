@@ -202,7 +202,7 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
         if(!data) return;
         if(new Date(data.head.realDate) > oldLastDate) {
             var destFilename = 'source/_articles/'+add+'.md';
-            var dest = deskPath+'/'+destFilename;
+            var dest = destPath+'/'+destFilename;
             fs.createReadStream('./source/_articles/'+add+'.md')
                 .pipe(fs.createWriteStream(dest))
                 .on('close', () => {
