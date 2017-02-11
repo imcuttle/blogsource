@@ -2,6 +2,6 @@
     "name": "moka-site",
     "version": "0.0.1",
     "scripts": {
-        "gd": "moka g && moka d"
+        "qk": "moka d -gb"
     }
 }
