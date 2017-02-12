@@ -4,7 +4,7 @@ var path = require('path');
 var fs = require('fs');
 var cp = require('child_process')
 
-var test = false || process.env.NODE_ENV=='dev';
+var test = true || process.env.NODE_ENV=='dev';
 console.log('post-deploy hook');
 
 var apiRoot = require(path.resolve('./moka.config.json')).apiRoot || 'moka_api';
@@ -160,12 +160,13 @@ if(fs.existsSync(dbPath) && fs.existsSync(addPath)) {
             var src = path.resolve('./source/_articles/'+add+'.md');
 
             fs.createReadStream(src)
-                .pipe(fs.createWriteStream(dest))
                 .on('close', () => {
                     console.log('[DONE] COPYED', dest);
-                    executeSyncWithCheck(path.join(__dirname, 'post-deploy.sh'), [dest], '.');
+                    executeSyncWithCheck(path.join(__dirname, 'post-deploy.sh'), [destFilename], destPath);
                     fs.createReadStream(dest).pipe(fs.createWriteStream(src))
                 })
+                .pipe(fs.createWriteStream(dest))
+                
 
             const html = render(compiled, Object.assign(data, {hrefTitle: add, _link: 'http://blog.moyuyc.xyz'}));
             console.log('Sending Mail', data.head.title);
