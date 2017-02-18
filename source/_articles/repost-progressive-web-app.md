@@ -3,13 +3,15 @@ title: Progressive Web App
 date: 2017-02-10 19:35:48
 categories:
 tags: [转, web]
-cover: https://pic2.zhimg.com/v2-907d6e6909c8bd1a92fc265ba7c68d75_r.png
+cover: http://obu9je6ng.bkt.clouddn.com/Fj5uQumcJ7hDqA2uZWW6ZC55fonq?imageslim
 ---
 
 转自：[知乎](https://zhuanlan.zhihu.com/p/25167289?utm_source=wechat_timeline&utm_medium=social&from=timeline&isappinstalled=1)
 
  html => markdown 来自 [html-markdown](https://github.com/moyuyc/html-markdown)
- 
+
+
+<!--more--> 
  原文：
 
 > 今年 9 月份的时候，《程序员》杂志社就邀请我写一篇关于 PWA 的文章。后来花式拖稿，拖过了 10 月的 QCon，11 月的 GDG DevFest，终于在 12 月把这篇长文熬了出来。几次分享的不成熟，这次的结构算是比较满意了。「 可能是目前中文世界里对 PWA 最全面详细的长文了」，作为外刊君的一员，希望你能喜欢。>   
