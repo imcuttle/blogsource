@@ -190,6 +190,7 @@ const server = net.createServer({allowHalfOpen: true}, c => {
 server.listen(+process.argv[2]);
 ```
 
+
 其中 `{ allowHalfOpen: true }` 不可少，因为在执行 `spawnSync('nc', ["127.0.0.1", nPort], {input: request})` 时，input 是 JSON 序列话后的字符串，输入后就到 EOF 了，相当于在 Shell 中 Ctrl+D 控制键，nc 客户端套接字就关闭了，只有允许半开套接字，客户端才能收到服务器的数据。如下图：对应为客户端的 FIN_WAIT_2 ~ TIME_WAIT 周期之间，服务器依旧可以发送数据。
 
 <img src="http://obu9je6ng.bkt.clouddn.com/FnixeQVF2AFq-_T53WvL6Ubvk9WV?imageslim" width="600" height="509"/>
