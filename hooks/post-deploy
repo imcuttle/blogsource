@@ -12,6 +12,8 @@ var dbPath = path.resolve('.', 'static', apiRoot, 'db.json');
 var addPath = path.resolve('./hooks/tmp_post_generate.json');
 var tmpPostDeployPath = path.resolve('./hooks/tmp_post_deploy.json');
 
+process.exit(0);
+
 var receivers = require(__dirname+'/mailer.json');
 
 if(test) {
