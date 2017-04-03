@@ -1,14 +1,11 @@
 ---
-title: ali-app-pay
+title: 支付宝第三方支付，App支付教程
 date: 2017-03-29 14:35:58
 categories:
 tags:
 cover:
 keywords:
 ---
-
-
-# 支付宝第三方支付，App支付教程
 
 1. 进入蚂蚁金服开放平台主页  
 [开放平台主页](https://openhome.alipay.com/platform/manageHome.htm)
@@ -17,7 +14,7 @@ keywords:
 3. 创建支付应用  
 <img src="https://ooo.0o0.ooo/2017/03/29/58db57afbe3c3.jpg" width="1430" height="406"/>
 4. 输入应用名称, 上传应用logo后
-![](http://www.zhishiq.com/images/logo_global.png)
+<img src="https://ooo.0o0.ooo/2017/03/29/58db5d67798de.jpg" width="126" height="126"/>
 5. 在功能列表中选择“我是商户，自己开发并使用功能”，确定包含“App支付”，并同意协议
 <img src="https://ooo.0o0.ooo/2017/03/29/58db58901d9f6.jpg" width="1337" height="368"/>
 6. 在开发配置中设置公钥私钥
