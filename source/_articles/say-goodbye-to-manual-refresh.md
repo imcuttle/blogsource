@@ -107,6 +107,7 @@ module.exports = {
 };
 ```
 
+
 - 支持跨域  
 建立起 hot reload server (端口 8082) 服务后，在你需要开启热更新的 html 中手动插入
 ```html
@@ -117,8 +118,8 @@ module.exports = {
 >
 </script>
 ```
-- `hrs-local` 该文件的绝对路径
-- `hrs-root` 需要监听的文件夹的路径（默认为`hrs-local`的文件夹路径，例中为：`/Users/moyu/fe-code/a/b`）
+    - `hrs-local` 该文件的绝对路径
+    - `hrs-root` 需要监听的文件夹的路径（默认为`hrs-local`的文件夹路径，例中为：`/Users/moyu/fe-code/a/b`）
 
 ## 安装使用
 
