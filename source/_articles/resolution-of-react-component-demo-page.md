@@ -36,7 +36,7 @@ keywords:
 
 ## 展望
 
-后续可以定义数据（props/state/...）的描述信息，如
+1. 后续可以定义数据（props/state/...）的描述信息，如
 
 ```jsx
 import editable from 'react-mhoc/lib/editable'
@@ -59,6 +59,6 @@ class Component extends React.Component {
 }
 ```
 
-
+2. 可以进行数据+-操作
 
 
