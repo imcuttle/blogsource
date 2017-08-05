@@ -38,7 +38,7 @@ keywords:
 
 后续可以定义数据（props/state/...）的描述信息，如
 
-```jsx harmony
+```jsx
 import editable from 'react-mhoc/lib/editable'
 import 'react-mhoc/lib/attrEditable/style.css'
 
