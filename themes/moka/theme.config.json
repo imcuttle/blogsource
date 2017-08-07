@@ -20,29 +20,9 @@
   },
   "projects": [
     {
-      "title": "Moka & Theme",
+      "title": "MySelf",
       "image": "https://segmentfault.com/img/bVEjtX",
-      "link": "https://github.com/moyuyc/moka"
-    },
-    {
-      "title": "Music Robot",
-      "image": "/upload/1471705339720.png",
-      "link": "http://song.moyuyc.xyz"
-    },
-    {
-      "title": "Markdown Editor",
-      "image": "/upload/1471093544488.png",
-      "link": "https://github.com/moyuyc/markdown-editor"
-    },
-    {
-      "title": "Node Explorer",
-      "image": "/images/md.png",
-      "link": "http://file.moyuyc.xyz/"
-    },
-    {
-      "title": "Node BookShop",
-      "image": "/images/p7.png",
-      "link": "http://bookshop.moyuyc.xyz/"
+      "link": "https://github.com/imcuttle"
     }
   ],
 
@@ -51,10 +31,10 @@
       "weibo": "http://weibo.com/2848472365"
     },
     {
-      "github": "https://github.com/moyuyc"
+      "github": "https://github.com/imcuttle"
     },
     {
-      "envelope-o": "mailto:492899414@qq.com"
+      "envelope-o": "mailto:moyuyc95@gmail.com"
     }
   ],
 

@@ -8110,7 +8110,7 @@
 						}
 					}), c["default"].createElement("ul", {
 						className: "tags"
-					}, a && a.map(function(t) {
+					}, a && a.filter(b => b!=null).map(function(t) {
 							return c["default"].createElement("li", {
 								key: t
 							}, c["default"].createElement(l.Link, {
