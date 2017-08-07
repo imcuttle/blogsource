@@ -14,7 +14,7 @@
     }],
     "bak": {
         "type": "git",
-        "url": "git@github.com:imcuttle/blogsource.git",
+        "url": "https://github.com/imcuttle/blogsource.git",
         "branch": "master"
     }
 }
