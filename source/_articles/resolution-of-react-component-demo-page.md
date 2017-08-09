@@ -23,9 +23,9 @@ keywords:
 
 抛出一个工具（Editable React）
 
-具体效果看图
+具体效果看视频
 
-<img src="http://obu9je6ng.bkt.clouddn.com/FkVW1A_OJ5Nw5m2wNFQL5QrtIGfF?imageslim" width="1221" height="322"/>
+<video src="http://obu9je6ng.bkt.clouddn.com/editable-preview.mp4" />
 
 可以方便 “编辑” React 组件（包括 Props、State、甚至一些其他自定义数据）
 并且视图进行同步更新
@@ -33,6 +33,40 @@ keywords:
 是不是很方便的就可以对一个组件进行深层次的剖析了！！
 
 [Demo点我](https://m-cuttlefish.github.io/react-mhoc/page/)
+
+- 参数
+    - groupName: string  
+        编辑视图的组名(默认为组件名)
+    - attrNames: Array  
+        需要编辑的数据keyNames, props强制支持 (默认['state'])
+
+```jsx
+import {editable} from 'react-mhoc'
+
+@editable
+class MyComponent extends React.Component {
+    // ....
+
+    // ref Api
+    open() {}
+}
+
+
+class App extends React.Component {
+
+    componentDidMount() {
+        // not existed open
+        // this.ref.open()
+
+        // ok
+        this.ref.comp.open()
+    }
+
+    render() {
+        <MyComponent ref={r => this.ref = r} />
+    }
+}
+```
 
 ## 展望
 
@@ -59,6 +93,5 @@ class Component extends React.Component {
 }
 ```
 
-2. 可以进行数据+-操作
 
 
