@@ -25,7 +25,7 @@ keywords:
 
 具体效果看视频
 
-<video src="http://obu9je6ng.bkt.clouddn.com/editable-preview.mp4" />
+<video src="http://obu9je6ng.bkt.clouddn.com/editable-preview.mp4" controls="controls"/>
 
 可以方便 “编辑” React 组件（包括 Props、State、甚至一些其他自定义数据）
 并且视图进行同步更新
