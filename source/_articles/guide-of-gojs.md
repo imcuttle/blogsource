@@ -29,6 +29,7 @@ keywords: [webpack, gojs]
 2. 入口动态添加，如：
 
     文件目录结构如下：
+    
     ```
     go-js-test/
     ├── a/
@@ -59,6 +60,7 @@ keywords: [webpack, gojs]
 
 适用于一些小型项目或者demo的快速搭建开发。
 如，`package.json`中
+
 ```
 {
     ...
@@ -73,6 +75,7 @@ keywords: [webpack, gojs]
 ```
 
 用户只需要执行
+
 ```
 npm install && npm start
 ```
@@ -86,12 +89,14 @@ npm install && npm start
 ## 使用
 
 - cli
+
 ```
 npm install -g go-js
 gojs -h  # 查看帮助
 ```
 
 - package
+
 ```
 const GoJS = require('go-js')
 const gojs = new GoJS({
