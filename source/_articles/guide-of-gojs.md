@@ -29,7 +29,7 @@ keywords: [webpack, gojs]
 2. 入口动态添加，如：
 
     文件目录结构如下：
-    
+
     ```
     go-js-test/
     ├── a/
