@@ -24,7 +24,7 @@ keywords:
 npm i -g doc-import-md
 docin -h
 docin set-username <your name>
-docin set-password <your password>
+docin set-password
 
 cat file/to/markdown | docin
 ```
@@ -32,18 +32,26 @@ cat file/to/markdown | docin
 - package  
 
 ```js
-var docImportMd = require('doc-import-md');
+var DocImportMd = require('doc-import-md');
+var import = new DocImportMd('username', 'password', 'http://doc.eux.baidu.com/');
 
-docImportMd({
-    markdown: '# Hello World',
-    verbose: false,
-    username: 'username',
-    password: 'password',
-    title: 'Document Title',
-    address: 'http://doc.eux.baidu.com/'
-}).then(function (listId) {
-    console.log(listId)
-}).catch(console.error)
+var markdown = '# hahaha \n## 666\n'
+
+// new an document & push to server.
+import
+    .new(markdown, 'title')
+    .then(function (listId) {
+
+    });
+
+// insert document to document
+// which is already existed
+import
+    .insert('listId', markdown, 'parentId <maybe is null>').then(function (data) {
+        // data.listId
+        // data.nodeId // maybe undefined
+    });
+
 ```
 
 ## 实现思路
