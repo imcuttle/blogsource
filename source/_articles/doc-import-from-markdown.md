@@ -82,3 +82,21 @@ code B
 2. 分析 doc.eux 的传参规则. [code](https://github.com/imcuttle/doc-import-md/blob/master/lib/actions.js)
 
 3. 进行 登录 -> 新建文章 -> 修改文章名 -> 添加内容节点. [code](https://github.com/imcuttle/doc-import-md/blob/master/index.js)
+
+## Todo
+
+- 加入 `doc -> md` 的方向，与 `md -> doc` 互逆
+
+- 同构 request 实现  浏览器端的支持
+
+- 考虑后续加入项目配置 `.docinrc`
+
+```js
+// 后续提交 `docRoot` 下的`*.md` 文件
+// git可以自动同步至doc
+{
+    "docRoot": "./doc",
+    "docAddress": "....",
+    "user": {...}
+}
+```
