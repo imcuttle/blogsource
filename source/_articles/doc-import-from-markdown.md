@@ -20,31 +20,30 @@ keywords:
 
 - cli
 
-```bash
-npm i -g doc-import-md
-docin -h
-docin set-username <your name>
-docin set-password <your password>
+    ```bash
+    npm i -g doc-import-md
+    docin -h
+    docin set-username <your name>
+    docin set-password
 
-cat file/to/markdown | docin
-```
+    cat file/to/markdown | docin
+    ```
 
 - package  
 
-```js
-var docImportMd = require('doc-import-md');
+    ```js
+    var DocImportMd = require('doc-import-md');
+    var import = new DocImportMd('username', 'pwd', 'address')
+    var markdown = '# H1\n ## hhh'
 
-docImportMd({
-    markdown: '# Hello World',
-    verbose: false,
-    username: 'username',
-    password: 'password',
-    title: 'Document Title',
-    address: 'http://doc.eux.baidu.com/'
-}).then(function (listId) {
-    console.log(listId)
-}).catch(console.error)
-```
+    import
+        .new(markdown, 'title')
+        .then(function (listId) {})
+
+    import
+        .insert('listId', markdown, 'parentId')
+        .then(function (obj) {})
+    ```
 
 ## 实现思路
 
@@ -91,12 +90,12 @@ code B
 
 - 考虑后续加入项目配置 `.docinrc`
 
-```js
-// 后续提交 `docRoot` 下的`*.md` 文件
-// git可以自动同步至doc
-{
-    "docRoot": "./doc",
-    "docAddress": "....",
-    "user": {...}
-}
-```
+    ```js
+    // 后续提交 `docRoot` 下的`*.md` 文件
+    // git可以自动同步至doc
+    {
+        "docRoot": "./doc",
+        "docAddress": "....",
+        "user": {...}
+    }
+    ```
