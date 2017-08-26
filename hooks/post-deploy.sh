@@ -1,5 +1,5 @@
 #!/bin/sh
 
-npm run normal-img $@
-npm run sitemap
-npm run deploy
+# npm run normal-img $@
+# npm run sitemap
+# npm run deploy
