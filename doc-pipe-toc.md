@@ -1,7 +1,7 @@
 ---
 title: [索引] 余聪文章
 ---
-@{e102a59a19fa5a3ee0||doc-pipe - 管理/同步 本地/服务器文章 解决方案}@
+@{e102a59a19fa5a3ee0||doc-pipe - 管理/同步 树状文档本地/服务器文章 解决方案}@
 @{c990859a1a1ae6383e||node+express+jade实现HTTP文件浏览器}@
 @{fd7c759a1a44be59e6||JavaScript正则填坑记}@
 @{8357359a1a1bad6366||毕设周记二}@
