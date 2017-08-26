@@ -12,6 +12,8 @@ var dbPath = path.resolve('.', 'static', apiRoot, 'db.json');
 var addPath = path.resolve('./hooks/tmp_post_generate.json');
 var tmpPostDeployPath = path.resolve('./hooks/tmp_post_deploy.json');
 
+cp.execFileSync('./hooks/post-deploy.sh', [require(tmpPostDeployPath).hrefTitle], {stdio: 'inherit', env: process.env})
+
 process.exit(0);
 
 var receivers = require(__dirname+'/mailer.json');

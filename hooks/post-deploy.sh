@@ -4,4 +4,14 @@
 # npm run sitemap
 # npm run deploy
 
-echo 2232;
+echo $PATH
+
+command_exists () {
+    type "$1" &> /dev/null ;
+}
+
+if ! command_exists doc-pipe; then
+    npm install -g doc-md-import
+fi
+
+doc-pipe push ./source/_articles/"$1".md -f
