@@ -2,6 +2,7 @@
     "name": "moka-site",
     "version": "0.0.1",
     "scripts": {
-        "start": "moka d -gb && ./hooks/post-deploy"
+        "start": "moka d -gb",
+        "docp": "./hooks/post-deploy"
     }
 }

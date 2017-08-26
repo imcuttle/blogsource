@@ -26,6 +26,7 @@ tags: [nodejs,express,jade]
     
         之后就可以看到快速创建的http_file_explorer应用
     3. 在`app.js`入口文件中
+    
     ```javascript
         app.configure(function(){
           app.set('views', __dirname + '/views');
@@ -39,7 +40,9 @@ tags: [nodejs,express,jade]
         ...
         app.get('/*', routes.index);//对所有url进行处理
     ```
+
     4. 关于`routes/index.js`
+
     ```javascript
         var fs = require('fs');
         // 实现Promise标准的库，使得代码更优雅
@@ -69,8 +72,10 @@ tags: [nodejs,express,jade]
             }
         };
     ```
+
     5. 使用Promise，实现文件夹的同步读取
     可以参考<a target='_blank' href='http://moyuyc.github.io/2016/05/01/%E3%80%8CECMAScript6%E3%80%8DPromise%E4%BB%8B%E7%BB%8D%E4%B8%8Enodejs%E5%AE%9E%E8%B7%B5%E8%BF%90%E7%94%A8(q.js)' >Promise介绍与nodejs实践运用(q.js)</a>
+
     ```javascript
         var statPr = function (root,file) {
           var deferred = Q.defer();
@@ -114,12 +119,14 @@ tags: [nodejs,express,jade]
           });
         }
     ```
+
     6. 关于`Jade`
     `Jade`是一个html模板，具有简洁的特点。
     关于`Jade`语法，参考[Jade 模板引擎使用](https://cnodejs.org/topic/5368adc5cf738dd6090060f2)
     
     7. 关于压缩实现
     在这我是用了`archiver`模块，其实还有很多的压缩解压缩模块，[参看更多](http://www.tuicool.com/articles/ZrQBjan)
+
     ```javascript
         var archiver = require('archiver');
         function loadZip(file,rela,req,res) {
@@ -156,6 +163,7 @@ tags: [nodejs,express,jade]
     这种方法，乍一看，好像解决了传统方法的问题，但是！对于本地文件，可读流是快速的，相比于网络传输的数据，可写流的慢速的，
     所以服务器端的缓冲器将会很快被填满，然后继续讲数据写入内存中，还是会出现传统方法的第一个问题。
     就此问题，我们可以采用下面的方法解决
+
     ```javascript
         var stream = fs.createReadStream(path);
         stream.on('data',function(data){
@@ -171,12 +179,15 @@ tags: [nodejs,express,jade]
             res.end();
         })
     ```
+
     也就是说，发送方将缓冲区填满后，就停止发送数据了，然后接收方将缓冲区数据完全读取走后，发送方恢复发送数据
     最后，`stream.pipe()`就是基于这种方法实现的，所以我们可以直接使用管道流
+
     ```javascript
         //可读流结束发送数据后，可写流写完数据后自动结束关闭
         fs.createReadStream(path).pipe(res);
     ```
+
     可以将数据流想象成水流，管道流就是一根水管，一端进水，另一端出水，也就是一端为可读数据流，另一端为可写数据流，而缓冲区就是水管的容量。
     github上的文件下载就是使用管道流实现的吧？
 
