@@ -1,11 +1,11 @@
 {
   "./doc-pipe-toc.md": {
-    "listId": "b6c4859a224174ee29",
-    "updated": "2017-08-27 09:44:56"
+    "listId": "63f9959ac0ee360249",
+    "updated": "2017-09-03 22:17:08"
   },
   "./source/_articles/doc-pipe-boom.md": {
-    "listId": "2eb2c59a2245d6fddd",
-    "updated": "2017-08-27 09:46:06"
+    "listId": "8bfb259ac0ee134e61",
+    "updated": "2017-09-03 22:17:05"
   },
   "./source/_articles/linuxc-learning-one-week.md": {
     "listId": "0fb2e59a2d9666c9c2",
@@ -322,5 +322,9 @@
   "./source/_articles/you-don't-know-console.md": {
     "listId": "9007159a2d997d3131",
     "updated": "2017-08-27 22:39:36"
+  },
+  "./source/_articles/talk-about-react-hoc.md": {
+    "listId": "5888459ac0e4304365",
+    "updated": "2017-09-03 22:14:27"
   }
 }
