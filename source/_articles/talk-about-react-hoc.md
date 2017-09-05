@@ -25,19 +25,17 @@ function myPagination(Pagination) {
     return class MyPagination extends React.Component {
 
         render() {
+            const {pageNum, pageSize, total, children, ...rest} = this.props
             return (
-                const {pageNum, pageSize, total, children, ...rest} = this.props
-                return (
-                    <Pagination
-                        currentPage={parseInt(pageNum, 10)}
-                        currentLine={parseInt(pageSize, 10)}
-                        totalNumber={parseInt(total, 10)}
-                        totalPage={Math.ceil(parseInt(total, 10) / parseInt(pageSize, 10))}
-                        {...rest}
-                    >
-                        {children}
-                    </Pagination>
-                )
+                <Pagination
+                    currentPage={parseInt(pageNum, 10)}
+                    currentLine={parseInt(pageSize, 10)}
+                    totalNumber={parseInt(total, 10)}
+                    totalPage={Math.ceil(parseInt(total, 10) / parseInt(pageSize, 10))}
+                    {...rest}
+                >
+                    {children}
+                </Pagination>
             )
         }
     }
