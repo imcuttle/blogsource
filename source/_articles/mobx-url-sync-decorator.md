@@ -37,6 +37,8 @@ componentWillUnmount() -> trigger -> state.exit(props)
 
 4. 在 init 方法中，注入下面的逻辑
 ```
+根据 url 预设 state
+
 观察需要同步数据的改动，如果改动了，则将其数据写入url
 ```
 
