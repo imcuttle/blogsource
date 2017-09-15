@@ -330,5 +330,9 @@
   "./source/_articles/mobx-url-sync-decorator.md": {
     "listId": "a3f5959b42a9bc52a3",
     "updated": "2017-09-10 01:53:32"
+  },
+  "./source/_articles/birdv3-standup.md": {
+    "listId": "4ec8959bba42f27d33",
+    "updated": "2017-09-15 17:58:08"
   }
 }
