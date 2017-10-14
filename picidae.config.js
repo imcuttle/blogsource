@@ -15,10 +15,10 @@ module.exports = {
     // 主题的配置根目录
     themeConfigsRoot: './theme-configs',
     // docRoot中被排除的规则，可以是 RegExp | String | (filename) => exclude
-    excludes: [/example/, /api/, /\/refs\//],
+    excludes: [/\/ignore\//],
 
     transformers: [
-        'picidae-transformer-react-render?lang=react', 'picidae-transformer-file-syntax',
+        // 'picidae-transformer-react-render?lang=react', 'picidae-transformer-file-syntax',
     ],
 
     commanders: [

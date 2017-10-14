@@ -2,14 +2,26 @@ import React from 'react'
 import collect from 'picidae-tools/browser/collect'
 import moment from 'moment'
 import {Link} from 'react-router'
+import {group} from './Archive'
 
 import DocumentTitle from 'react-document-title'
+
+function _pagination(key, data) {
+    let list = group(data, '');
+    let i = list.findIndex(x => x._key === key);
+    return {
+        prev: list[i-1],
+        next: list[i+1],
+        curr: list[i]
+    }
+}
 
 const View = (props) => {
     let render = props.render;
     let publicPath = props.publicPath;
     let utils = props.pluginData.utils;
-    let pagination = utils.pagination('post')
+
+    let pagination = _pagination(props.location.pathname, props.data);
 
     return (
         <DocumentTitle title={`imCuttle - ${props.pageData.meta.title}`}>

@@ -4,7 +4,7 @@ import {Link} from 'react-router'
 import DocumentTitle from 'react-document-title'
 import CatalogueItem from './Comps/CatalogueItem'
 
-function group(data) {
+export function group(data, name = '') {
     let group = [];
     for (let k in data.meta) {
         if (new RegExp('^' + name).test(k)) {

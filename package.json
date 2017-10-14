@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "push": "gp-qk \"$(date \"+%Y-%m-%d %H:%M:%S\")\"",
-    "deploy": "picidae build -f --no-spider && (cd public && gp-qk \"$(date \"+%Y-%m-%d %H:%M:%S\")\") && npm run push",
+    "public": "cd public && gp-qk \"$(date \"+%Y-%m-%d %H:%M:%S\")\"",
+    "deploy": "picidae build -f && (cd public && gp-qk \"$(date \"+%Y-%m-%d %H:%M:%S\")\") && npm run push",
     "start": "picidae start"
   },
   "repository": {
@@ -22,8 +23,7 @@
   },
   "homepage": "https://github.com/imcuttle/blogsource#readme",
   "dependencies": {
-    "picidae": "~0.0.15",
-    "picidae-plugin-utils": "0.0.3",
+    "picidae": "0.0.17",
     "picidae-transformer-file-syntax": "~0.0.1",
     "picidae-transformer-react-render": "~1.0.5",
     "react-document-title": "^2.0.3"
