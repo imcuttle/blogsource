@@ -4,20 +4,20 @@ import {Link} from 'react-router'
 import DocumentTitle from 'react-document-title'
 import CatalogueItem from './Comps/CatalogueItem'
 
-// function group(data) {
-//     let group = [];
-//     for (let k in data.meta) {
-//         if (new RegExp('^' + name).test(k)) {
-//             group.push(Object.assign({}, data.meta[k], {_key: k}))
-//         }
-//     }
-//     return group.sort((a, b) =>
-//         new Date(b.datetime).getTime() - new Date(a.datetime).getTime()
-//     )
-// }
+function group(data) {
+    let group = [];
+    for (let k in data.meta) {
+        if (new RegExp('^' + name).test(k)) {
+            group.push(Object.assign({}, data.meta[k], {_key: k}))
+        }
+    }
+    return group.sort((a, b) =>
+        new Date(b.datetime).getTime() - new Date(a.datetime).getTime()
+    )
+}
 
 export default ({data, render, publicPath, pluginData: {utils}, themeConfig: {pageSize = 2}, params: {page = 1}}) => {
-    let posts = utils.group('', {split: false});
+    let posts = group(data);
     let pagination = {};
 
     page = Number(page);
