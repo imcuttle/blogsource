@@ -1,3 +1,5 @@
-.*
-!.git
-!.docpipe*
+.idea/
+~*
+dist/
+node_modules/
+

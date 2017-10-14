@@ -1,7 +1,3 @@
-[submodule "moyuyc.github.io"]
-    path = static
-    url = https://github.com/moyuyc/moyuyc.github.io.git
-
-[submodule "moka-theme-toy"]
-    path = themes/toy
-    url = https://github.com/moyuyc/moka-theme-toy.git
+[submodule "public"]
+	path = public
+	url = https://github.com/imcuttle/imcuttle.github.io.git
