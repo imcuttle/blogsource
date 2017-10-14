@@ -18,7 +18,7 @@ module.exports = {
     excludes: [/\/ignore\//],
 
     transformers: [
-        // 'picidae-transformer-react-render?lang=react', 'picidae-transformer-file-syntax',
+        'picidae-transformer-react-render?lang=react', 'picidae-transformer-file-syntax',
     ],
 
     commanders: [
