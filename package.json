@@ -6,7 +6,7 @@
   "main": "picidae.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "push": "gp-qk $(date \"+%Y-%m-%d %H:%M:%S\")",
+    "push": "gp-qk \"$(date \"+%Y-%m-%d %H:%M:%S\")\"",
     "deploy": "picidae build -f --no-spider && (cd public && gp-qk $(date \"+%Y-%m-%d %H:%M:%S\")) && npm run push",
     "start": "picidae start"
   },
