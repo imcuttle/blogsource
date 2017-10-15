@@ -5,7 +5,7 @@ module.exports = {
     },
     port: 7777,
     publicPath: '/',
-    theme: './theme',
+    theme: './themes/refreshing',
     docRoot: './articles',
     distRoot: './public',
     // 模板的根目录，其中html模板为 templateRoot 下的index.html
