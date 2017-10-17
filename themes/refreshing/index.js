@@ -12,6 +12,10 @@ module.exports = {
                 component: './Archive'
             },
             {
+                path: 'search/(:keyword)',
+                component: './Archive'
+            },
+            {
                 path: '*',
                 component: './Post'
             }

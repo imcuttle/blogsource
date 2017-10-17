@@ -741,3 +741,22 @@ footer .copyright a:hover {
   font-weight: normal;
   font-style: normal
 }
+
+
+.search-bar {
+  input {
+    background-color: transparent;
+    outline: none;
+    width: 30%;
+    min-width: 120px;
+    border: none;
+    border-bottom: 1px solid #999;
+    padding: .3rem 1rem;
+    transition: border-color .3s ease,width .3s ease;
+
+    &:focus {
+      border-color: #72cc96;
+      width: 80%;
+    }
+  }
+}
