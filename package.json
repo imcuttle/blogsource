@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/imcuttle/blogsource#readme",
   "dependencies": {
-    "picidae": "^1.0.5",
+    "picidae": "^1.0.6",
     "picidae-tools": "0.0.3",
     "picidae-transformer-file-syntax": "~0.0.1",
     "picidae-transformer-react-render": "~1.0.5",
