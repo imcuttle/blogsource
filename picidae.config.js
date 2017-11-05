@@ -19,8 +19,20 @@ module.exports = {
     excludes: [/\/ignore\//],
 
     transformers: [
-        'picidae-transformer-react-render?lang=react', 'picidae-transformer-file-syntax',
+        'picidae-transformer-react-render?' + JSON.stringify({
+            lang: 'react',
+            editable: true,
+            alias: {
+                'log': './mod.js',
+                'mo/lib': './lib'
+            }
+        }),
+        'picidae-transformer-file-syntax',
+        'picidae-transformer-style-loader?lang=css',
+        './transformers/html-loader?lang=__html&dangerouslySetScript'
     ],
+
+    hotReloadTests: [/\/snippets\//],
 
     commanders: [
         './commander/new.js'

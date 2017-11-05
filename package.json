@@ -6,6 +6,7 @@
   "main": "picidae.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "new": "picidae new",
     "push": "gp-qk \"$(date \"+%Y-%m-%d %H:%M:%S\")\"",
     "public": "cd public && gp-qk \"$(date \"+%Y-%m-%d %H:%M:%S\")\"",
     "deploy": "picidae build -f && (cd public && gp-qk \"$(date \"+%Y-%m-%d %H:%M:%S\")\") && npm run push",
@@ -23,10 +24,15 @@
   },
   "homepage": "https://github.com/imcuttle/blogsource#readme",
   "dependencies": {
-    "picidae": "^1.0.6",
+    "picidae": "^1.0.8",
     "picidae-tools": "0.0.3",
     "picidae-transformer-file-syntax": "~0.0.1",
-    "picidae-transformer-react-render": "~1.0.5",
+    "picidae-transformer-less-loader": "^1.0.2",
+    "picidae-transformer-react-render": "^1.0.16",
+    "picidae-transformer-style-loader": "0.0.0",
     "react-document-title": "^2.0.3"
+  },
+  "devDependencies": {
+    "react-code-editor": "0.0.8"
   }
 }
