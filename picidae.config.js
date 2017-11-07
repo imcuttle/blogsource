@@ -7,7 +7,7 @@ module.exports = {
     publicPath: '/',
     host: 'https://imcuttle.github.io/',
     theme: './themes/refreshing',
-    docRoot: './articles',
+    docRoot: './source/_articles',
     distRoot: './public',
     // 模板的根目录，其中html模板为 templateRoot 下的index.html
     templateRoot: './templates',
