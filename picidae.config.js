@@ -21,6 +21,9 @@ module.exports = {
     transformers: [
         'picidae-transformer-react-render?' + JSON.stringify({
             lang: 'react',
+            editorProps: {
+                workerUrl: '/hljs.worker.js'
+            },
             editable: true,
             alias: {
                 'log': './mod.js',

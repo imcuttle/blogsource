@@ -9,6 +9,16 @@ export default (
     <div className="stage">
         <h4 style={{margin: 0}}>CodeEditor</h4>
         <CodeEditor
+            // workerUrl="/hljs.worker.js"
+            language="javascript"
+            className="javascript"
+            tabSize={2}
+            code={code}
+            mountStyle={false}
+            onChange={console.log}
+        />
+        <CodeEditor
+            // workerUrl="/hljs.worker.js"
             language="javascript"
             className="javascript"
             tabSize={2}
