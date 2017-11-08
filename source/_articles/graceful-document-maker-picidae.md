@@ -18,7 +18,10 @@ datetime: 2017-11-07 19:15:56
     其中的数据通讯是用的静态JSON文件，但是为了图方便和实现简单，将**所有**的md文章都存到一个文件中；而且使用Hash作为路由，这对于爬虫是不友好的。 (:fearful:这是一个很！不！好！的实现)
 
 - 挣扎+1  
-    鉴于Moka的两点致命的实现方式，最终还是被我扼杀在摇篮里；接着第二胎则是[个人同构博客](https://github.com/imcuttle/isomorphic-blog) (同构：一份代码同时可以运行在node和browser环境中)。使用同构技术可以实现服务器渲染（Server Side Render - SSR），使用 Express 做 HTTP 服务也可以颗粒化markdown的数据。但该博客不具有通用性，需要个人服务器。
+    鉴于Moka的两点致命的实现方式，最终还是被我扼杀在摇篮里；  
+    接着第二胎则是[个人同构博客](https://github.com/imcuttle/isomorphic-blog) (同构：一份代码同时可以运行在node和browser环境中)。  
+    使用同构技术可以实现服务器渲染（Server Side Render - SSR），使用 Express 做 HTTP 服务也可以颗粒化markdown的数据。  
+    但该博客不具有通用性，需要个人服务器。
     
 - 升华！  
     Picidae 出生！  
@@ -26,9 +29,12 @@ datetime: 2017-11-07 19:15:56
 
 ## Picidae 的今生
 
+Picidae 继承了 Hexo 的自动化构建，插件化的定制设计；同时学习了 Moka 的单页特性。  
+不仅如此，Picidae 保证了 code split 和 SEO 的优质体验。
+
 ### Picidae 能做什么
 
-- [个人博客:kissing_smiling_eyes:](imcuttle.github.io)  
+- [个人博客:kissing_smiling_eyes:](https://imcuttle.github.io)  
     :point_right: SPA + SEO + sitemap.xml/robots.txt
 - [ERP 公共组件库](http://origin.eux.baidu.com:8110/demo-v2-picidae/comps/button)  
     - [picidae-transfomer-file-syntax](https://github.com/picidaejs/picidae-transformer-file-syntax)
