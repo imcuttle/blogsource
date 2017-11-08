@@ -68,34 +68,34 @@ Picidae 继承了 Hexo 的自动化构建，插件化的定制设计；同时学
 #### Picidae 配置
 
 - 基础配置  
-    - webpackConfigUpdater(config, webpack) => newConfig  
-        (Function) 更新 webpack 的相关配置
-    - port  
-        (number: 10000) picidae start 开启的端口号
-    - theme
-        (string) 主题的路径或 module 路径 (默认为默认主题)
-    - publicPath  
-        (string: '/') 与webpack中publicPath概念相同
-    - docRoot  
-        (string) 文档的根目录
-    - distRoot  
-        (string) picidae build 后资源放置的目录
-    - templateRoot  
-        (string: './templates') 模板的根目录，其中html模板为 templateRoot 下的index.html
-    - extraRoot  
-        (string) build 过程中额外的资源，将会被复制到 distRoot，start 过程也可以访问到
-    - host  
-        (string) ssr build 需要根据 host 自动生成 `robots.txt` 和 `sitemap.xml`
+    - webpackConfigUpdater(config, webpack) => newConfig (Function)    
+        更新 webpack 的相关配置
+    - port (Number: 10000)    
+        picidae start 开启的端口号
+    - theme (String)  
+        主题的路径或 module 路径 (默认为默认主题)
+    - publicPath (String: '/')    
+        与webpack中publicPath概念相同
+    - docRoot (String)    
+        文档的根目录
+    - distRoot (String)    
+        picidae build 后资源放置的目录
+    - templateRoot (String: './templates')   
+        模板的根目录，其中html模板为 templateRoot 下的index.html
+    - extraRoot (String)    
+        build 过程中额外的资源，将会被复制到 distRoot，start 过程也可以访问到
+    - host (String)    
+        ssr build 需要根据 host 自动生成 `robots.txt` 和 `sitemap.xml`
         
 - 扩展配置
-    - excludes  
-        (Array: Function/RegExp/String) docRoot中被排除的规则
-    - hotReloadTests: [/\.jsx?$/]
-        (Array: Function/RegExp/String) 写文档的时候，符合什么规则的文件改动后触发热更新
-    - transformers
-        (Array: String) picidae transformer 的路径
-    - commanders
-        (Array: String) picidae commander 的路径
+    - excludes (Array: Function/RegExp/String)   
+        docRoot中被排除的规则
+    - hotReloadTests (Array: Function/RegExp/String)    
+        写文档的时候，符合什么规则的文件改动后触发热更新
+    - transformers (Array: String)  
+        picidae transformer 的路径
+    - commanders (Array: String)  
+        picidae commander 的路径
 
 - 示例配置  
     ```js
