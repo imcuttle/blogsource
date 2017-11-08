@@ -3,6 +3,11 @@ title: 优雅的文档生成器 —— Picidae
 datetime: 2017-11-07 19:15:56
 ---
 
+无论你是博客发烧友，还是项目开发小组，或是造轮子达人。  
+只要你需要写文档（markdown），而且需要产生出一套漂亮的页面。那么Picidae再适合不过了...
+
+大家伙现在看到的页面就是出自Picidae之手。
+
 ## Picidae 的前世
 
 ![](https://i.loli.net/2017/11/07/5a01cf65f08b3.jpg)
@@ -37,11 +42,11 @@ Picidae 继承了 Hexo 的自动化构建，插件化的定制设计；同时学
 - [个人博客:kissing_smiling_eyes:](https://imcuttle.github.io)  
     :point_right: SPA + SEO + sitemap.xml/robots.txt
 - [ERP 公共组件库](http://origin.eux.baidu.com:8110/demo-v2-picidae/comps/button)  
-    - [picidae-transfomer-file-syntax](https://github.com/picidaejs/picidae-transformer-file-syntax)
-    - [picidae-transfomer-style-loader](https://github.com/picidaejs/picidae-transformer-style-loader)
-    - [picidae-transfomer-less-loader](https://github.com/picidaejs/picidae-transformer-less-loader)
+    - [picidae-transformer-file-syntax](https://github.com/picidaejs/picidae-transformer-file-syntax)
+    - [picidae-transformer-style-loader](https://github.com/picidaejs/picidae-transformer-style-loader)
+    - [picidae-transformer-less-loader](https://github.com/picidaejs/picidae-transformer-less-loader)
     - js-runnable
-    - [picidae-transfomer-react-render](https://github.com/picidaejs/picidae-transformer-react-render)
+    - [picidae-transformer-react-render](https://github.com/picidaejs/picidae-transformer-react-render)
 - ...
 
 ### 为什么Picidae这么叼
@@ -62,48 +67,79 @@ Picidae 继承了 Hexo 的自动化构建，插件化的定制设计；同时学
 
 #### Picidae 配置
 
-```js
-module.exports = {
-    // 更新webpack的配置
-    webpackConfigUpdater(config, webpack) {
-        return config;
-    },
-    // picidae start 服务的端口
-    port: 9999,
-    // 与webpack中publicPath概念相同
-    publicPath: '/picidaejs/public/',
-    // 配置的主题
-    theme: '../theme',
-    // 文档的根目录
-    docRoot: './docs',
-    // build后资源放置的根目录
-    distRoot: './public',
-    // 模板的根目录，其中html模板为 templateRoot 下的index.html
-    templateRoot: './templates',
-    // build过程中额外的资源，将会被复制到distRoot
-    extraRoot: './extra',
-    // build 后产生 robots.txt 和 sitemap.xml 的 host
-    host: 'http://imcuttle.github.io',
-    // 写文档的时候，符合什么规则的文件改动后触发热更新
-    hotReloadTests: [/\.jsx?$/],
-    // 主题的配置根目录
-    themeConfigsRoot: './theme-configs',
-    // docRoot中被排除的规则，可以是 RegExp | String | (filename) => exclude
-    excludes: [/example/, /api/, /\/refs\//],
+- 基础配置  
+    - webpackConfigUpdater(config, webpack) => newConfig  
+        (Function) 更新 webpack 的相关配置
+    - port  
+        (number: 10000) picidae start 开启的端口号
+    - theme
+        (string) 主题的路径或 module 路径 (默认为默认主题)
+    - publicPath  
+        (string: '/') 与webpack中publicPath概念相同
+    - docRoot  
+        (string) 文档的根目录
+    - distRoot  
+        (string) picidae build 后资源放置的目录
+    - templateRoot  
+        (string: './templates') 模板的根目录，其中html模板为 templateRoot 下的index.html
+    - extraRoot  
+        (string) build 过程中额外的资源，将会被复制到 distRoot，start 过程也可以访问到
+    - host  
+        (string) ssr build 需要根据 host 自动生成 `robots.txt` 和 `sitemap.xml`
+        
+- 扩展配置
+    - excludes  
+        (Array: Function/RegExp/String) docRoot中被排除的规则
+    - hotReloadTests: [/\.jsx?$/]
+        (Array: Function/RegExp/String) 写文档的时候，符合什么规则的文件改动后触发热更新
+    - transformers
+        (Array: String) picidae transformer 的路径
+    - commanders
+        (Array: String) picidae commander 的路径
 
-    transformers: [
-        'picidae-transformer-react-render?lang=render-jsx', 'picidae-transformer-file-syntax',
-        './test/style-loader?lang=style'
-    ],
-
-    commanders: [
-        '../commanders/new?title=abc',
-        '../commanders/preview',
-        // 'gh-pages?repo=',
-        // 'deploy'
-    ]
-}
-```
+- 示例配置  
+    ```js
+    module.exports = {
+        webpackConfigUpdater(config, webpack) {
+            return config;
+        },
+        port: 7777,
+        publicPath: '/',
+        host: 'https://imcuttle.github.io/',
+        theme: './themes/refreshing',
+        docRoot: './source/_articles',
+        distRoot: './public',
+        templateRoot: './templates',
+        // build过程中额外的资源，将会被复制到distRoot
+        extraRoot: './extra',
+        // 主题的配置根目录
+        themeConfigsRoot: './theme-configs',
+        excludes: [/\/ignore\//],
+    
+        transformers: [
+            'picidae-transformer-react-render?' + JSON.stringify({
+                lang: 'react',
+                editorProps: {
+                    workerUrl: '/hljs.worker.js'
+                },
+                editable: true,
+                alias: {
+                    'log': './mod.js',
+                    'mo/lib': './lib'
+                }
+            }),
+            'picidae-transformer-file-syntax',
+            'picidae-transformer-style-loader?lang=css',
+            './transformers/html-loader?lang=__html&dangerouslySetScript'
+        ],
+    
+        hotReloadTests: [/\/snippets\//],
+    
+        commanders: [
+            './commander/new.js'
+        ]
+    }
+    ```
 
 ### 来一波星星
 
