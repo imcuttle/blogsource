@@ -8,29 +8,31 @@ datetime: 2017-11-07 19:15:56
 
 大家伙现在看到的页面就是出自Picidae之手。
 
+ ![](http://obu9je6ng.bkt.clouddn.com/FtlARXbtnGd-rVjYj00F6f_0Nhh-?imageslim)
+
 ## Picidae 的前世
 
-![](https://i.loli.net/2017/11/07/5a01cf65f08b3.jpg)
+ ![](https://i.loli.net/2017/11/07/5a01cf65f08b3.jpg)
 
-- 万恶之源  
-    还得回到百度面试的时候，当时一面面试官建议我多写写个人（技术）博客，当时我就被忽悠到了，说完就用Hexo造了一个博客。  
-    从此便一发不可收拾，啥破事小事鸟事都喜欢往上面BB。  
-    ![](https://i.loli.net/2017/11/07/5a01ae6932978.jpg)
+### 万恶之源  
+还得回到百度面试的时候，当时一面面试官建议我多写写个人（技术）博客，当时我就被忽悠到了，说完就用Hexo造了一个博客。  
+从此便一发不可收拾，啥破事小事鸟事都喜欢往上面BB。  
+ ![](https://i.loli.net/2017/11/07/5a01ae6932978.jpg)
     
-- 自我的挣扎  
-    由于感受到了Webpack+React搭建SPA的优质体验，于是撸了个[Moka ](https://github.com/imcuttle/moka)出来，类Hexo的静态单页博客生成工具。
-    ![](https://i.loli.net/2017/11/07/5a01b0438ea5b.jpg)
-    其中的数据通讯是用的静态JSON文件，但是为了图方便和实现简单，将**所有**的md文章都存到一个文件中；而且使用Hash作为路由，这对于爬虫是不友好的。 (:fearful:这是一个很！不！好！的实现)
+### 自我的挣扎  
+由于感受到了Webpack+React搭建SPA的优质体验，于是撸了个[Moka ](https://github.com/imcuttle/moka)出来，类Hexo的静态单页博客生成工具。
+ ![](https://i.loli.net/2017/11/07/5a01b0438ea5b.jpg)
+其中的数据通讯是用的静态JSON文件，但是为了图方便和实现简单，将**所有**的md文章都存到一个文件中；而且使用Hash作为路由，这对于爬虫是不友好的。 (:fearful:这是一个很！不！好！的实现)
 
-- 挣扎+1  
-    鉴于Moka的两点致命的实现方式，最终还是被我扼杀在摇篮里；  
-    接着第二胎则是[个人同构博客](https://github.com/imcuttle/isomorphic-blog) (同构：一份代码同时可以运行在node和browser环境中)。  
-    使用同构技术可以实现服务器渲染（Server Side Render - SSR），使用 Express 做 HTTP 服务也可以颗粒化markdown的数据。  
-    但该博客不具有通用性，需要个人服务器。
+### 挣扎+1  
+鉴于Moka的两点致命的实现方式，最终还是被我扼杀在摇篮里；  
+接着第二胎则是[个人同构博客](https://github.com/imcuttle/isomorphic-blog) (同构：一份代码同时可以运行在node和browser环境中)。  
+使用同构技术可以实现服务器渲染（Server Side Render - SSR），使用 Express 做 HTTP 服务也可以颗粒化markdown的数据。  
+但该博客不具有通用性，需要个人服务器。
     
-- 升华！  
-    Picidae 出生！  
-    Picidae 全方位地超越了他的哥哥姐姐们，单页 + 高度定制化 + SEO 于一身
+### 升华！  
+Picidae 出生！  
+Picidae 全方位地超越了他的哥哥姐姐们，单页 + 高度定制化 + SEO 于一身
 
 ## Picidae 的今生
 
@@ -52,7 +54,7 @@ Picidae 继承了 Hexo 的自动化构建，插件化的定制设计；同时学
 ### 为什么Picidae这么叼
 
 看懂下图你也能跟picidae一样nb了 :running:
-![](https://i.loli.net/2017/11/07/5a01c6630dc5f.jpg)
+ ![](https://i.loli.net/2017/11/07/5a01c6630dc5f.jpg)
 
 ### 秀一波操作 :tongue:
 

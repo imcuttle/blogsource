@@ -6,10 +6,9 @@
 var fs = require('fs')
 var nps = require('path')
 var nunjunks = require('nunjucks')
-var moment = require('moment')
+var moment = require('picidae/exports/moment')
 
 module.exports = function (commander, opt, config, require) {
-
     return commander
         .command('new [title]')
         .description('create a new markdown')
