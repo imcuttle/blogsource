@@ -36,13 +36,15 @@ const View = (props) => {
     labels = [labels]
   }
   labels = labels.map(x => x.toLowerCase(x))
+  labels = unique(labels).filter(Boolean)
+  console.log(labels)
 
   const commentProps = {
     ...themeConfig.gitment,
     id: location.pathname,
     desc: pageData.markdown.content,
     title: pageData.meta.title,
-    labels: unique(labels).filter(Boolean)//.slice(0, 3),
+    labels//.slice(0, 3),
   }
 
 
