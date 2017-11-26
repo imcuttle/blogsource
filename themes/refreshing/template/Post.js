@@ -42,7 +42,7 @@ const View = (props) => {
   const commentProps = {
     ...themeConfig.gitment,
     id: location.pathname,
-    desc: pageData.markdown.content,
+    desc: pageData.meta.content,
     title: pageData.meta.title,
     labels//.slice(0, 3),
   }

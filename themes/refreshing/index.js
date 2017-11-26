@@ -42,6 +42,6 @@ module.exports = {
 
     autoKeyword(metaData, gift, {name: 'keywords'})
 
-    return Object.assign(metaData, {desc: content.slice(0, 200)})
+    return Object.assign(metaData, {content: content, desc: content.slice(0, 200)})
   },
 }
