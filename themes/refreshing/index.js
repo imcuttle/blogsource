@@ -1,51 +1,47 @@
+var autoKeyword = require('picidae-tool-auto-keyword')
 
 module.exports = {
-    routes: {
-        path: '/',
-        component: './Layout',
-        indexRoute: {
-            component: './Archive',
-        },
-        childRoutes: [
-            {
-                path: 'posts/:page',
-                component: './Archive'
-            },
-            {
-                path: 'search/(:keyword)',
-                component: './Archive'
-            },
-            {
-                path: '*',
-                component: './Post'
-            }
-        ]
+  routes: {
+    path: '/',
+    component: './Layout',
+    indexRoute: {
+      component: './Archive',
     },
-    notFound: './NotFound',
+    childRoutes: [
+      {
+        path: 'posts/:page',
+        component: './Archive'
+      },
+      {
+        path: 'search/(:keyword)',
+        component: './Archive'
+      },
+      {
+        path: '*',
+        component: './Post'
+      }
+    ]
+  },
+  notFound: './NotFound',
 
-    root: './template',
+  root: './template',
 
-    plugins: [
-        // 'toc?depth=3'
-    ],
+  plugins: [
+    // 'toc?depth=3'
+  ],
 
-    config: require('./config'),
+  config: require('./config'),
 
-    picker(metaData, gift, require) {
-        // var cheerio = require('cheerio')
+  picker(metaData, gift, require) {
+    // var cheerio = require('cheerio')
 
-        var content = gift.content,
-            filename = gift.filename,
-            getMarkdownData = gift.getMarkdownData,
-            path = gift.path;
+    var content = gift.content,
+      filename = gift.filename,
+      getMarkdownData = gift.getMarkdownData,
+      path = gift.path;
 
-        return Object.assign(metaData, {desc: content.slice(0, 200)})
+    autoKeyword(metaData, gift, {name: 'keywords'})
 
-        return getMarkdownData()
-            .then(function (data) {
-                data.content = data.content.slice(0, 200)
-
-                return Object.assign(metaData, {desc: data})
-            });
-    },
+    return Object.assign(metaData, {desc: content.slice(0, 200)})
+  },
 }

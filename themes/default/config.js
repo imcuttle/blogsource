@@ -1,8 +1,7 @@
-
 module.exports = {
-    pageSize: 10,
+  pageSize: 10,
 
-    routesMap: {
-        'home.md': 'INDEX.md',
-    }
+  routesMap: {
+    'home.md': 'INDEX.md',
+  }
 }

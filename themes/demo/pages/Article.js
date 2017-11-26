@@ -11,8 +11,6 @@ import collect from 'picidae-tools/browser/collect'
 export default class Article extends React.PureComponent {
   render() {
     const {render, themeConfig} = this.props
-    console.log(this.props)
-
     return (
       <div>
         <h2>{JSON.stringify(themeConfig)}</h2>

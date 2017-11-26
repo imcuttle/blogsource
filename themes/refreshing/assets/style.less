@@ -1,6 +1,11 @@
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-
 @import "~highlight.js/styles/xcode.css";
+
+.gitment-container {
+  .gitment-editor-submit, .gitment-comments-init-btn {
+    background-color: #4fc08d!important;
+  }
+}
 
 .react-render-error-box {
   code {
@@ -511,7 +516,6 @@ code, pre {
   margin: 0
 }
 
-
 pre {
   color: #525252
 }
@@ -659,7 +663,6 @@ footer .copyright a:hover {
   font-style: normal
 }
 
-
 .search-bar {
   input {
     background-color: transparent;
@@ -669,7 +672,7 @@ footer .copyright a:hover {
     border: none;
     border-bottom: 1px solid #999;
     padding: .3rem 1rem;
-    transition: border-color .3s ease,width .3s ease;
+    transition: border-color .3s ease, width .3s ease;
 
     &:focus {
       border-color: #72cc96;
