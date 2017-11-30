@@ -1,5 +1,5 @@
 ---
-title: 从零开始写Babel插件 (danger-remove-unused-import)
+title: 从零开始写Babel插件
 datetime: 2017-11-30 09:42:58
 categories:
 keywords: [babel, plugin, babel-plugin, remove-unused-import, unused-import]
@@ -313,8 +313,7 @@ Babel的核心开发人员 @hzoo 做出下列解释:
 
 所以在执行到 post() 方法时，其实es2015中的插件已经将 import 语句替换了 :cry:
 
-那么该问题如何解决呢？
-
+那么该问题如何解决呢？  
 可以 AST 最外层的 Program 结点遍历 path，逻辑同上。
 
 最终代码为：
@@ -351,6 +350,8 @@ module.exports = function (babel) {
   }
 }
 ```
+
+源码：[GitHub:+1:](https://github.com/imcuttle/babel-plugin-danger-remove-unused-import)
 
 ## 参考资料
 
