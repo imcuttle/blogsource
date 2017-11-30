@@ -37,7 +37,6 @@ const View = (props) => {
   }
   labels = labels.map(x => x.toLowerCase(x))
   labels = unique(labels).filter(Boolean)
-  console.log(labels)
 
   const commentProps = {
     ...themeConfig.gitment,
