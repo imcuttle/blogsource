@@ -16,4 +16,4 @@ deploy:
 
 env:
  global:
-   - GH_REF: github.com/yourname/yourname.github.io.git
+   - GH_REF: https://github.com/imcuttle/imcuttle.github.io.git
