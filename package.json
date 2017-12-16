@@ -5,7 +5,6 @@
   "private": true,
   "main": "picidae.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "new": "picidae new",
     "push": "gp-qk \"$(date \"+%Y-%m-%d %H:%M:%S\")\"",
     "public": "cd public && gp-qk \"$(date \"+%Y-%m-%d %H:%M:%S\")\"",
