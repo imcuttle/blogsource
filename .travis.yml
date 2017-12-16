@@ -3,6 +3,7 @@ node_js: stable
 
 before_deploy:
   - npm install
+  - picidae build -f
 
 deploy:
   provider: pages
