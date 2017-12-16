@@ -9,7 +9,7 @@
     "new": "picidae new",
     "push": "gp-qk \"$(date \"+%Y-%m-%d %H:%M:%S\")\"",
     "public": "cd public && gp-qk \"$(date \"+%Y-%m-%d %H:%M:%S\")\"",
-    "deploy": "picidae build -f && (cd public && gp-qk \"$(date \"+%Y-%m-%d %H:%M:%S\")\") && npm run push",
+    "deploy": "picidae build -f && npm run public && npm run push",
     "start": "picidae start"
   },
   "repository": {
