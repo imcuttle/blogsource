@@ -5,8 +5,9 @@ cache:
   directories:
     - node_modules
 
-before_deploy:
+install:
   - npm install
+after_install:
   - picidae build -f
 
 deploy:
