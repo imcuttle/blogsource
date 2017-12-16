@@ -1,5 +1,9 @@
 language: node_js
 node_js: stable
+cache:
+  bundler: true
+  directories:
+    - node_modules
 
 before_deploy:
   - npm install
