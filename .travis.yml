@@ -1,0 +1,18 @@
+language: node_js
+node_js: stable
+
+before_deploy:
+  - npm install
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: ${GH_TOKEN} # Set in travis-ci.org dashboard
+  local_dir: public
+  repo: $GH_REF
+  on:
+    branch: picidae
+
+env:
+ global:
+   - GH_REF: github.com/yourname/yourname.github.io.git
