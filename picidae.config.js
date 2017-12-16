@@ -1,6 +1,6 @@
 module.exports = {
-  webpackConfigUpdater(config, webpack) {
-    return config;
+  webpackConfigUpdater: function(config, webpack) {
+    return config
   },
   verbose: false,
   port: 7777,
