@@ -1,3 +1,3 @@
 # Imcuttle Picidae Blog
 
-- Picidae CI: ![](https://travis-ci.org/imcuttle/blogsource.svg?branch=picidae)
+- [![Build Status](https://travis-ci.org/imcuttle/blogsource.svg?branch=picidae)](https://travis-ci.org/imcuttle/blogsource)
