@@ -110,6 +110,6 @@ function newCreateElement (name, props, ...children) {
 最后效果参考:
 https://demo.crowdin.com/profile/demo
 
-## 其他思考
+## 提问环节
 - 前端页面修改结果，在不刷新页面的情况下，如何同步至页面？
 -  怎么解决 `translate('a') + translate('b')` 的检测
