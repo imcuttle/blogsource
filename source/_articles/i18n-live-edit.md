@@ -23,8 +23,9 @@ cover:
     cuttle: 'imcuttle'
 }
 ```
-依次在中英文环境下调用 `translate('cuttle')` 会分别返回 `'墨鱼'` `'imcuttle'` 字符串，所以如果需要修改中文环境中可见文本 `墨鱼` 的译文，则需要：
-1. js 源码中找到 Key：`cuttle`
+依次在中英文环境下调用 `translate('cuttle')` 会分别返回 `'墨鱼'` `'imcuttle'` 字符串，所以如果需要修改中文环境中可见文本 `墨鱼` 的译文，则需要：  
+
+1. js 源码中找到 Key：`cuttle`   
 2. 在中英文字典数据文件中修改 `cuttle` 对应的 value
 
 **而我们会在步骤 1 花费比较多的时间！**
