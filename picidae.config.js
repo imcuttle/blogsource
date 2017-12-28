@@ -6,7 +6,9 @@ module.exports = {
   port: 7777,
   publicPath: '/',
   host: 'https://imcuttle.github.io/',
-  theme: './themes/refreshing',
+
+  theme: './themes/grass',
+
   docRoot: './source/_articles',
   distRoot: './public',
   templateRoot: './templates',

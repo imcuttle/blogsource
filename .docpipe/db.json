@@ -2,5 +2,9 @@
   "./source/_articles/graceful-document-maker-picidae.md": {
     "listId": "46def5a056860907ea",
     "updated": "2017-11-10 16:50:41"
+  },
+  "./source/_articles/i18n-live-edit.md": {
+    "listId": "dc5605a3dc99b4cd36",
+    "updated": "2017-12-23 11:12:28"
   }
 }
