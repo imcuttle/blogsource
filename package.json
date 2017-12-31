@@ -24,12 +24,12 @@
   "homepage": "https://github.com/imcuttle/blogsource#readme",
   "dependencies": {
     "array-unique": "^0.3.2",
+    "picidae": "^2.1.2",
     "picidae-theme-grass": "^1.0.0",
     "picidae-tool-auto-keyword": "0.0.0",
-    "picidae-tools": "0.0.3",
     "picidae-transformer-file-syntax": "^0.1.0",
     "picidae-transformer-less-loader": "^1.0.2",
-    "picidae-transformer-react-render": "^1.1.1",
+    "picidae-transformer-react-render": "^1.2.2",
     "picidae-transformer-style-loader": "0.0.0"
   },
   "devDependencies": {

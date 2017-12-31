@@ -2,7 +2,7 @@ module.exports = {
   webpackConfigUpdater: function(config, webpack) {
     return config
   },
-  verbose: false,
+  verbose: true,
   port: 7777,
   publicPath: '/',
   host: 'https://imcuttle.github.io/',
@@ -38,6 +38,7 @@ module.exports = {
   hotReloadTests: [/\/snippets\//],
 
   commanders: [
+    // '',
     './commander/new.js'
   ]
 }

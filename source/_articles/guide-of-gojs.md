@@ -11,20 +11,17 @@ keywords: [webpack, gojs]
 
 首先，此gojs非彼gojs(图表库)
 
-该工具将 webpack v1 "内嵌"，可以很方便快捷的"搭建"一个commonjs前端执行环境。
+该工具将 webpack "内嵌"，可以很方便快捷的"搭建"一个commonjs前端执行环境。
+只需要全局安装 `npm i -g go-js`
 
 ## 概念
 
-`gojs` 认为一个js文件就是一个入口(entry)
+`go-js` 认为一个js文件就是一个入口(entry)
 
 ## 特征
 
-1. 程序运行时，自动下载依赖包，包括：
-    - webpack中的loader
-    - gojs当前工作目录中的`.babelrc`配置
+1. 程序运行时，自动下载依赖包
     - js文件中静态`import/require`的依赖
-
-    来自 [npm install webpack plugin](https://github.com/webpack-contrib/npm-install-webpack-plugin)  
 
 2. 入口动态添加，如：
 
