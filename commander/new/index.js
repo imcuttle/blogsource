@@ -5,20 +5,25 @@
 
 var fs = require('fs')
 var nps = require('path')
-var nunjunks = require('nunjucks')
+var mkdirp = require('mkdirp')
+
+var nunjunks = require('picidae/exports/nunjucks')
 var moment = require('picidae/exports/moment')
+
+var baseTplPath = nps.join(__dirname, 'template.md')
 
 module.exports = function (commander, opt, config, require) {
     return commander
-        .command('new [title]')
-        .description('create a new markdown')
+        .command('new <title>')
+        .description('create an new markdown from template')
         .action(function (title) {
             console.log('title:', title);
-            if (!title) {
-                process.exit(1);
-            }
 
             var tplPath = nps.join(config.templateRoot, 'post.md');
+            if (!fs.existsSync(tplPath)) {
+              mkdirp.sync(config.templateRoot)
+              fs.writeFileSync(tplPath, fs.readFileSync(baseTplPath))
+            }
             var mdPath = nps.join(config.docRoot, title + '.md');
             var tpl = fs.readFileSync(tplPath, {encoding: 'utf8'});
             var res = nunjunks.renderString(tpl, {title: title, datetime: moment().format('YYYY-MM-DD HH:mm:ss')})

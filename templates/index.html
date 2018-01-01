@@ -7,11 +7,25 @@
     <link rel="icon" type="image/png" href="{{root}}favicon.png" />
     <title> {{ themeData.title }} </title>
     <link rel="stylesheet" href="{{ root }}style.css">
+    <style>
+        #music {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+        }
+    </style>
 </head>
 <body>
 <div id="root">
     {{ content | safe }}
 </div>
+<audio id="music" controls autoplay src="http://mp3.qqmusic.cc/yq/212656017.mp3"></audio>
+<script>
+  !function () {
+    var a = document.getElementById("music")
+    a && (a.volume = 0.5)
+  }()
+</script>
 <script src="{{ root }}PICIDAE_COMMON.js"></script>
 <script src="{{ root }}PICIDAE_ENTRY.js"></script>
 </body>

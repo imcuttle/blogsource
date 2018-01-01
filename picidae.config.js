@@ -39,6 +39,6 @@ module.exports = {
 
   commanders: [
     // '',
-    './commander/new.js'
+    './commander/new'
   ]
 }
