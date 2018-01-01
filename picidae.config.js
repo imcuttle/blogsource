@@ -7,7 +7,7 @@ module.exports = {
   publicPath: '/',
   host: 'https://imcuttle.github.io/',
 
-  theme: './themes/grass',
+  theme: 'picidae-theme-grass',
 
   docRoot: './source/_articles',
   distRoot: './public',
@@ -39,6 +39,6 @@ module.exports = {
 
   commanders: [
     // '',
-    './commander/new'
+    'new'
   ]
 }
