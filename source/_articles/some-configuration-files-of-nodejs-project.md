@@ -88,6 +88,6 @@ http://editorconfig.org/
 
 # 参考
 
-- [1] [用 GitLab CI 进行持续集成](https://scarletsky.github.io/2016/07/29/use-gitlab-ci-for-continuous-integration/)
-- [2] [travis-ci: Customizing the Build](https://docs.travis-ci.com/user/customizing-the-build/)
-- [3] [travis-ci: Deployment](https://docs.travis-ci.com/user/deployment/)
+- \[1\] [用 GitLab CI 进行持续集成](https://scarletsky.github.io/2016/07/29/use-gitlab-ci-for-continuous-integration/)
+- \[2\] [travis-ci: Customizing the Build](https://docs.travis-ci.com/user/customizing-the-build/)
+- \[3\] [travis-ci: Deployment](https://docs.travis-ci.com/user/deployment/)
