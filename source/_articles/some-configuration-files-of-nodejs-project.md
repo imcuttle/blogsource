@@ -7,7 +7,7 @@ tags: []
 # 引子
 
 基本上 GitHub 上优秀的javascript项目上面有很多零零碎碎的文件。如图，以koa为例
-<img src="https://i.loli.net/2018/01/06/5a5063addc5f0.jpg" width="992" height="685"/>
+![](https://i.loli.net/2018/01/06/5a5063addc5f0.jpg)
 
 下文将一一说明这些个“奇怪”的文件是干什么的...
 
