@@ -7,8 +7,8 @@ module.exports = {
   publicPath: '/',
   host: 'https://imcuttle.github.io/',
 
-  // theme: 'picidae-theme-grass',
-  theme: './themes/grass',
+  theme: 'picidae-theme-grass',
+  // theme: './themes/grass',
 
   docRoot: './source/_articles',
   distRoot: './public',
