@@ -24,6 +24,7 @@
   "homepage": "https://github.com/imcuttle/blogsource#readme",
   "dependencies": {
     "array-unique": "^0.3.2",
+    "colors": "^1.1.2",
     "picidae": "^2.1.2",
     "picidae-commander-new": "^1.0.0",
     "picidae-theme-grass": "^1.0.4",

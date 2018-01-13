@@ -7,7 +7,8 @@ module.exports = {
   publicPath: '/',
   host: 'https://imcuttle.github.io/',
 
-  theme: 'picidae-theme-grass',
+  // theme: 'picidae-theme-grass',
+  theme: './themes/grass',
 
   docRoot: './source/_articles',
   distRoot: './public',
@@ -27,7 +28,8 @@ module.exports = {
       editable: true,
       alias: {
         'log': './mod.js',
-        'mo/lib': './lib'
+        'mo/lib': './lib',
+        'snippet': './source/_articles/snippets'
       }
     }),
     'picidae-transformer-file-syntax',

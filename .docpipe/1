@@ -1,0 +1,6 @@
+support colors: false undefined
+[31maaa[39m 13
+aaa 3 1
+aaa false
+[31maaa[39m aaa
+/bin/zsh
