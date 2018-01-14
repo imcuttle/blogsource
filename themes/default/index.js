@@ -1,4 +1,5 @@
 var getPickerUtils = require('picidae-tools/node/getPickerUtils');
+var getPureText = require('./getMDPureText');
 
 module.exports = {
     routes: {
@@ -31,8 +32,14 @@ module.exports = {
     picker(metaData, gift, require) {
         var content = gift.content,
             filename = gift.filename,
+            getMarkdownData = gift.getMarkdownData,
             path = gift.path;
 
-        return Object.assign(metaData, {desc: content.slice(0, 80)})
+        // return getMarkdownData(content.slice(0, 80))
+        //     .then(function (data) {
+
+        return Object.assign(metaData, { desc: getPureText(content).slice(0, 100)/*data: data */})
+
+            // })
     },
 }

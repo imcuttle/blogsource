@@ -32,11 +32,16 @@ export default ({data, render, publicPath, pluginData: {utils}, themeConfig: {pa
     }
 
     posts = posts.slice(start, end);
+
     return (
         <DocumentTitle title={`imCuttle - Page ${page}`}>
             <div className="catalogue">
                 {
-                    posts.map(({title, datetime, desc, _key, ...rest}, i) => {
+                    posts.map(({title, datetime, desc, _key, data, ...rest}, i) => {
+                        // desc = render({
+                        //     markdown: data,
+                        //     meta: {title, datetime, ...rest}
+                        // })
                         return <CatalogueItem key={i} datetime={datetime} to={_key} title={title} content={desc}/>
                     })
                 }
