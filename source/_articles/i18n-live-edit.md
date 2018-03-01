@@ -6,7 +6,6 @@ tags:
 keywords: [i18n live edit]
 cover:
 ---
-
 ## 痛点
 前端技术栈：React + Mobx
 国际化解决方案：通过一个全局的 translate 方法输入对应翻译译文的 key
