@@ -347,7 +347,7 @@ PWA 作为一个涵盖性术语，与过往的这些或多或少通过私有平�
 ## <b>结语</b>
 「[我们信仰 Web，不仅仅在于软件、软件平台与单纯的技术<i class="icon-external"></i>](https://link.zhihu.com/?target=https%3A//huangxuan.me/pwa-qcon2016/%23/99)，还在于[『任何人，在任何时间任何地点，都可以在万维网上发布任何信息，并被世界上的任何一个人所访问到。』而这才是 web 的最为革命之处，堪称我们人类，作为一个物种的一次进化。<i class="icon-external"></i>](https://link.zhihu.com/?target=http%3A//phonegap.com/blog/2012/05/09/phonegap-beliefs-goals-and-philosophy/)」  
 
-请不要让 web 再[继续离我们远去](https://zhuanlan.zhihu.com/p/22561084)，浏览器厂商们已经重新走到了一起，而下一棒将是交到我们 web 应用开发者的手上。[乔布斯曾相信 web 应用才移动应用的未来](youtu.be/y1B2c3ZD9fk?t=1h14m48s)，那就让我们用代码证明给这个世界看吧。  
+请不要让 web 再[继续离我们远去](https://zhuanlan.zhihu.com/p/22561084)，浏览器厂商们已经重新走到了一起，而下一棒将是交到我们 web 应用开发者的手上。[乔布斯曾相信 web 应用才移动应用的未来](https://youtu.be/y1B2c3ZD9fk?t=1h14m48s)，那就让我们用代码证明给这个世界看吧。  
 
 **让我们的用户，也像我们这般热爱 web 吧。**  
 
