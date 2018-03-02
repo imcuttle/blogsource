@@ -33,6 +33,7 @@ module.exports = {
       }
     }),
     'picidae-transformer-file-syntax',
+    'remark-mark',
     'picidae-transformer-style-loader?lang=css',
     './transformers/html-loader?lang=__html&dangerouslySetScript'
   ],
