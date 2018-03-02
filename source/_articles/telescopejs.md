@@ -43,5 +43,6 @@ Telescope 具有各式各样的样式和主题。
 - [客户端](https://telescopejs.github.io/?q=facebook/react)
 - [服务端](http://23.106.151.229:8002/?q=facebook/react)
 
+[Github](https://github.com/telescopejs/telescope)
 
 

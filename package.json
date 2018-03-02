@@ -26,7 +26,7 @@
     "array-unique": "^0.3.2",
     "colors": "^1.1.2",
     "mdast-util-to-string": "^1.0.4",
-    "picidae": "^2.1.2",
+    "picidae": "^2.1.21",
     "picidae-commander-new": "^1.0.0",
     "picidae-theme-grass": "^1.0.4",
     "picidae-tool-auto-keyword": "0.0.0",
