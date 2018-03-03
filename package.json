@@ -32,7 +32,7 @@
     "picidae-tool-auto-keyword": "0.0.0",
     "picidae-transformer-file-syntax": "^0.1.0",
     "picidae-transformer-less-loader": "^1.0.2",
-    "picidae-transformer-react-render": "^1.2.2",
+    "picidae-transformer-react-render": "^1.2.11",
     "picidae-transformer-style-loader": "0.0.0"
   },
   "devDependencies": {
