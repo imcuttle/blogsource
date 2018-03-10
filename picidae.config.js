@@ -20,7 +20,6 @@ module.exports = {
   excludes: [/\/ignore\//],
 
   transformers: [
-
     'picidae-transformer-react-render?' + JSON.stringify({
       lang: 'react',
       editorProps: {
