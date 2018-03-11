@@ -36,6 +36,12 @@ module.exports = {
     'remark-mark',
     'picidae-transformer-style-loader?lang=css',
     './transformers/html-loader?lang=__html&dangerouslySetScript',
+
+    './transformers/progress?' + JSON.stringify({
+      originImageUrlGetter: function originImageUrlGetter(ele) {
+        return ele.getAttribute('src')
+      }.toString()
+    }),
     'picidae-transformer-medium-image-zoom'
   ],
 
