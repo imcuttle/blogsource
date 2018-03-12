@@ -26,7 +26,7 @@
     "array-unique": "^0.3.2",
     "colors": "^1.1.2",
     "mdast-util-to-string": "^1.0.4",
-    "picidae": "^2.1.22",
+    "picidae": "^2.1.25",
     "picidae-commander-new": "^1.0.0",
     "picidae-theme-grass": "^1.0.4",
     "picidae-tool-auto-keyword": "0.0.0",
@@ -36,6 +36,7 @@
     "picidae-transformer-style-loader": "0.0.0"
   },
   "devDependencies": {
+    "medium-image-progressive": "0.0.3",
     "picidae-transformer-medium-image-zoom": "^1.0.2",
     "react-code-editor": "0.0.14"
   }
