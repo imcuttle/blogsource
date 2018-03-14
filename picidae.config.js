@@ -36,21 +36,13 @@ module.exports = {
     'remark-mark',
     'picidae-transformer-style-loader?lang=css',
     './transformers/html-loader?lang=__html&dangerouslySetScript',
+    'picidae-transformer-calc-image-size?devEnable=false&debug=true',
 
     './transformers/progress?' + JSON.stringify({
-      progressImageUrlGetter: function progressImageUrlGetter(ele) {
-        var src = ele.getAttribute('src')
-        // avoid webpack load utils error parsed
-        var q = String.fromCharCode(63) + 's' + '=' + '0.1'
-        if (src.startsWith('https://') || src.startsWith('http://') || src.startsWith('//')) {
-          return 'http://23.106.151.229:8000/resize/' + encodeURIComponent(src) + q
-        }
-
-        return 'http://23.106.151.229:8000/resize/' + encodeURIComponent(location.origin + '/' + src) + q;
-      }.toString(),
-      originImageUrlGetter: function originImageUrlGetter(ele) {
-        return ele.getAttribute('src')
-      }.toString()
+      // progressImageUrlGetter: function (url) {
+      //   console.log(url)
+      //   return 'http://23.106.151.229:8000/resize/' + encodeURIComponent(url)
+      // }.toString(),
     }),
     'picidae-transformer-medium-image-zoom'
   ],
