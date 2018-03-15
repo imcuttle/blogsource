@@ -28,7 +28,7 @@
     "markdown-image-size": "^1.2.0",
     "mdast-util-to-string": "^1.0.4",
     "medium-image-progressive": "0.0.3",
-    "picidae": "^2.2.6",
+    "picidae": "^2.2.7",
     "picidae-commander-new": "^1.0.0",
     "picidae-theme-grass": "^1.0.4",
     "picidae-tool-auto-keyword": "0.0.0",
