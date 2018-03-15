@@ -38,19 +38,12 @@ module.exports = {
     './transformers/html-loader?lang=__html&dangerouslySetScript',
     'picidae-transformer-calc-image-size?devEnable=false&debug=true',
 
-    './transformers/progress?' + JSON.stringify({
-      // progressImageUrlGetter: function (url) {
-      //   console.log(url)
-      //   return 'http://23.106.151.229:8000/resize/' + encodeURIComponent(url)
-      // }.toString(),
-    }),
-    'picidae-transformer-medium-image-zoom'
+    './transformers/medium-image?z=22'
   ],
 
   hotReloadTests: [/\/snippets\//],
 
   commanders: [
-    // '',
     'new'
   ]
 }

@@ -5,6 +5,10 @@ categories: [后端]
 tags: [EMCAScript6,promise,nodejs]
 ---
 
+<img src="../../img.png" />
+
+<img src="../../img.png" />
+
 # 介绍
 看了网上许多介绍 `Promise` 的文章，终于知道 `Promise` 是什么，干什么的了。
 首先需要指出的是，**promise是es6提出的新标准之一**，那么提出这个标准是用来做什么的呢？

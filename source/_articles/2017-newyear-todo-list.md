@@ -8,6 +8,8 @@ cover:
 
 <img src="../../img.png" />
 
+<img src="../../img.png" />
+
 优先级越小越高
 
 <img src="https://ooo.0o0.ooo/2017/04/01/58df9961dd9b2.jpg" width="645" height="674"/>
