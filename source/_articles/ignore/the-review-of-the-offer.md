@@ -57,7 +57,7 @@ https://www.npmjs.com/package/babel-plugin-transform-es2015-classes#loose
 ```html
 <!--[if lte IE 9]>
     <script src="../extra/ie9-polyfill.js"></script>
-<![endif]-->
+<<img src="https://github.com/picidaejs/picidae-backstage-system/blob/master/src/frontend/node_modules/%40rd/async-router-loader/index.js" alt="endif]-->
 ```
 
 ## 关于urlUtils
@@ -78,7 +78,7 @@ function getComponent(location, callback) {
 }
 ```
 
-源码见[async-router-loader](https://github.com/picidaejs/picidae-backstage-system/blob/master/src/frontend/node_modules/%40rd/async-router-loader/index.js)
+源码见[async-router-loader" width="32" height="32" />
 
 使用方法参见：
 1. [require书写](https://github.com/picidaejs/picidae-backstage-system/blob/21c1b86fdc6475b1bd780f03f307f4735692442e/src/frontend/index.js#L29)

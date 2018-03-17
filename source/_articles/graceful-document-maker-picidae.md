@@ -8,20 +8,20 @@ datetime: 2017-11-07 19:15:56
 
 大家伙现在看到的页面就是出自Picidae之手。
 
- ![](http://obu9je6ng.bkt.clouddn.com/FtlARXbtnGd-rVjYj00F6f_0Nhh-?imageslim)
+ <img src="http://obu9je6ng.bkt.clouddn.com/FtlARXbtnGd-rVjYj00F6f_0Nhh-?imageslim" alt="" width="200" height="200" />
 
 ## Picidae 的前世
 
- ![](https://i.loli.net/2017/11/07/5a01cf65f08b3.jpg)
+ <img src="https://i.loli.net/2017/11/07/5a01cf65f08b3.jpg" alt="" width="1225" height="351" />
 
 ### 万恶之源  
 还得回到百度面试的时候，当时一面面试官建议我多写写个人（技术）博客，当时我就被忽悠到了，说完就用Hexo造了一个博客。  
 从此便一发不可收拾，啥破事小事鸟事都喜欢往上面BB。  
- ![](https://i.loli.net/2017/11/07/5a01ae6932978.jpg)
+ <img src="https://i.loli.net/2017/11/07/5a01ae6932978.jpg" alt="" width="1542" height="1228" />
     
 ### 自我的挣扎  
 由于感受到了Webpack+React搭建SPA的优质体验，于是撸了个[Moka ](https://github.com/imcuttle/moka)出来，类Hexo的静态单页博客生成工具。
- ![](https://i.loli.net/2017/11/07/5a01b0438ea5b.jpg)
+ <img src="https://i.loli.net/2017/11/07/5a01b0438ea5b.jpg" alt="" width="257" height="254" />
 其中的数据通讯是用的静态JSON文件，但是为了图方便和实现简单，将**所有**的md文章都存到一个文件中；而且使用Hash作为路由，这对于爬虫是不友好的。 (:fearful:这是一个很！不！好！的实现)
 
 ### 挣扎+1  
@@ -54,7 +54,7 @@ Picidae 继承了 Hexo 的自动化构建，插件化的定制设计；同时学
 ### 为什么Picidae这么叼
 
 看懂下图你也能跟picidae一样nb了 :running:
- ![](https://i.loli.net/2017/11/07/5a01c6630dc5f.jpg)
+ <img src="https://i.loli.net/2017/11/07/5a01c6630dc5f.jpg" alt="" width="647" height="511" />
 
 ### 秀一波操作 :tongue:
 

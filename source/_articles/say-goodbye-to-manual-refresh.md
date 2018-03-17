@@ -28,14 +28,14 @@ keywords: [hot,reload,server,nodejs]
 ## 特性
 
 - **热更新**
-![](https://ooo.0o0.ooo/2017/03/31/58de5c97bfa0b.jpg)
+<img src="https://ooo.0o0.ooo/2017/03/31/58de5c97bfa0b.jpg" alt="" width="893" height="709" />
 
 - **远程调试**（适合局域网中移动端调试）
-![](https://ooo.0o0.ooo/2017/03/31/58de5c83f0eac.jpg)
+<img src="https://ooo.0o0.ooo/2017/03/31/58de5c83f0eac.jpg" alt="" width="892" height="711" />
 
 - **文件视图**  
 访问：`http://localhost:8082/__hrs__/file`
-![](https://ooo.0o0.ooo/2017/04/01/58df9961dd9b2.jpg)
+<img src="https://ooo.0o0.ooo/2017/04/01/58df9961dd9b2.jpg" alt="" width="645" height="674" />
 
 - **依赖关系查看**
 

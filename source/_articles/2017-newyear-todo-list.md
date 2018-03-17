@@ -6,6 +6,8 @@ tags:
 cover:
 ---
 
+<img width="591" height="243" src="https://ws1.sinaimg.cn/large/eadabb0aly1fg4ore7uj7j20gf06rt95.jpg"/>
+
 <img src="../../img.png" />
 
 <img src="../../img.png" />

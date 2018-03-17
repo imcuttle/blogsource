@@ -108,7 +108,7 @@ const clearCache = (modulepath) => delete require.cache[require.resolve(modulepa
 [react-router-sitemap-builder](https://github.com/moyuyc/react-router-sitemap-builder)
 
 2. 更好的阅读体验！解析 markdown & HTML 图像文本，读取 URL 图片数据得到大小，替换文本！
-        ![](http://obu9je6ng.bkt.clouddn.com/FgyP1Ozhv0F8pA14FosHGobvpP_v?imageslim) 
+        <img src="http://obu9je6ng.bkt.clouddn.com/FgyP1Ozhv0F8pA14FosHGobvpP_v?imageslim" alt="" width="1003" height="402" /> 
         => => =>
         <img src="http://obu9je6ng.bkt.clouddn.com/FgyP1Ozhv0F8pA14FosHGobvpP_v?imageslim" width="1003" height="402"/>
 [markdown-image-size](https://github.com/moyuyc/node-markdown-image-size)
