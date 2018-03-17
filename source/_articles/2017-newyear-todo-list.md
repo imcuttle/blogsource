@@ -10,7 +10,7 @@ cover:
 
 <img src="../../img.png" />
 
-<img src="../../img.png" />
+![myy](../../img.png)
 
 优先级越小越高
 
