@@ -1,3 +1,4 @@
+
 module.exports = {
   webpackConfigUpdater: function(config, webpack) {
     return config
