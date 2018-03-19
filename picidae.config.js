@@ -39,7 +39,27 @@ module.exports = {
     './transformers/html-loader?lang=__html&dangerouslySetScript',
     'picidae-transformer-calc-image-size?devEnable=true&debug=true',
 
-    'picidae-transformer-medium-image',
+    'picidae-transformer-medium-image?' + JSON.stringify({
+      progressive: {
+        sizeOptions: { debug: true, devEnable: false },
+        progressImageUrlGetter: function(url) {
+          var obj = require('url').parse(url)
+          if (obj.hostname === 'eux-blog-static.bj.bcebos.com') {
+            obj.pathname = obj.pathname += '@s_0,h_30,l_1,f_jpg,q_50'
+            var newUrl = require('url').format(obj)
+            return newUrl
+          }
+          if (obj.hostname === 'obu9je6ng.bkt.clouddn.com') {
+            obj.search = 'imageView2/0/w/200/h/20/format/webp/interlace/1/q/49|imageslim'
+            obj.query = null
+            var newUrl = require('url').format(obj)
+            return newUrl
+          }
+          var q = String.fromCharCode(63)
+          return 'http://23.106.151.229:8000/resize/' + encodeURIComponent(url) + q + 's=0.1'
+        }.toString()
+      }
+    })
   ],
 
   hotReloadTests: [/\/snippets\//],
@@ -47,4 +67,4 @@ module.exports = {
   commanders: [
     'new'
   ]
-}
+}w
