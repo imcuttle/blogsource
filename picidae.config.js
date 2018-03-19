@@ -67,4 +67,4 @@ module.exports = {
   commanders: [
     'new'
   ]
-}w
+}
