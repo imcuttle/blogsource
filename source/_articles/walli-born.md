@@ -3,7 +3,7 @@ title: walli
 datetime: 2018-04-11 13:13:19
 ---
 
-[walli](https://github.com/imcuttle/walli)一个可管理的数据校验库
+[walli](https://github.com/imcuttle/walli)一个可管理不可变的数据校验库
 
 ### 什么时候需要用到 walli
   书写工具包的时候，需要校对用户输入参数的（复杂数据结构）配置,
@@ -32,10 +32,11 @@ import {
   oneOf,
   array,
   integer,
+  arrayOf,
   Verifiable
 } from 'walli'
 import { util } from 'walli'
-const { createVerifiableClass, funcify } = util
+const { createVerifiableClass, createFinalVerifiable, funcify } = util
 
 const person = createVerifiableClass({
   getDisplayName() {
@@ -43,12 +44,12 @@ const person = createVerifiableClass({
   },
   _check(req) {
     return eq({
-      name: string(),
-      age: integer(),
+      name: string,
+      age: integer,
       gender: oneOf(['F', 'M']),
-      father: person().optional(),
-      mother: person().optional(),
-      children: array(person()).optional()
+      father: person().optional,
+      mother: person().optional,
+      children: arrayOf(person()).optional
     }).check(req)
   }
 })
@@ -58,9 +59,14 @@ person().ok({
   age: 22,
   gender: 'F'
 }) === true
+
 person().toUnlawfulString({
   // ...
 })
+
+// createFinalVerifiable
+const finalPerson = createFinalVerifiable(person)
+// finalPerson.check(...)
 
 
 // Or using es6 syntax
@@ -71,6 +77,7 @@ class Person extends Verifiable {
   }
 }
 const es6Person = funcify(Person)
+const finalES6Person = createFinalVerifiable(es6Person)
 ```
 
 ### 特技
