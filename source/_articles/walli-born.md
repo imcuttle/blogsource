@@ -93,7 +93,7 @@ const finalES6Person = createFinalVerifiable(es6Person)
 ### 为什么walli是可管理的呢
 
 1. 可以自定义自己的类型结构, 如上文中的 person.
-2. 可以自定义非法字符串[message](https://imcuttle.github.io/walli/classes/_verifiable_.verifiable.html#message)
+2. 可以自定义非法字符串[message](https://imcuttle.github.io/walli/classes/_reasons_reason_.reason.html#message)
 3. 预设众多的[基础类型](https://imcuttle.github.io/walli/globals.html) （欢迎提pr提供更多）
 
 [github](https://github.com/imcuttle/walli)
