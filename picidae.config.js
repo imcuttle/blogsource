@@ -41,7 +41,7 @@ module.exports = {
 
     'picidae-transformer-medium-image?' + JSON.stringify({
       progressive: {
-        sizeOptions: { debug: true, devEnable: false },
+        sizeOptions: { debug: false, devEnable: false },
         progressImageUrlGetter: function(url) {
           var obj = require('url').parse(url)
           if (obj.hostname === 'eux-blog-static.bj.bcebos.com') {
