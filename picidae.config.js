@@ -43,6 +43,7 @@ module.exports = {
       progressive: {
         sizeOptions: { debug: false, devEnable: false },
         progressImageUrlGetter: function(url) {
+          return false
           var obj = require('url').parse(url)
           if (obj.hostname === 'eux-blog-static.bj.bcebos.com') {
             obj.pathname = obj.pathname += '@s_0,h_30,l_1,f_jpg,q_50'
