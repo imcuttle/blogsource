@@ -69,7 +69,7 @@ cover: http://imglf0.nosdn.127.net/img/SGJtbm5ReUxoLytKVlhlTWVWM2VhaG91cFJsYmVVd
 3. [正则表达式匹配“不包含某个字符串” (通俗易懂还有图！)](http://www.cnblogs.com/bvbook/archive/2010/11/03/1867775.html)
 
 
-
+**2018年05月15日更新： ES2018已经支持后行断言。https://github.com/tc39/proposal-regexp-lookbehind**
 
 
 

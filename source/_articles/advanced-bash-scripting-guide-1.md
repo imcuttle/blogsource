@@ -55,16 +55,20 @@ fi
 ### 字符 `#`
 
 1. 普通字符`#`
+
         echo "hello\n# comment\nworld" | \
         sed -e '/#/d' | # 删除带有`#`字符的行 \  
         tr -d '\n' | # 删除换行符 \   
         sed -e 's/world/,Bash scripting/g'  # 字符替换
 
 2. 字符串匹配
+
         str=abc123456123ABC
         echo ${str#*123}  # 删除 str 中匹配*123的 最短匹配
         echo ${str##*123} # 删除 str 中匹配*123的 贪心匹配
+
 3. 数字表达式
+
         echo $((2#101011))  # 二进制的101011
 
 ### 字符 `;`
@@ -101,6 +105,7 @@ nop 操作，空操作，退出状态为0
     not-exist-command; echo $?
     
     not-exist-command; :; echo $?
+    
     
 选择符
     
