@@ -41,5 +41,8 @@
     "picidae-transformer-medium-image-progressive": "^1.0.5",
     "picidae-transformer-react-render": "^1.2.12",
     "react-code-editor": "0.0.14"
+  },
+  "quick-reference": {
+    "docRoot": "./source/_articles"
   }
 }
