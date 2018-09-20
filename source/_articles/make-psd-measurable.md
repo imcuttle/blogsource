@@ -41,11 +41,11 @@ tags: [psd, measure, 测量, 前端, 切图]
 
 ![](https://www.adobe.com/devnet-apps/photoshop/fileformatashtml/images/PhotoshopFileFormatsStructure.gif)
 
-- File Header 主要包括这个 psd 文件整体的数据，如版本，尺寸大小，图片通道数，使用的颜色类别（rgb、cmyk...）
-- Color Mode Data Section 主要是部分颜色类型图片需要用到
-- Image Resources 放置一些外部的图片资源
-- Layer and Mask  放置图层和蒙层的各种信息
-- Image Data      放置图像像素数据
+- File Header（定长）             主要包括这个 psd 文件整体的数据，如版本，尺寸大小，图片通道数，使用的颜色类别（rgb、cmyk...）
+- Color Mode Data Section（变长） 主要是部分颜色类型图片需要用到
+- Image Resources（变长）         放置一些外部的图片资源
+- Layer and Mask（变长）          放置图层和蒙层的各种信息，大小位置，字体，描边等等
+- Image Data（变长）              放置图像像素数据
 
 ### PSD.js
 
