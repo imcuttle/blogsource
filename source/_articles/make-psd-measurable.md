@@ -28,7 +28,7 @@ tags: [psd, measure, 测量, 前端, 切图]
 
 [DEMO](https://imcuttle.github.io/measure/)
 
-![a](http://obu9je6ng.bkt.clouddn.com//1537411054.png)
+![](http://obu9je6ng.bkt.clouddn.com//1537411054.png?imageMogr2/thumbnail/!100p)
 
 ## 设计与实现
 
@@ -99,6 +99,73 @@ obj.someParsedVal // 很快
   "children": []
 }
 ```
+
+#### 前后端同构
+
+前后端同构的意思：同时运行在客户端和服务端，具体便是同时执行在浏览器环境和 nodejs 环境
+
+实现前后端同构的一些常用方式，借助构建工具 browserify / rollup / webpack 来分别打包不同环境的 js
+
+##### 模拟环境
+
+- 在 nodejs 环境，对于 [nodejs built-in modules](https://www.w3schools.com/nodejs/ref_modules.asp) 不进行打包
+- 在 browser 环境，则将预设的 built-in modules 打包进去，以及一些 global 变量（如 `process.env / __dirname`）也会进行 mock
+
+#####  利用 变量替换 + treeshake 区分不同环境的代码
+
+- 如 webpack 配置 `DefinePlugin`
+  ```
+  {
+    plugins: [
+      new webpack.DefinePlugin({
+        'process.env.RUN_ENV': JSON.stringify('browser')
+      })
+    ]
+  }
+  ```
+
+- 在代码中对不同环境打包进行区分
+  ```javascript
+  module.exports =
+    process.env.RUN_ENV === 'browser'
+      ? {
+          psdToHtml,
+          psdToHtmlFromBuffer,
+          psdToHtmlFromURL,
+          psdToHAST,
+          psdToHASTFromBuffer
+        }
+      : {
+          psdToHtml,
+          psdToHtmlFromPath,
+          psdToHtmlFromBuffer,
+          psdToHAST,
+          psdToHASTFromBuffer,
+          psdToHASTFromPath
+        }
+  ```
+
+- 最终打包出来的 js 则会剔除掉 `psdToHASTFromPath` 相关代码
+
+##### `package.json` 配置
+
+如下：
+
+```json
+{
+  "main": "dist/psd-html.cjs.js",
+  "browser": "dist/psd-html.browser.cjs.js",
+  "cdn": "dist/psd-html.browser.umd.min.js",
+  "unpkg": "dist/psd-html.browser.umd.min.js"
+}
+```
+
+- `main`: nodejs 环境加载的 js
+- `browser`: browser 环境加载的 js
+- `cdn`: 部分 cdn 服务加载的 js
+- `unpkg`: unpkg cdn 服务加载的 js （主要使用 UMD 规范打包）
+
+直接访问 https://unpkg.com/@moyuyc/psd-html 则会重定向至 https://unpkg.com/@moyuyc/psd-html@{latest-version}/dist/psd-html.browser.umd.min.js
 
 ### html-measure 交互
 
