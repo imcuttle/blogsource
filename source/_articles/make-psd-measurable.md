@@ -30,6 +30,37 @@ tags: [psd, measure, 测量, 前端, 切图]
 
 ![](http://obu9je6ng.bkt.clouddn.com//1537411054.png?imageMogr2/thumbnail/!100p)
 
+[源码](https://github.com/imcuttle/measure)
+
+
+
+### 命令行
+
+我们也可以使用命令行来导出页面标注
+
+bash
+```
+npm i measure-export-cli -g
+# 开启服务，在线预览 `path/to/psdDir` 下的 psd
+measure-export start path/to/psdDir
+# 构建 `path/to/psdDir` 下的 psd 至 `dist` 文件目录
+measure-export build path/to/psdDir
+```
+
+### Chrome 插件
+
+提供 Chrome 插件，当我们点击 psd 链接时候跳出 Measure UI，而不是下载 PSD，当然我们也可以点击右上方的下载进行下载。
+
+![](https://i.loli.net/2018/09/24/5ba8bd6ba8f09.png)
+
+#### 安装
+  1. 下载扩展，[点击下载](https://github.com/imcuttle/measure/raw/master/packages/chrome-extension-measure-viewer/measure-viewer.zip)
+  2. 打开 Chrome 扩展页面： chrome://extensions/
+  3. 拖拽下载的包至页面中进行安装
+    ![](https://i.loli.net/2018/09/24/5ba8bdd4c9096.png)
+  4. 出现该图标表示安装完成
+    ![](https://i.loli.net/2018/09/24/5ba8be05d9f9a.png)
+
 ## 设计与实现
 
 流程如下：
