@@ -107,7 +107,7 @@ obj.someParsedVal // 很快
 
 ### psd-html
 
-将 PSD 解析为 [HAST]([hast-url])，进而转换为 HTML
+将 PSD 解析为 [HAST][hast-url]，进而转换为 HTML
 
 #### HAST (HTML 抽象语法树)
 
@@ -262,6 +262,6 @@ function isIntersect(node1, node2) {
 - [Adobe Photoshop File Formats Specification](https://www.adobe.com/devnet-apps/photoshop/fileformatashtml) PS 文件格式官方标准
 - [Photoshop Styles File Format](https://www.tonton-pixel.com/Photoshop%20Additional%20File%20Formats/styles-file-format.html#toc-parsing-styles-files)
 - [JS. 如何判断两个矩形是否相交](https://zhuanlan.zhihu.com/p/29704064)
-- [HAST]([hast-url])
+- [HAST][hast-url]
 
 [hast-url]: https://github.com/syntax-tree/hast
