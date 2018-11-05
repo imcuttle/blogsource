@@ -37,7 +37,7 @@ module.exports = {
     'remark-mark',
     'picidae-transformer-style-loader?lang=css',
     './transformers/html-loader?lang=__html&dangerouslySetScript',
-    'picidae-transformer-calc-image-size?devEnable=true&debug=true',
+    'picidae-transformer-calc-image-size?devEnable=false&debug=true',
 
     'picidae-transformer-medium-image?' + JSON.stringify({
       progressive: {
