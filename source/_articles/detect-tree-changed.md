@@ -25,12 +25,13 @@ datetime: 2019-02-03 23:43:25
 
 - 更新 (updated)
 - 新增 (added)
-- 存在子节点被删除 (has-child-removed)
+- 某节点存在新增的子节点 (has-added-child)
 - 存在子节点被更新（包括存在子节点被删除、新增、更新） (child-changed)
 
 对于树 A 来说，其节点的更改类型如下图，
 
-<p align=center><img src=https://i.loli.net/2019/02/04/5c581c6eae424.png /></p>
+![](https://i.loli.net/2019/02/07/5c5c4341682fe.png)
+<!-- <p align=center><img src=https://i.loli.net/2019/02/04/5c581c6eae424.png /></p> -->
 <center>树 A 的节点更改类型</center>
 
 ### 算法
@@ -46,9 +47,11 @@ datetime: 2019-02-03 23:43:25
 #### 流程描述
 
 1. 对树 A 进行后续遍历
-2. 遍历 X(A) 节点，根据 Paths(X(A)) 寻找到 Y(B)，若未找到 Y(B)，X(A) 标记为 added，并且向上回溯，标记 child-changed；若找到，进行对比。若节点内容不同，标记为 updated，并且向上回溯，标记 child-changed；若 X(A) 孩子数小于 Y(B) 孩子数，标记为 has-child-removed，并且向上回溯，标记 child-changed
+2. 遍历 X(A) 节点，根据 Paths(X(A)) 寻找到 Y(B)，若未找到 Y(B)，X(A) 标记为 added，并且向上回溯，标记 child-changed；若找到，进行对比。若节点内容不同，标记为 updated，并且向上回溯，标记 child-changed；若 X(A) 孩子数小于 Y(B) 孩子数，标记为 has-added-child，并且向上回溯，标记 child-changed
 
-<p align=center><img src=https://i.loli.net/2019/02/04/5c5855f115cb4.png /></p>
+<!-- ![](https://i.loli.net/2019/02/07/5c5c43ada9545.png) -->
+![](https://i.loli.net/2019/02/07/5c5c44497df63.png)
+<!-- <p align=center><img src=https://i.loli.net/2019/02/04/5c5855f115cb4.png /></p> -->
 <center>树 A 和树 B 对比流程示意</center>
 
 以上，只需要遍历一遍树 A (O(n)) 即可标记出所有的变化信息，但是在根据树 A 节点寻找对应树 B 节点需要 O(lgn) ~ O(n) 时间复杂度，所以最终的时间复杂度未 O(nlgn) ~ O(n^2)，下面将会讲述如何优化寻找对应树 B 节点的时间复杂度。
