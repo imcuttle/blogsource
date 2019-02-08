@@ -24,7 +24,7 @@ datetime: 2019-02-03 23:43:25
 那么首先对于某节点来说，有哪些类型的改动呢？
 
 - 更新 (updated)
-- 新增 (added)
+- 删除 (removed)
 - 某节点存在新增的子节点 (has-added-child)
 - 存在子节点被更新（包括存在子节点被删除、新增、更新） (child-changed)
 
@@ -47,7 +47,7 @@ datetime: 2019-02-03 23:43:25
 #### 流程描述
 
 1. 对树 A 进行后续遍历
-2. 遍历 X(A) 节点，根据 Paths(X(A)) 寻找到 Y(B)，若未找到 Y(B)，X(A) 标记为 added，并且向上回溯，标记 child-changed；若找到，进行对比。若节点内容不同，标记为 updated，并且向上回溯，标记 child-changed；若 X(A) 孩子数小于 Y(B) 孩子数，标记为 has-added-child，并且向上回溯，标记 child-changed
+2. 遍历 X(A) 节点，根据 Paths(X(A)) 寻找到 Y(B)，若未找到 Y(B)，X(A) 标记为 removed，并且向上回溯，标记 child-changed；若找到，进行对比。若节点内容不同，标记为 updated，并且向上回溯，标记 child-changed；若 X(A) 孩子数小于 Y(B) 孩子数，标记为 has-added-child，并且向上回溯，标记 child-changed
 
 <!-- ![](https://i.loli.net/2019/02/07/5c5c43ada9545.png) -->
 ![](https://i.loli.net/2019/02/07/5c5c44497df63.png)
