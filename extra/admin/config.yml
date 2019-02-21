@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: imcuttle/blogsource # Path to your Github repository
-  branch: feat/cms
+  branch: picidae
 
 media_folder: "extra/images" # Folder where user uploaded files should go
 public_folder: "img"
