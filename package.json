@@ -8,6 +8,7 @@
     "new": "picidae new",
     "push": "gp-qk \"$(date \"+%Y-%m-%d %H:%M:%S\")\"",
     "public": "cd public && gp-qk \"$(date \"+%Y-%m-%d %H:%M:%S\")\"",
+    "build": "picidae build -f --source-map --no-sw",
     "deploy": "picidae build -f && npm run public && npm run push",
     "start": "picidae start"
   },
