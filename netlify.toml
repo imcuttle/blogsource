@@ -1,0 +1,3 @@
+[build]
+  publish = "public"
+  command = "npx picidae build -f --source-map --no-sw"
