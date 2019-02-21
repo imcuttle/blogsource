@@ -22,5 +22,5 @@ deploy:
     branch: picidae
 
 env:
- global:
-   - GH_REF: imcuttle/imcuttle.github.io
+  global:
+    - GH_REF: imcuttle/imcuttle.github.io
