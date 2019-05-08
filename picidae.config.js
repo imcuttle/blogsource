@@ -1,6 +1,14 @@
 
 module.exports = {
   webpackConfigUpdater: function(config, webpack) {
+    const babelLoader = config.module.loaders.find(loader => loader.loader === 'babel-loader')
+
+    babelLoader.query.babelrc = false
+    babelLoader.options.babelrc = false
+    babelLoader.exclude = [
+      /([\/\\])node_modules\1(core-js|babel-runtime)\1/,
+    ]
+
     return config
   },
   verbose: true,
@@ -30,13 +38,15 @@ module.exports = {
       alias: {
         'log': './mod.js',
         'mo/lib': './lib',
-        'snippet': './source/_articles/snippets'
+        'snippet': './source/_articles/snippets',
+        '@': './source/_articles'
       }
     }),
     'picidae-transformer-file-syntax',
     'remark-mark',
     'picidae-transformer-style-loader?lang=css',
     './transformers/html-loader?lang=__html&dangerouslySetScript',
+    './transformers/expendable-code',
     'picidae-transformer-calc-image-size?devEnable=false&debug=true',
 
     'picidae-transformer-medium-image?' + JSON.stringify({
@@ -63,7 +73,7 @@ module.exports = {
     })
   ],
 
-  hotReloadTests: [/\/snippets\//],
+  hotReloadTests: [/\/snippets\//, /\/about-snap-fade-away\//],
 
   commanders: [
     'new'
