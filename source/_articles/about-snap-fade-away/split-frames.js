@@ -72,7 +72,9 @@ export default class extends React.Component {
 
   render() {
     return <div>
-      <div style={{ border: '1px solid red', marginBottom: 10 }}><div ref={r => this.nodeRef = r}>ABC</div></div>
+      <div style={{ border: '1px solid red', marginBottom: 10 }}>
+        <div ref={r => this.nodeRef = r}>ABCDEFGHIJKLMNOPQRST 💯</div>
+      </div>
       <div ref={r => this.mirrorRef = r}/>
       <div ref={r => this.containerRef = r} style={{ position: 'relative' }}>
       </div>
