@@ -12,13 +12,12 @@ export default class extends SplitFrame {
   }
 
   setUpEachCanvas(node, i) {
-    if (i !== 0) {
+    i !== 0 &&
       Object.assign(node.style, {
         position: 'absolute',
         left: '0',
         top: '0'
       })
-    }
 
     Object.assign(node.style, {
       border: 'none',
