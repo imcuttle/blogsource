@@ -39,8 +39,8 @@ module.exports = function(opts) {
       ele.addEventListener('blur', blurHandler, true)
     })
     unmountCallbackCollect(ele => {
-      ele.removeEventListener('focus', focusHandler, true)
-      ele.removeEventListener('blur', blurHandler, true)
+      // ele.removeEventListener('focus', focusHandler, true)
+      // ele.removeEventListener('blur', blurHandler, true)
     })
   }
 }
