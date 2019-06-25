@@ -11,8 +11,7 @@ datetime: 2019-06-24T14:42:24.051Z
 ## 前后端分离开发常规思路
 
 以一种具体情景为例：小牛是一名全栈工程师，喜欢前端后端全干，前端使用目前主流的 Webpack + React 全家桶（或 Vue 全家桶），后端使用 express（或 Koa），小牛在同时开发前后端过程中，开启两个进程（前后端各一个），同时使用 [nodemon](https://www.npmjs.com/package/nodemon) 热重启后台服务，使用 Webpack Proxy 转发实现跨域请求，然后哼哧哼哧开发。
-如例子：[一个前后端分离的简单案例
-](https://juejin.im/entry/58aa5ccf2f301e006c32a3be)
+如例子：[一个前后端分离的简单案例](https://juejin.im/entry/58aa5ccf2f301e006c32a3be)
 
 ```text
  Process 1                Process 2
