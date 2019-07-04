@@ -2,6 +2,8 @@
 title: DIY 一个 CommonJS 运行环境吧
 datetime: 2019-07-03T07:03:11.236Z
 ---
+在进入主题之前，我们先看一个 React PropTypes 定义的问题。
+
 ## 问题背景
 在写 React PropTypes 定义的时候，比如如下 Button 组件：
 
@@ -60,6 +62,35 @@ if (typeof document !== 'undefined') {
 
 在实现 CommonJS 环境前，先需要了解一下 [CommonJS 是什么](https://javascript.ruanyifeng.com/nodejs/module.html)
 
+CommonJS 最为核心的为 Module 类
+```ts
+class Module {
+  // 是否加载完成
+  loaded: boolean
+  // 缓存的 exports 
+  exports: any
+  // Module 直接依赖的 Module
+  children: Module[]
+  // Module 的父亲
+  parent: Module
+}
+```
+
+其中 CommonJS 环境有如下参数变量
+```ts
+namespace CommonJS<T> {
+   require: (id) => any & {cache: Object<string, Module>, main: Module, resolve: Function, extensions: {}}
+   // 当前 Module 对象
+   module: Module
+   // 文件名
+   __filename: string
+   // 文件目录
+   __dirname: string
+   // 全局环境变量
+   global: T
+} & T
+```
+
 所以 CommonJS 需要实现的重点对象为：`require` / `module` / `global`，以及模块加载的机制实现。在这里使用 [vm](https://nodejs.org/api/vm.html) 模块创建沙盒环境。
 
 #### require 模块加载流程
@@ -87,6 +118,8 @@ newModule.loaded = true
 return module.exports
 ```
 
+#### 环形依赖的特殊性
+
 我们来看一个环形依赖具体的例子
 
 - `a.js`
@@ -111,8 +144,25 @@ console.log('b.js exports', module.exports)
 
 执行 `node a.js` 和 `node b.js` 分别 log 如何呢？
 
-具体代码实现参看 [my-runner](https://github.com/imcuttle/my-runner)
+- `node a.js`
+```
+a.js exports entry {}
+b.js exports entry {}
+b.js exports { a: {}, b: 'b' }
+a.js exports { b: { a: {}, b: 'b' }, a: 'a' }
+```
 
+- `node b.js`
+```
+b.js exports entry {}
+a.js exports entry {}
+a.js exports { b: {}, a: 'a' }
+b.js exports { a: { b: {}, a: 'a' }, b: 'b' }
+```
+
+可以看到，对于环形依赖，可能导致某固定 Module exports 数据不同。  
+
+具体代码实现参看 [my-runner](https://github.com/imcuttle/my-runner)  
 它具有类似 [Jest](https://jestjs.io/docs/en/configuration) 的配置，可见 Jest 的原理其实也是使用 vm 模拟了 CommonJS 环境。
 
 ## 应用场景
