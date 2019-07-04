@@ -93,6 +93,30 @@ namespace CommonJS<T> {
 
 所以 CommonJS 需要实现的重点对象为：`require` / `module` / `global`，以及模块加载的机制实现。在这里使用 [vm](https://nodejs.org/api/vm.html) 模块创建沙盒环境。
 
+#### vm 使用实例
+
+1. 使用 vm.Script 创建执行脚本 script
+2. 执行 script.runInContext(context)
+
+```
+const vm = require('vm');
+
+const sandbox = {
+  animal: 'cat',
+  count: 2
+};
+
+const script = new vm.Script('count += 1; name = "kitty";');
+
+const context = vm.createContext(sandbox);
+for (let i = 0; i < 10; ++i) {
+  script.runInContext(context);
+}
+
+console.log(sandbox);
+// { animal: 'cat', count: 12, name: 'kitty' }
+```
+
 #### require 模块加载流程
 ```
 输入 moduleName
