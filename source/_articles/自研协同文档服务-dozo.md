@@ -109,4 +109,4 @@ async applyOperation(operation) {
    await redis.setDocument(doc) // 3
 }
 ```
-   当 ws1 节点
+   当 ws1 节点完成 1 之后，进入 2 之前，这时 ws2 也收到 operation，同时 ws2 也完成 1；这样后续 ws1 / ws2 接着后续流程，可以看到，很可能会丢失掉某批次客户端的操作，至于该问题如何解决，先卖个关子，后续持续完善。
