@@ -90,7 +90,9 @@ Dozo 服务的架构如下，由 8 个分布式子服务组成，各个节点又
 使用多节点集群和负载均衡，可以大幅度减少单节点的并发数；其中 web / fileman / static 服务多节点集群的搭建比较简单，直接搭配负载均衡，分流到不同节点即可；但是对于 websocket 服务来说，多节点服务并不简单！
 
 其中有以下问题：
+
 1. 对于 socket.io 来说，建立连接之前，会一段（多个）HTTP请求响应的通信，这时候需要始终保存与固定的 ws 服务通信，所以不能通过简单的轮询来负载均衡，需要通过 ip 网段映射表来分流（会话保持），可就是同一个 ip 始终走同一个 ws 服务；
+
 2. 多个不同 ws 服务之间需要共享数据，共享 socket 通道；  
    如，ws1 服务有 a b 客户端连接，ws2 服务有 c d 客户端连接；这时候 ws1 如何才能知道整体 ws 服务当前有多少客户端连接？  ws1 可以通过 redis 发布 getSockets 消息，ws2 在订阅 getSockets 消息后，返回 ws2 所有的 sockets，从而 ws1 通过 ws2.sockets 和 ws1.sockets 合并，即可获取整体 ws 服务的 sockets；  
    又如，ws1 服务需要对整体 ws 客户端广播发送 hello 消息，除了需要对自身 ws1 进程中的 sockets 进行广播；还需要广播消息 `{type: 'broadcase', value: 'hello'}`, ws2 / ws3 /... 接受消息后，也在当前进程广播消息 `hello`；
@@ -99,14 +101,14 @@ Dozo 服务的架构如下，由 8 个分布式子服务组成，各个节点又
    鉴于以上问题，所以考虑把文稿数据存入单节点 redis 中，通过对单节点 redis 内存的读写操作，避免数据覆盖问题；  
 
    **但是**这样问题就解决了吗？如某时刻有客户端操作发送至 ws1 节点，ws1 服务端正常的流程如下：
-```
-async applyOperation(operation) {
-   // 从 redis 获取文稿
-   const doc = await redis.getDocument()  // 1
-   // 更新 doc
-   applyOperationToDoc(doc, operation)  // 2
-   // 写入 doc
-   await redis.setDocument(doc) // 3
-}
-```
+    ```
+    async applyOperation(operation) {
+       // 从 redis 获取文稿
+       const doc = await redis.getDocument()  // 1
+       // 更新 doc
+       applyOperationToDoc(doc, operation)  // 2
+       // 写入 doc
+       await redis.setDocument(doc) // 3
+    }
+    ```
    当 ws1 节点完成 1 之后，进入 2 之前，这时 ws2 也收到 operation，同时 ws2 也完成 1；这样后续 ws1 / ws2 接着后续流程，可以看到，很可能会丢失掉某批次客户端的操作，至于该问题如何解决，先卖个关子，后续持续完善。
